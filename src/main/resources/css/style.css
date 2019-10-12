@@ -5,7 +5,11 @@
 /*-solid*/
 /*-regular*/
 
-
+.welcome{
+    font-weight: bold;
+    text-decoration: blink;
+    color: red;
+}
 
 @font-face{
 

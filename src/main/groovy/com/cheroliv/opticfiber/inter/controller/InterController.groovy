@@ -27,7 +27,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
         produces = [APPLICATION_JSON_UTF8_VALUE])
 class InterController {
     public static final String INTER_BASE_URL_REST_API =
-            '/api/v1/ora/inters'
+            '/api/inters'
 
     final InterService interService
 

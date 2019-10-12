@@ -18,6 +18,6 @@ class FiberCommandLineRunner implements CommandLineRunner {
 
     @Override
     void run(String... args) throws Exception {
-        log.info "bean provided by spring container : ${applicationContext.getBeanDefinitionNames().toArrayString()}"
+//        log.info "bean provided by spring container : ${applicationContext.getBeanDefinitionNames().toArrayString()}"
     }
 }
