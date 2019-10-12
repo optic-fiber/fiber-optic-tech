@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.ResponseBody
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
+
 @Controller
 class HomePageController {
 
@@ -21,18 +23,19 @@ class HomePageController {
         "viewresolver"
     }
 
-    @GetMapping('/inters')
+    @GetMapping(value='/inters',
+            produces = [APPLICATION_JSON_UTF8_VALUE])
     @ResponseBody
     List<InterDto> inter() {
         interService.getAll()
     }
 
-    @GetMapping('/')
+    @GetMapping
     String homePage() {
         'index'
     }
 
-    @PostMapping('/')
+    @PostMapping
     String submitInter() {
         'inter_confirmation'
     }
