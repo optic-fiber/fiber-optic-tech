@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.inter.controller
+package com.cheroliv.opticfiber.recap.controller
 
 
 import org.springframework.web.bind.annotation.RestController
