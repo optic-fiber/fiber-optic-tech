@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "application.data.json-backup-file-name",
+      "type": "java.lang.String",
+      "description": "Description for application.data.json-backup-file-name."
+    },
+    {
+      "name": "application.data.home-directory-name",
+      "type": "java.lang.String",
+      "description": "Description for application.data.home-directory-name."
+    },
+    {
+      "name": "application.data.spreadsheet-file-name",
+      "type": "java.lang.String",
+      "description": "Description for application.data.spreadsheet-file-name"
+    }
+  ]
+}

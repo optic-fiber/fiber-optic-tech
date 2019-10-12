@@ -1,0 +1,89 @@
+
+/*creer ici un style */
+/*pour :*/
+/*-brands*/
+/*-solid*/
+/*-regular*/
+
+
+
+@font-face{
+
+}
+
+.recap-container {
+    display: flex;
+    justify-content: stretch;
+}
+
+.build-recap-button {
+    order: 0;
+}
+
+.start-date-recap {
+    order: 1;
+}
+
+.end-date-recap {
+    order: 2;
+}
+
+.inter-container {
+    flex-wrap: wrap;
+    display: grid;
+    grid-gap: 5px;
+    flex-direction: column;
+}
+
+.id-inter {
+    order: 0;
+}
+
+.nd {
+    order: 2;
+}
+
+.type-inter {
+    order: 5;
+}
+
+.contract {
+    order: 6;
+}
+
+.datetime-inter {
+    order: 1;
+}
+
+.first-name-client {
+    order: 3;
+}
+
+.last-name-client {
+    order: 4;
+}
+
+.inter-navigation-btn-container {
+    order: 7;
+    display: flex;
+}
+
+.first-inter-btn {
+    order: 0;
+}
+
+.previous-inter-btn {
+    order: 1;
+}
+
+.save-inter-btn {
+    order: 2;
+}
+
+.next-inter-btn {
+    order: 3;
+}
+
+.last-inter-btn {
+    order: 4;
+}
