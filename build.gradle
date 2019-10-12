@@ -160,9 +160,7 @@ dependencies {
 //    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 
 
-    // TDD:JUNIT
-    testImplementation 'org.mockito:mockito-core:3.1.0'
-    testImplementation 'org.mockito:mockito-junit-jupiter:3.1.0'
+    // TDD:JUNIT5
     testImplementation("org.junit.jupiter:junit-jupiter:$junit_jupiter_version") {
         exclude module: 'junit-jupiter-params'
         exclude module: 'junit-jupiter-api'
@@ -171,6 +169,12 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version")
 
     testCompileOnly 'junit:junit'
+
+    // MOCKITO
+    testImplementation 'org.mockito:mockito-core:3.1.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.1.0'
+
+
 
     // BDD:CUCUMBER
 //    testImplementation "io.cucumber:cucumber-junit:$cucumber_version"

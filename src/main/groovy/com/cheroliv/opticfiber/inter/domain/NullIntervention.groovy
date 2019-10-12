@@ -9,7 +9,7 @@ class NullIntervention {
     Optional<InterDto> getOptionalInter(){
         Optional.empty()
     }
-    String getNd(){''}
+    String getNd(){null}
 
     TypeInterEnum getTypeInter(){null}
 

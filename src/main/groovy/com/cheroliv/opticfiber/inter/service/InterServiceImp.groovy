@@ -30,7 +30,7 @@ class InterServiceImp implements InterService {
     InterDto get(Long id) {
         if (!id) return null
         Optional<InterDto> optional = interRepository.findById(id)
-        if (!optional.present) return null
+        if (optional.empty) return null
         else optional.get()
     }
 
@@ -117,9 +117,7 @@ class InterServiceImp implements InterService {
         if (interRepository.findById(id).empty) return false
         Optional<InterDto> optional = interRepository.find(
                 nd, TypeInterEnum.valueOfName(type))
-        if (optional.empty) {
-            return true
-        }
+        if (optional.empty) return true
         InterDto result = optional.get()
         if (result.id == id) true
         else false
