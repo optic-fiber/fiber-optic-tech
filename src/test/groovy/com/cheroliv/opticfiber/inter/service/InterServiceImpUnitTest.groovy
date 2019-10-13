@@ -276,11 +276,4 @@ class InterServiceImpUnitTest {
                 nd,
                 data.firstInterDto.typeInter)
     }
-
-//    void testSave() {
-//    }
-//    void testDelete() {
-//    }
-//    void testSaveWithPatch() {
-//    }
 }
