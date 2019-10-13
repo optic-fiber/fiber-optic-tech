@@ -45,6 +45,6 @@ se rendre dans le dossier, ouvrir un terminal en se rendant à la racine du proj
 
 == Contact
 
-https://github.com/cheroliv[cheroliv @ *github*]
-https://twitter.com/CherOliv[twitter : @CherOliv]
+https://github.com/cheroliv[cheroliv @ *github*] +
+https://twitter.com/CherOliv[twitter : @CherOliv] +
 mailto:cheroliv.developer@laposte.net[email moi]
