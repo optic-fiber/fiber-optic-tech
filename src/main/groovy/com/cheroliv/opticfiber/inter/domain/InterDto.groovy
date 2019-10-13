@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.inter.domain
 
-import com.cheroliv.opticfiber.config.InterConstants
+
 import com.fasterxml.jackson.annotation.JsonFormat
 import groovy.transform.ToString
 
@@ -9,14 +9,15 @@ import javax.validation.constraints.Pattern
 import javax.validation.constraints.Size
 import java.time.LocalDateTime
 
+import static com.cheroliv.opticfiber.config.InterConstants.ND_NOTNULL_CSTRT_TPL_MSG
+import static com.cheroliv.opticfiber.config.InterConstants.ND_SIZE_CSTRT_TPL_MSG
+
 @ToString
 class InterDto implements Serializable {
-    InterDto() {
-    }
     Long id
-    @NotNull(message = InterConstants.ND_NOTNULL_CSTRT_TPL_MSG)
+    @NotNull(message = ND_NOTNULL_CSTRT_TPL_MSG)
     @Size(min = 10, max = 10,
-            message = InterConstants.ND_SIZE_CSTRT_TPL_MSG)
+            message = ND_SIZE_CSTRT_TPL_MSG)
     String nd
     @Size(max = 100)
     String firstName
