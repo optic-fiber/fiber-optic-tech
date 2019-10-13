@@ -25,6 +25,9 @@ La troisième fonctionnalité est la mise à disposition d'un API REST, +
 permettant a d'autre type de client, de se connecter pour ajouter supprimer +
 mettre à jour la liste des interventions et demander un récapitulatif des interventions.
 
+image::img/fiber_tech_use_case.png[use case]
+
+
 == Schéma relationnel
 
 image::img/describe_inter_table.png[Description Table Inter]
