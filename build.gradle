@@ -36,9 +36,7 @@ repositories {
     mavenCentral()
     gradlePluginPortal()
     maven { url 'http://repo.spring.io/plugins-release' }
-//    jcenter()
-//    maven { url 'https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine' }
-
+    jcenter()
 }
 
 dependencyManagement {
@@ -60,7 +58,6 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-//    compile.exclude module: 'spring-boot-starter-tomcat'
 }
 
 test {
@@ -82,72 +79,47 @@ bootRun {
 
 
 dependencies {
-    implementation "commons-io:commons-io:$commons_io_version"
-
-    // CSV USAGE IN TEST
-    testImplementation "com.xlson.groovycsv:groovycsv:$groovy_csv_version"
-
-    // GROOVY DSL OVER POI
-    implementation "com.jameskleeh:excel-builder:$excel_builder_version"
-    implementation "org.apache.poi:poi:$poi_version"
-    implementation "org.apache.poi:poi-ooxml:$poi_version"
-
-    // XML/JSON PARSER
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
-
-
-    // GROOVY
-//    implementation "org.codehaus.groovy:groovy-all:$groovy_version"
-    implementation "org.codehaus.groovy:groovy:$groovy_version"
-    implementation "org.codehaus.groovy:groovy-json:$groovy_version"
-
-    testImplementation "org.codehaus.groovy:groovy-all:$groovy_version"
-
-
-    implementation 'com.google.guava:guava:28.0-jre'
-
     // DEVELOPER TOOLS
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
+    // GROOVY
+    implementation "org.codehaus.groovy:groovy:$groovy_version"
+    implementation "org.codehaus.groovy:groovy-json:$groovy_version"
+    testImplementation "org.codehaus.groovy:groovy-all:$groovy_version"
     // SPRING STARTING POINT RESOURCES
     implementation 'org.springframework.boot:spring-boot-starter-web'
-
     // MAIL
 //    implementation 'org.springframework.boot:spring-boot-starter-mail'
-
     // VIEW TEMPLATE
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-
-    // APP-SERVER
-//    implementation 'org.springframework.boot:spring-boot-starter-undertow'
-implementation 'org.springframework.boot:spring-boot-starter-tomcat'
     // GRAPH_QL
 //    implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:5.10.0'
 //    implementation 'com.graphql-java-kickstart:graphql-java-tools:5.6.1'
 //    runtime 'com.graphql-java-kickstart:graphiql-spring-boot-starter:5.10.0'
-
-
 //    testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.10.0'
-
-
     // DATABASE ORM
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.hibernate:hibernate-envers'
-
     // BEAN VALIDATION
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-
     // BEAN MAPPING
     implementation "org.mapstruct:mapstruct:${mapstruct_version}"
-
     // DATABASE ACCESS DRIVER
     implementation 'com.h2database:h2'
-
+    // COLLECTION HELPERS
+    implementation 'com.google.guava:guava:28.0-jre'
     // STRING HELPERS
     implementation 'org.apache.commons:commons-lang3'
-
+    //APACHE COMMONS-IO file manip
+    implementation "commons-io:commons-io:$commons_io_version"
+    // GROOVY DSL OVER POI
+    implementation "com.jameskleeh:excel-builder:$excel_builder_version"
+    implementation "org.apache.poi:poi:$poi_version"
+    implementation "org.apache.poi:poi-ooxml:$poi_version"
+    // XML/JSON PARSER
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
+    //TDD
     // TDD:JUNIT SPRING
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //    testImplementation ('org.springframework.cloud:spring-cloud-starter-contract-stub-runner'){
@@ -155,8 +127,6 @@ implementation 'org.springframework.boot:spring-boot-starter-tomcat'
 //    }
 //    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
 //    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
-
-
     // TDD:JUNIT5
     testImplementation("org.junit.jupiter:junit-jupiter:$junit_jupiter_version") {
         exclude module: 'junit-jupiter-params'
@@ -164,13 +134,13 @@ implementation 'org.springframework.boot:spring-boot-starter-tomcat'
     }
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junit_jupiter_version")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version")
-
+    //JUNIT4 VINTAGE TEST
     testCompileOnly 'junit:junit'
-
     // MOCKITO
     testImplementation 'org.mockito:mockito-core:3.1.0'
     testImplementation 'org.mockito:mockito-junit-jupiter:3.1.0'
-
+    // CSV USAGE IN TEST
+    testImplementation "com.xlson.groovycsv:groovycsv:$groovy_csv_version"
     // BDD:CUCUMBER
 //    testImplementation "io.cucumber:cucumber-junit:$cucumber_version"
 //    testImplementation "io.cucumber:cucumber-spring:$cucumber_version"
@@ -184,7 +154,7 @@ task dependencyReportFile(type: DependencyReportTask) {
     outputFile = file(outputFileName)
 }
 
-task printHerokuVersion(type:Exec) {
+task printHerokuVersion(type: Exec) {
     workingDir projectDir
     commandLine '/snap/bin/heroku', '-v'
     standardOutput = new ByteArrayOutputStream()

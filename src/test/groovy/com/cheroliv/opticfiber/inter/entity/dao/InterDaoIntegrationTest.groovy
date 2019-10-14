@@ -2,6 +2,7 @@ package com.cheroliv.opticfiber.inter.entity.dao
 
 
 import com.cheroliv.opticfiber.ApplicationUtils
+import com.cheroliv.opticfiber.config.ApplicationConstants
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
@@ -27,6 +28,7 @@ import java.time.LocalTime
 import java.time.Month
 import java.time.format.DateTimeFormatter
 
+import static com.cheroliv.opticfiber.config.ApplicationConstants.DATE_PATTERN_FORMAT
 import static com.cheroliv.opticfiber.config.InterConstants.*
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE
 
@@ -180,7 +182,7 @@ class InterDaoIntegrationTest {
         jsonData.each {
             LocalDate date = LocalDate.parse(
                     it[DATE_INTER_JSON_FIELD_NAME],
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    DateTimeFormatter.ofPattern(DATE_PATTERN_FORMAT))
             if (date.year == intAnnee &&
                     date.monthValue == intMois)
                 expectedResult.add(jsonDataToInter(it))

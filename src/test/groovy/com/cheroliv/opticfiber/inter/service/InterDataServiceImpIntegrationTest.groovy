@@ -2,6 +2,7 @@ package com.cheroliv.opticfiber.inter.service
 
 import com.cheroliv.opticfiber.TestUtils
 import com.cheroliv.opticfiber.ApplicationUtils
+import com.cheroliv.opticfiber.config.ApplicationConstants
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
@@ -32,6 +33,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+import static com.cheroliv.opticfiber.config.ApplicationConstants.DATE_PATTERN_FORMAT
 import static com.cheroliv.opticfiber.config.InterConstants.*
 import static com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum.CABLE_ROUTING
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals
@@ -210,7 +212,7 @@ class InterDataServiceImpIntegrationTest {
         this.getJsonData().each { Map<String, String> it ->
             dates.add LocalDate.parse(
                     it[DATE_INTER_JSON_FIELD_NAME],
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    DateTimeFormatter.ofPattern(DATE_PATTERN_FORMAT))
         }
         dates
     }

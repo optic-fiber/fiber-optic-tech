@@ -4,16 +4,24 @@ package com.cheroliv.opticfiber
 import groovy.transform.CompileStatic
 
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.Month
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 
-import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_FILE_SEPARATOR
-import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_USER_HOME
+import static com.cheroliv.opticfiber.config.ApplicationConstants.*
 
 @CompileStatic
 class ApplicationUtils {
+
+
+    static String dateTimeFormattedForFileName(LocalDateTime dateTime) {
+        dateTime.format(DateTimeFormatter.ofPattern(
+                "${DATE_PATTERN_FORMAT}_${TIME_PATTERN_FORMAT}"))
+    }
+
+
     static String getUserHomePath() {
         System.getProperty(KEY_SYSTEM_PROPERTY_USER_HOME)
     }
@@ -50,7 +58,7 @@ class ApplicationUtils {
     static LocalDate parseStringDateToLocalDate(String strDate) {
         LocalDate.parse(strDate,
                 DateTimeFormatter
-                        .ofPattern("yyyy-MM-dd"))
+                        .ofPattern(DATE_PATTERN_FORMAT))
     }
 
     static Integer timeStringToInteger(String strHeure) {

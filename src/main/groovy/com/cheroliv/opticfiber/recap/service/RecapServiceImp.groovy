@@ -1,9 +1,11 @@
 package com.cheroliv.opticfiber.recap.service
 
-
+import com.cheroliv.opticfiber.ApplicationUtils
+import com.cheroliv.opticfiber.config.ApplicationConstants
 import com.cheroliv.opticfiber.inter.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.recap.model.Recap
+import com.cheroliv.opticfiber.recap.service.exceptions.RecapDatesCouldNotBeNull
 import com.cheroliv.opticfiber.recap.spreadsheet.SpreadsheetRecap
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
@@ -14,15 +16,8 @@ import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_FILE_SEPARATOR
-
-//import com.cheroliv.fiber.inter.repo.InterDao
-//import com.cheroliv.fiber.inter.domain.ApplicationUtils
-//import com.cheroliv.opticfiber.entities.dao.InterEntity
-//import com.cheroliv.fiber.inter.domain.InterDto
-
-//import com.cheroliv.fiber.recap.model.Recap
-//import com.cheroliv.fiber.recap.spreadsheet.SpreadsheetRecap
+import static com.cheroliv.opticfiber.ApplicationUtils.dateTimeFormattedForFileName
+import static com.cheroliv.opticfiber.config.ApplicationConstants.*
 
 
 //
@@ -42,6 +37,7 @@ class RecapServiceImp implements RecapService {
 //        this.service = service
 //    }
 //    final InterDao repo
+
     SpreadsheetRecap classeur
 //    @NotNull
 //    @NotEmpty
@@ -65,13 +61,13 @@ class RecapServiceImp implements RecapService {
 
     RecapServiceImp(
             //.fiber-simple
-            @Value('$application.data.home-directory-name')
+            @Value('${application.data.home-directory-name}')
                     String homeDirectoryName,
             //recap-spreadsheet
-            @Value('$application.data.recap-spreadsheet-directory-name')
+            @Value('${application.data.recap-spreadsheet-directory-name}')
                     recapSpreadsheetDirectoryName,
             //recap_date-time1_date-time2.xlsx
-            @Value('$application.data.recap-spreadsheet-file-name')
+            @Value('${application.data.recap-spreadsheet-file-name}')
                     String recapSpreadsheetFileName,
             InterDataService service,
             InterRepository repo) {
@@ -99,32 +95,36 @@ class RecapServiceImp implements RecapService {
         finalList
     }
 
-    static String dateTimeFormattedForFileName(LocalDateTime dateTime) {
-        String strDate = dateTime.format(DateTimeFormatter
-                .ofPattern("yyyy-MM-dd"))
-        String strTime = dateTime.format(DateTimeFormatter
-                .ofPattern("HH:mm"))
-        String strDateTime = "${strDate}_${strTime}"
-        strDateTime
-    }
-
     @Override
     String generateRecapFileName(
             LocalDateTime startDate,
             LocalDateTime endDate) {
+        /**
+         * TODO si les deux dates sont nul alors
+         * le recap concerne la totalité des interventions
+         *
+         * si une des dates est null alors la date non null
+         * devient la start date
+         *  et le recap concerne alors de la start date
+         *  a la derniere inter sera now
+         *
+         *
+         *
+         *  supprimer l'exception
+         */
+        if (!startDate || !endDate)
+            throw new RecapDatesCouldNotBeNull()
         if (startDate.isAfter(endDate)) {
-            def tmp = startDate
+            LocalDateTime tmp = startDate
             startDate = endDate
             endDate = tmp
         }
-        String recapFileName = recapSpreadsheetFileName
-        recapFileName.replace(
-                'time1_date',
+        recapSpreadsheetFileName.replace(
+                MOTIF_START_DATE_TIME,
                 dateTimeFormattedForFileName(startDate))
-        recapFileName.replace(
-                'time2_date',
-                dateTimeFormattedForFileName(endDate))
-        recapFileName
+                .replace(
+                        MOTIF_END_DATE_TIME,
+                        dateTimeFormattedForFileName(endDate))
     }
 
 

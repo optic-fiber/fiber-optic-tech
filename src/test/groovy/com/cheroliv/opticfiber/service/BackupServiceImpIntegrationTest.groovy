@@ -1,5 +1,6 @@
 package com.cheroliv.opticfiber.service
 
+import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation
@@ -11,11 +12,14 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.jdbc.core.JdbcTemplate
 
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE
+
 //import org.springframework.test.jdbc.JdbcTestUtils
 
 @Slf4j
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@TypeChecked
 @TestMethodOrder(OrderAnnotation)
+@SpringBootTest(webEnvironment = NONE)
 @DisplayName("BackupServiceImpIntegrationTest")
 class BackupServiceImpIntegrationTest {
     final String COUNT_QUERY = 'select count(*) from "inter"'

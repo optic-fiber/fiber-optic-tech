@@ -1,5 +1,6 @@
 package com.cheroliv.opticfiber.service
 
+import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation
@@ -13,8 +14,9 @@ import org.springframework.boot.test.context.SpringBootTest
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE
 
 @Slf4j
-@SpringBootTest(webEnvironment = NONE)
+@TypeChecked
 @TestMethodOrder(OrderAnnotation)
+@SpringBootTest(webEnvironment = NONE)
 @DisplayName("SettingServiceImpIntegrationTest")
 class SettingServiceImpIntegrationTest {
 

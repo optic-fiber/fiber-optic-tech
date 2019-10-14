@@ -16,13 +16,7 @@ import static com.cheroliv.opticfiber.ApplicationUtils.separator
 import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_USER_HOME
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE
 
-/**
- * TODO
- * passer en test unitaire en recuperant
- * comme dans la classe de test des properties
- * la valeur des property dans les @Value
- * et ajouter extends mockito annotation
- */
+
 @Slf4j
 @TypeChecked
 @TestMethodOrder(OrderAnnotation)
