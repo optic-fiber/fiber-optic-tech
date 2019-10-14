@@ -1,4 +1,4 @@
-= fiber-console
+= fiber-optic-tech
 
 == Présentation de l'application
 
