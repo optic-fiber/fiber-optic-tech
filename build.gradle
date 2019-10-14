@@ -32,12 +32,12 @@ sourceCompatibility = VERSION_12
 targetCompatibility = VERSION_12
 
 repositories {
+    mavenLocal()
     mavenCentral()
     gradlePluginPortal()
     maven { url 'http://repo.spring.io/plugins-release' }
-    jcenter()
-    maven { url 'https://jitpack.io' }
-    maven { url 'https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine' }
+//    jcenter()
+//    maven { url 'https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine' }
 
 }
 
@@ -61,7 +61,6 @@ configurations {
         extendsFrom annotationProcessor
     }
     compile.exclude module: 'spring-boot-starter-tomcat'
-//    compile.exclude module: 'tomcat-embed-el'
 }
 
 test {
@@ -123,7 +122,6 @@ dependencies {
 
     // APP-SERVER
     implementation 'org.springframework.boot:spring-boot-starter-undertow'
-
 
     // GRAPH_QL
 //    implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:5.10.0'
@@ -188,3 +186,13 @@ task dependencyReportFile(type: DependencyReportTask) {
     !(depFile.exists() && !depFile.directory) ?: depFile.delete()
     outputFile = file(outputFileName)
 }
+
+task printHerokuVersion(type:Exec) {
+    workingDir projectDir
+    commandLine '/snap/bin/heroku', '-v'
+    standardOutput = new ByteArrayOutputStream()
+    doLast {
+        println standardOutput.toString()
+    }
+}
+
