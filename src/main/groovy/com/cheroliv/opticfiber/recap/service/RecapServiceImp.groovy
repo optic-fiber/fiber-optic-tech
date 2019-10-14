@@ -1,22 +1,29 @@
 package com.cheroliv.opticfiber.recap.service
 
+
+import com.cheroliv.opticfiber.inter.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterDataService
+import com.cheroliv.opticfiber.recap.model.Recap
+import com.cheroliv.opticfiber.recap.spreadsheet.SpreadsheetRecap
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
+import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_FILE_SEPARATOR
 
 //import com.cheroliv.fiber.inter.repo.InterDao
-//import com.cheroliv.fiber.inter.domain.InterUtils
+//import com.cheroliv.fiber.inter.domain.ApplicationUtils
 //import com.cheroliv.opticfiber.entities.dao.InterEntity
 //import com.cheroliv.fiber.inter.domain.InterDto
 
 //import com.cheroliv.fiber.recap.model.Recap
 //import com.cheroliv.fiber.recap.spreadsheet.SpreadsheetRecap
 
-//import org.springframework.beans.factory.annotation.Value
 
 //
 //import javax.validation.constraints.NotEmpty
@@ -29,17 +36,13 @@ import java.time.LocalDateTime
 @Transactional(readOnly = true)
 class RecapServiceImp implements RecapService {
 
-//    final String classeurPathName
-//    final String fiberUserDataFolderName
-//    final String classeurDirectoryName
-    final InterDataService service
 
 //    @Autowired
 //    void setService(InterDataService service) {
 //        this.service = service
 //    }
 //    final InterDao repo
-//    SpreadsheetRecap classeur
+    SpreadsheetRecap classeur
 //    @NotNull
 //    @NotEmpty
 //    String path
@@ -54,22 +57,29 @@ class RecapServiceImp implements RecapService {
 //    @Value('${application.data.home-directory-name}')
 //    String homeDirectoryName
 //     */
+    final String homeDirectoryName
+    final String recapSpreadsheetDirectoryName
+    final String recapSpreadsheetFileName
+    final InterDataService service
+    final InterRepository repo
+
     RecapServiceImp(
-//            @Value('${application.data.spreadsheet-file-name}')
-//                    String recapSpreadsheetFileName,
-//            @Value('${application.data.home-directory-name}')
-//                    String homeDirectoryName,
-//            @Value('${application.data.home-spreadsheet-directory-name}')
-//                    String recapSpreadsheetDirectoryName,
-InterDataService service
-//,
-//            InterDao repo
-    ) {
-//        this.repo = repo
+            //.fiber-simple
+            @Value('$application.data.home-directory-name')
+                    String homeDirectoryName,
+            //recap-spreadsheet
+            @Value('$application.data.recap-spreadsheet-directory-name')
+                    recapSpreadsheetDirectoryName,
+            //recap_date-time1_date-time2.xlsx
+            @Value('$application.data.recap-spreadsheet-file-name')
+                    String recapSpreadsheetFileName,
+            InterDataService service,
+            InterRepository repo) {
+        this.repo = repo
         this.service = service
-//        this.classeurPathName = recapSpreadsheetFileName
-//        this.fiberUserDataFolderName = homeDirectoryName
-//        this.classeurDirectoryName = recapSpreadsheetDirectoryName
+        this.homeDirectoryName = homeDirectoryName
+        this.recapSpreadsheetDirectoryName = recapSpreadsheetDirectoryName
+        this.recapSpreadsheetFileName = recapSpreadsheetFileName
     }
 
     @Override
@@ -89,17 +99,38 @@ InterDataService service
         finalList
     }
 
+    static String dateTimeFormattedForFileName(LocalDateTime dateTime) {
+        String strDate = dateTime.format(DateTimeFormatter
+                .ofPattern("yyyy-MM-dd"))
+        String strTime = dateTime.format(DateTimeFormatter
+                .ofPattern("HH:mm"))
+        String strDateTime = "${strDate}_${strTime}"
+        strDateTime
+    }
+
+    @Override
     String generateRecapFileName(
             LocalDateTime startDate,
             LocalDateTime endDate) {
-        ''
+        if (startDate.isAfter(endDate)) {
+            def tmp = startDate
+            startDate = endDate
+            endDate = tmp
+        }
+        String recapFileName = recapSpreadsheetFileName
+        recapFileName.replace(
+                'time1_date',
+                dateTimeFormattedForFileName(startDate))
+        recapFileName.replace(
+                'time2_date',
+                dateTimeFormattedForFileName(endDate))
+        recapFileName
     }
 
-//
-//
-//    @Override
-//    @Transactional(readOnly = true)
-//    SpreadsheetRecap init() {
+
+    @Override
+    @Transactional(readOnly = true)
+    SpreadsheetRecap init() {
 //        String strRecapPath = path +//arg
 //                separator +
 //                fiberUserDataFolderName +//.fiber
@@ -123,23 +154,18 @@ InterDataService service
 //        File f = new File(strRecapPath)
 //        f.exists() ?: f.createNewFile()//recapClasseur.xlsx
 //
-//
+        this.classeur = new SpreadsheetRecap()
 //        this.classeur = new SpreadsheetRecap(
 //                classeurPathName: strRecapPath,
 //                nbFeuille: service.countMois(),
 //                nomFeuilles: this.nomFeuilles(),
 //                moisParAnnee: service.findAllMoisFormatFrParAnnee())
-//        this.classeur
-//    }
-//
-//    static String getSeparator() {
-//        Paths.get(System.getProperty("user.home"))
-//                .fileSystem.separator
-//    }
-//
-//    @Override
-//    @Transactional(readOnly = true)
-//    Recap processRecap(String nomFeuilles, Integer moisInt, Integer anneeIntValue) {
+        this.classeur
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    Recap processRecap(String nomFeuilles, Integer moisInt, Integer anneeIntValue) {
 //        new Recap(
 //                sheetName: nomFeuilles,
 //                inters: repo.findAllDeMoisDansAnnee(
@@ -181,15 +207,16 @@ InterDataService service
 //                                moisInt, anneeIntValue),
 //                labelTitreRecap:
 //                        "${Recap.PRE_LABEL_TITRE_RECAP}" +
-//                                "${InterUtils.convertNombreEnMois moisInt}" +
+//                                "${ApplicationUtils.convertNombreEnMois moisInt}" +
 //                                " $anneeIntValue",
 //                labelCurrentMonthYearFormattedFr:
-//                        InterUtils.convertNombreEnMois(moisInt))
-//    }
+//                        ApplicationUtils.convertNombreEnMois(moisInt))
+        new Recap()
+    }
 //
-//    @Override
-//    @Transactional(readOnly = true)
-//    SpreadsheetRecap processFeuilles() {
+    @Override
+    @Transactional(readOnly = true)
+    SpreadsheetRecap processFeuilles() {
 //        init()
 //        List<List<Integer>> listIntMoisAnnee =
 //                repo.distinctMoisParAnnee()
@@ -215,13 +242,15 @@ InterDataService service
 //            }
 //        }
 //        classeur
-//    }
+        new SpreadsheetRecap()
+    }
 //
-//    @Override
-//    SpreadsheetRecap processClasseurFeuilles(String classeurPath) {
+    @Override
+    SpreadsheetRecap processClasseurFeuilles(String classeurPath) {
 //        this.path = classeurPath
 //        this.processFeuilles()
 //        this.classeur.createExcelWorkBook()
 //        classeur
-//    }
+        new SpreadsheetRecap()
+    }
 }

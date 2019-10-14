@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.inter.domain
+package com.cheroliv.opticfiber
 
 
 import groovy.transform.CompileStatic
@@ -9,10 +9,18 @@ import java.time.Month
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 
+import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_FILE_SEPARATOR
+import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_USER_HOME
+
 @CompileStatic
-class InterUtils {
+class ApplicationUtils {
+    static String getUserHomePath() {
+        System.getProperty(KEY_SYSTEM_PROPERTY_USER_HOME)
+    }
 
-
+    static String getSeparator() {
+        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR)
+    }
 
     static LocalTime parseStringHeureToLocalTime(String strHeure) {
         LocalTime.of(Integer.parseInt("${strHeure.charAt(0)}${strHeure.charAt(1)}"), 0)

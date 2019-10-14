@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber
 
-import com.cheroliv.opticfiber.inter.domain.InterUtils
+
 import groovy.json.JsonSlurper
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test
 
 import java.nio.charset.StandardCharsets
 import java.time.LocalDateTime
+
+import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_FILE_SEPARATOR
 
 @Slf4j
 @CompileStatic
@@ -63,7 +65,7 @@ class CheckDataValues {
     static String getFileTextOnproject(String relativePath) {
         File file = new File(
                 new File(".").canonicalPath +
-                        System.getProperty("file.separator") +
+                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
                         relativePath)
         assert file.exists() && file.isFile() && !file.isDirectory()
         file.getText(StandardCharsets.UTF_8.name())
@@ -72,8 +74,8 @@ class CheckDataValues {
 
     static LocalDateTime buildDateTime(String strDate, String strHour) {
         LocalDateTime.of(
-                InterUtils.parseStringDateToLocalDate(strDate),
-                InterUtils.parseStringHeureToLocalTime(strHour))
+                ApplicationUtils.parseStringDateToLocalDate(strDate),
+                ApplicationUtils.parseStringHeureToLocalTime(strHour))
     }
 
     Boolean isTimeExistsInDataset(LocalDateTime dateTime) {

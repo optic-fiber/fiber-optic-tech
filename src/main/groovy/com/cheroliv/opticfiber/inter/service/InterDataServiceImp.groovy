@@ -1,8 +1,6 @@
 package com.cheroliv.opticfiber.inter.service
 
-
 import com.cheroliv.opticfiber.inter.domain.InterDto
-import com.cheroliv.opticfiber.inter.domain.InterUtils
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.repository.InterRepository
@@ -23,7 +21,9 @@ import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-import static com.cheroliv.opticfiber.config.ApplicationConstants.*
+import static com.cheroliv.opticfiber.ApplicationUtils.*
+import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_DATA_HOME_DIRECTORY
+import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_DATA_JSON_BACKUP_FILE_NAME
 import static com.cheroliv.opticfiber.config.InterConstants.*
 
 @Slf4j
@@ -48,8 +48,8 @@ class InterDataServiceImp implements InterDataService {
     }
 
     private void createHomeDataDirectory() {
-        File file = new File(System.getProperty(KEY_SYSTEM_PROPERTY_USER_HOME) +
-                System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+        File file = new File(getUserHomePath() +
+                getSeparator() +
                 homeDirectoryName)
         if (file.exists()) {
             if (file.isFile()) {
@@ -61,10 +61,10 @@ class InterDataServiceImp implements InterDataService {
 
     private void createJsonFile() {
         createHomeDataDirectory()
-        File file = new File(System.getProperty(KEY_SYSTEM_PROPERTY_USER_HOME) +
-                System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+        File file = new File(getUserHomePath() +
+                getSeparator() +
                 homeDirectoryName +
-                System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+                getSeparator() +
                 this.jsonBackupFileName
         )
         if (!(file.exists() && file.isFile()))
@@ -78,10 +78,10 @@ class InterDataServiceImp implements InterDataService {
     String getJsonBackupFilePath() {
         createHomeDataDirectory()
         createJsonFile()
-        System.getProperty(KEY_SYSTEM_PROPERTY_USER_HOME) +
-                System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+        getUserHomePath() +
+                getSeparator() +
                 this.homeDirectoryName +
-                System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+                getSeparator() +
                 this.jsonBackupFileName
     }
 
@@ -114,7 +114,7 @@ class InterDataServiceImp implements InterDataService {
             Integer intMois = item.get(0)
             Integer annee = item.get(1)
             Map<String, Integer> map = new HashMap<String, Integer>(1)
-            map[InterUtils.convertNombreEnMois(intMois)] = annee
+            map[convertNombreEnMois(intMois)] = annee
             finalResult.add(idx, map)
         }
         finalResult
@@ -123,8 +123,8 @@ class InterDataServiceImp implements InterDataService {
 
     private static LocalDateTime buildDateTime(String strDate, String strHour) {
         LocalDateTime.of(
-                InterUtils.parseStringDateToLocalDate(strDate),
-                InterUtils.parseStringHeureToLocalTime(strHour))
+                parseStringDateToLocalDate(strDate),
+                parseStringHeureToLocalTime(strHour))
     }
 
     private static ContractEnum parseI18nInterContractEnum(String i18nContactValue) {

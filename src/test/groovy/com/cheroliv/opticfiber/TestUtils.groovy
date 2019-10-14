@@ -11,8 +11,8 @@ import javax.persistence.EntityManager
 import java.time.LocalDateTime
 
 import static com.cheroliv.opticfiber.config.InterConstants.*
-import static com.cheroliv.opticfiber.inter.domain.InterUtils.parseStringDateToLocalDate
-import static com.cheroliv.opticfiber.inter.domain.InterUtils.parseStringHeureToLocalTime
+import static ApplicationUtils.parseStringDateToLocalDate
+import static ApplicationUtils.parseStringHeureToLocalTime
 
 class TestUtils {
 

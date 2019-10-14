@@ -1,5 +1,6 @@
 package com.cheroliv.opticfiber.recap.service
 
+
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.junit.jupiter.api.DisplayName
@@ -11,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 
-import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_FILE_SEPARATOR
+import static com.cheroliv.opticfiber.ApplicationUtils.separator
 import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_USER_HOME
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE
 
@@ -37,13 +38,13 @@ class RecapSettingServiceIntegrationTest {
 
     String getHomeDataDirectoryPath() {
         new File(System.getProperty(KEY_SYSTEM_PROPERTY_USER_HOME) +
-                System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+                getSeparator() +
                 homeDirectoryName).path
     }
 
     String getRecapSpreadsheetDirectoryPath() {
         new File(getHomeDataDirectoryPath() +
-                System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+                getSeparator() +
                 recapSpreadsheetDirectoryName).path
     }
 

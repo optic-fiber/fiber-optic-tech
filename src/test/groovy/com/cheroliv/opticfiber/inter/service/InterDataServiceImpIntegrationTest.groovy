@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.inter.service
 
 import com.cheroliv.opticfiber.TestUtils
-import com.cheroliv.opticfiber.inter.domain.InterUtils
+import com.cheroliv.opticfiber.ApplicationUtils
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
@@ -94,8 +94,8 @@ class InterDataServiceImpIntegrationTest {
 
     static InterEntity jsonDataToInter(Map<String, String> strJsonData) {
         LocalDateTime localDateTime = LocalDateTime.of(
-                InterUtils.parseStringDateToLocalDate(strJsonData[DATE_INTER_JSON_FIELD_NAME]),
-                InterUtils.parseStringHeureToLocalTime(strJsonData[HOUR_INTER_JSON_FIELD_NAME]))
+                ApplicationUtils.parseStringDateToLocalDate(strJsonData[DATE_INTER_JSON_FIELD_NAME]),
+                ApplicationUtils.parseStringHeureToLocalTime(strJsonData[HOUR_INTER_JSON_FIELD_NAME]))
 
         new InterEntity(
                 id: Long.parseLong(strJsonData[ID_INTER_JSON_FIELD_NAME]),
@@ -223,7 +223,7 @@ class InterDataServiceImpIntegrationTest {
             Integer intMois = item.get 0
             Integer annee = item.get 1
             Map<String, Integer> map = new HashMap<String, Integer>(1)
-            map[InterUtils.convertNombreEnMois(intMois)] = annee
+            map[ApplicationUtils.convertNombreEnMois(intMois)] = annee
             finalResult.add idx, map
         }
         finalResult
