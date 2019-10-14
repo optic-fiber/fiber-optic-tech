@@ -134,6 +134,7 @@ dependencies {
     }
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junit_jupiter_version")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version")
+
     //JUNIT4 VINTAGE TEST
     testCompileOnly 'junit:junit'
     // MOCKITO
@@ -163,3 +164,14 @@ task printHerokuVersion(type: Exec) {
     }
 }
 
+//task unitTest(type:Test){
+//    testNameIncludePatterns=['*UnitTest']
+//}
+
+
+//task unitTest(type:Test){
+//    filter {
+//        includeTestsMatching '*UnitTest*'
+//    }
+//}
+//task integrationTest

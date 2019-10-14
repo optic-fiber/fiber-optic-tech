@@ -1,10 +1,8 @@
 package com.cheroliv.opticfiber.recap.service
 
-import com.cheroliv.opticfiber.ApplicationUtils
 import com.cheroliv.opticfiber.TestData
 import com.cheroliv.opticfiber.inter.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterDataService
-import com.cheroliv.opticfiber.recap.service.exceptions.RecapDatesCouldNotBeNull
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.junit.jupiter.api.*
@@ -18,7 +16,6 @@ import java.time.LocalDateTime
 
 import static com.cheroliv.opticfiber.ApplicationUtils.dateTimeFormattedForFileName
 import static com.cheroliv.opticfiber.TestUtils.applicationProperties
-import static org.junit.jupiter.api.Assertions.assertThrows
 import static org.mockito.BDDMockito.given
 import static org.mockito.MockitoAnnotations.initMocks
 
@@ -110,22 +107,17 @@ class RecapServiceImpUnitTest {
 
     @Test
     @Order(4)
-    @DisplayName('testGenerateRecapFileName_startdate_or_endDate_is_null')
-    void testGenerateRecapFileName_startdate_or_endDate_is_null()
-            throws RecapDatesCouldNotBeNull {
-        LocalDateTime date1 = null
-        LocalDateTime date2 = null
-        assertThrows(RecapDatesCouldNotBeNull as Class<Throwable>,
-                { ->
-                    recapServiceImp
-                            .generateRecapFileName(date1, date2)
-                })
+    @DisplayName('testGenerateRecapFileName_startdate_equals_endDate')
+    void testGenerateRecapFileName_startdate_equals_endDate() {
+        LocalDateTime date1 = LocalDateTime.now()
+        LocalDateTime date2 = date1
+
     }
 
     @Test
     @Order(5)
     @DisplayName('testGenerateRecapFileName')
-    void testGenerateRecapFileName(){
+    void testGenerateRecapFileName() {
         LocalDateTime date1 = LocalDateTime.now().minusHours(1)
         LocalDateTime date2 = LocalDateTime.now()
         assert date1 && date2 && date2.isAfter(date1)

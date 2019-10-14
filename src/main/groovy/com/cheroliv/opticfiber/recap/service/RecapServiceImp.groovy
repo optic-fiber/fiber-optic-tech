@@ -1,11 +1,8 @@
 package com.cheroliv.opticfiber.recap.service
 
-import com.cheroliv.opticfiber.ApplicationUtils
-import com.cheroliv.opticfiber.config.ApplicationConstants
 import com.cheroliv.opticfiber.inter.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.recap.model.Recap
-import com.cheroliv.opticfiber.recap.service.exceptions.RecapDatesCouldNotBeNull
 import com.cheroliv.opticfiber.recap.spreadsheet.SpreadsheetRecap
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
@@ -14,10 +11,10 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 import static com.cheroliv.opticfiber.ApplicationUtils.dateTimeFormattedForFileName
-import static com.cheroliv.opticfiber.config.ApplicationConstants.*
+import static com.cheroliv.opticfiber.config.ApplicationConstants.MOTIF_END_DATE_TIME
+import static com.cheroliv.opticfiber.config.ApplicationConstants.MOTIF_START_DATE_TIME
 
 
 //
@@ -95,30 +92,52 @@ class RecapServiceImp implements RecapService {
         finalList
     }
 
+    /**
+     *
+     * ------------------------------------
+     * | startDate | enDate        | case |
+     * |----------------------------------|
+     * |null       | null          | 1    |
+     * |----------------------------------|
+     * |startDate equals endDate   | 2    |
+     * |----------------------------------|
+     * |null       | not null      | 3    |
+     * |----------------------------------|
+     * |not null   | null          | 4    |
+     * |----------------------------------|
+     * |startDate is after endDate | 5    |
+     * |----------------------------------|
+     * |startDate is before endDate| 6    |
+     * ------------------------------------
+     * case (1): whole inters
+     * case (2): case (4) : inters since start date not null to the last
+     * case (3): inters from eldest to date not null
+     * case (5): inverse date
+     * case (6): inters since starDate to endDate
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
     @Override
     String generateRecapFileName(
             LocalDateTime startDate,
             LocalDateTime endDate) {
-        /**
-         * TODO si les deux dates sont nul alors
-         * le recap concerne la totalité des interventions
-         *
-         * si une des dates est null alors la date non null
-         * devient la start date
-         *  et le recap concerne alors de la start date
-         *  a la derniere inter sera now
-         *
-         *
-         *
-         *  supprimer l'exception
-         */
-        if (!startDate || !endDate)
-            throw new RecapDatesCouldNotBeNull()
+        //case 1
+        if (!startDate && !endDate) return noDateInFileName()
+        //case 2
+        if (startDate.isEqual(endDate)) return startDateToLastInterDate(startDate)
+        //case 3
+        if(!startDate)return oldestInterDateToEndDate(endDate)
+        //case 4
+        if(!endDate)return startDateToLastInterDate(startDate)
+        //case 5
         if (startDate.isAfter(endDate)) {
             LocalDateTime tmp = startDate
             startDate = endDate
             endDate = tmp
         }
+        //case 6
         recapSpreadsheetFileName.replace(
                 MOTIF_START_DATE_TIME,
                 dateTimeFormattedForFileName(startDate))
@@ -127,6 +146,17 @@ class RecapServiceImp implements RecapService {
                         dateTimeFormattedForFileName(endDate))
     }
 
+    String oldestInterDateToEndDate(LocalDateTime localDateTime) {
+        null
+    }
+
+    String noDateInFileName() {
+        null
+    }
+
+    String startDateToLastInterDate(LocalDateTime localDateTime) {
+        ''
+    }
 
     @Override
     @Transactional(readOnly = true)
