@@ -60,7 +60,7 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-    compile.exclude module: 'spring-boot-starter-tomcat'
+//    compile.exclude module: 'spring-boot-starter-tomcat'
 }
 
 test {
@@ -121,8 +121,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
     // APP-SERVER
-    implementation 'org.springframework.boot:spring-boot-starter-undertow'
-
+//    implementation 'org.springframework.boot:spring-boot-starter-undertow'
+implementation 'org.springframework.boot:spring-boot-starter-tomcat'
     // GRAPH_QL
 //    implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:5.10.0'
 //    implementation 'com.graphql-java-kickstart:graphql-java-tools:5.6.1'
