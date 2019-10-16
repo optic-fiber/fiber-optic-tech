@@ -1,5 +1,6 @@
 package com.cheroliv.opticfiber.service
 
+
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.junit.jupiter.api.DisplayName
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 
+import static com.cheroliv.opticfiber.ApplicationUtils.separator
+import static com.cheroliv.opticfiber.ApplicationUtils.userHomePath
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE
 
 @Slf4j
@@ -28,8 +31,8 @@ class SettingServiceImpIntegrationTest {
     String jsonBackupFileName
 
     private String getExpectedDataHomeDirectoryPath() {
-        System.getProperty('user.home') +
-                System.getProperty('file.separator') +
+        getUserHomePath() +
+                getSeparator() +
                 homeDirectoryName
     }
 

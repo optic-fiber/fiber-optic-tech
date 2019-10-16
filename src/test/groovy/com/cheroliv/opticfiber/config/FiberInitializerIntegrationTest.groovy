@@ -1,5 +1,6 @@
 package com.cheroliv.opticfiber.config
 
+
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.junit.jupiter.api.DisplayName
@@ -10,6 +11,9 @@ import org.junit.jupiter.api.TestMethodOrder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
+
+import static com.cheroliv.opticfiber.ApplicationUtils.separator
+import static com.cheroliv.opticfiber.ApplicationUtils.userHomePath
 
 @Slf4j
 @TypeChecked
@@ -26,10 +30,10 @@ class FiberInitializerIntegrationTest {
     String jsonBackupFileName
 
     private String getJsonBackupFilePath() {
-        System.getProperty('user.home') +
-                System.getProperty("file.separator") +
+        getUserHomePath() +
+                getSeparator() +
                 this.homeDirectoryName +
-                System.getProperty("file.separator") +
+                getSeparator() +
                 this.jsonBackupFileName
     }
 

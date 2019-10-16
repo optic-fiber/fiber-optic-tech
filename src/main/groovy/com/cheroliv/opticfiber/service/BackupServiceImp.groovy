@@ -1,10 +1,14 @@
 package com.cheroliv.opticfiber.service
 
+
 import com.cheroliv.opticfiber.inter.service.InterDataService
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
+
+import static com.cheroliv.opticfiber.ApplicationUtils.getSeparator
+import static com.cheroliv.opticfiber.ApplicationUtils.userHomePath
 
 @Slf4j
 @Service
@@ -19,9 +23,9 @@ class BackupServiceImp implements BackupService {
     BackupServiceImp(SettingService settingService,
                      InterDataService interService,
                      @Value('${application.data.home-directory-name}')
-                              String homeDirectoryName,
+                             String homeDirectoryName,
                      @Value('${application.data.json-backup-file-name}')
-                              String jsonBackupFileName) {
+                             String jsonBackupFileName) {
         this.settingService = settingService
         this.interService = interService
         this.homeDirectoryName = homeDirectoryName
@@ -29,10 +33,10 @@ class BackupServiceImp implements BackupService {
     }
 
     private String getJsonBackupFilePath() {
-        System.getProperty('user.home') +
-                System.getProperty("file.separator") +
+        getUserHomePath() +
+                getSeparator() +
                 this.homeDirectoryName +
-                System.getProperty("file.separator") +
+                getSeparator() +
                 this.jsonBackupFileName
     }
 

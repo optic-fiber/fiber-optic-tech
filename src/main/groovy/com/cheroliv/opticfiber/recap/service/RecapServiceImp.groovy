@@ -136,7 +136,9 @@ class RecapServiceImp implements RecapService {
                 classeurPathName: strRecapPath,
                 nbFeuille: service.countMois(),
                 nomFeuilles: this.nomFeuilles(),
-                moisParAnnee: service.findAllMoisFormatFrParAnnee())
+                moisParAnnee: service.findAllMoisFormatFrParAnnee(),
+                startDate: startDate,
+                endDate: endDate)
         this.classeur
     }
 

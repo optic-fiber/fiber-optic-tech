@@ -6,7 +6,8 @@ import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
-import static com.cheroliv.opticfiber.config.ApplicationConstants.*
+import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_FILE_SEPARATOR
+import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_USER_HOME
 
 @Slf4j
 @Service

@@ -10,14 +10,17 @@ import java.time.LocalDateTime
 
 interface RecapService {
 //    void setPath(String path)
-    SpreadsheetRecap init(LocalDateTime startDate,LocalDateTime endDate)
+    SpreadsheetRecap init(LocalDateTime startDate, LocalDateTime endDate)
 
     Recap processRecap(
             String nomFeuilles,
             Integer moisInt,
             Integer anneeInt)
+
     SpreadsheetRecap processFeuilles()
+
     SpreadsheetRecap processClasseurFeuilles(String classeurPath)
+
     List<String> nomFeuilles()
 
     String generateRecapFileName(LocalDateTime startDate, LocalDateTime endDate)

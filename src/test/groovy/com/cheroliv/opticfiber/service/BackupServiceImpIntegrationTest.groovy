@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.jdbc.core.JdbcTemplate
 
+import static com.cheroliv.opticfiber.ApplicationUtils.getSeparator
+import static com.cheroliv.opticfiber.ApplicationUtils.getUserHomePath
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE
 
 //import org.springframework.test.jdbc.JdbcTestUtils
@@ -34,16 +36,17 @@ class BackupServiceImpIntegrationTest {
     String jsonBackupFileName
 
     private String getJsonBackupFilePath() {
-        System.getProperty('user.home') +
-                System.getProperty("file.separator") +
+
+        getUserHomePath() +
+                getSeparator() +
                 this.homeDirectoryName +
-                System.getProperty("file.separator") +
+                getSeparator() +
                 this.jsonBackupFileName
     }
 
     private String getDataHomeDirectoryFilePath() {
-        System.getProperty('user.home') +
-                System.getProperty("file.separator") +
+        getUserHomePath() +
+                getSeparator() +
                 this.homeDirectoryName
     }
 

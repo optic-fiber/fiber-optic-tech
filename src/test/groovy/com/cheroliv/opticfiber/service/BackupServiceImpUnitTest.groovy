@@ -30,16 +30,16 @@ class BackupServiceImpUnitTest {
 //    String jsonBackupFileName
 //
 //    private String getJsonBackupFilePath() {
-//        System.getProperty('user.home') +
-//                System.getProperty("file.separator") +
+//        getUserHomePath() +
+//                getSeparator() +
 //                this.homeDirectoryName +
-//                System.getProperty("file.separator") +
+//                getSeparator() +
 //                this.jsonBackupFileName
 //    }
 //
 //    private String getDataHomeDirectoryFilePath() {
-//        System.getProperty('user.home') +
-//                System.getProperty("file.separator") +
+//        getUserHomePath() +
+//                getSeparator() +
 //                this.homeDirectoryName
 //    }
 //

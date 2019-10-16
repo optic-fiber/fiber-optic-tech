@@ -21,13 +21,13 @@ class FiberInitializer implements InitializingBean {
     void afterPropertiesSet() throws Exception {
         String className = this.class.simpleName.toUpperCase()
         String methodName = '.afterPropertiesSet()'
-        log.info(className+methodName+" start : ${backupService.class.simpleName}.loadBackupInDatabase()}")
+        log.info(className + methodName + " start : ${backupService.class.simpleName}.loadBackupInDatabase()}")
         try {
             backupService.loadBackupInDatabase()
         } catch (Throwable e) {
             throw new FiberInitializerException(cause: e)
         }
-        log.info(className+methodName+" end : ${backupService.class.simpleName}.loadBackupInDatabase()}")
+        log.info(className + methodName + " end : ${backupService.class.simpleName}.loadBackupInDatabase()}")
 
     }
 

@@ -86,13 +86,13 @@ class InterEntity implements Serializable {
     }
 
     static InterDto fromEntity(InterEntity i) {
-        new InterDto(id : i.id,
-                nd : i.nd,
-                firstName : i.firstNameClient,
-                lastName : i.lastNameClient,
-                contract : i.contract.name(),
-                typeInter : i.typeInter.name(),
-                dateTime : i.dateTimeInter)
+        new InterDto(id: i.id,
+                nd: i.nd,
+                firstName: i.firstNameClient,
+                lastName: i.lastNameClient,
+                contract: i.contract.name(),
+                typeInter: i.typeInter.name(),
+                dateTime: i.dateTimeInter)
     }
 
     boolean equals(o) {

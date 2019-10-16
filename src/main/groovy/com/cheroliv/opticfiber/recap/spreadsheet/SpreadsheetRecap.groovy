@@ -8,6 +8,7 @@ import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 @Slf4j
@@ -20,6 +21,8 @@ class SpreadsheetRecap implements Serializable {
     List<String> nomFeuilles
     List<Recap> recaps
     List<Map<String, Integer>> moisParAnnee
+    LocalDateTime startDate
+    LocalDateTime endDate
 
     void createExcelWorkBook() {
         classeurPathName

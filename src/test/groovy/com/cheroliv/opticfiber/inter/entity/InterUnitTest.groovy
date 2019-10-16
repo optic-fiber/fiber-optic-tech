@@ -17,6 +17,7 @@ import javax.validation.ValidatorFactory
 import java.nio.charset.StandardCharsets
 
 import static com.cheroliv.opticfiber.config.InterConstants.ND_NOTNULL_CSTRT_TPL_MSG
+import static com.xlson.groovycsv.CsvParser.parseCsv
 
 //import com.cheroliv.fiber.inter.domain.enumeration.TypeInterEnum
 //import org.junit.jupiter.api.MethodOrderer
@@ -26,8 +27,6 @@ import static com.cheroliv.opticfiber.config.InterConstants.ND_NOTNULL_CSTRT_TPL
 //import java.time.LocalDate
 //import java.time.LocalTime
 //import static java.lang.Long.parseLong
-
-import static com.xlson.groovycsv.CsvParser.parseCsv
 
 @Slf4j
 @TypeChecked

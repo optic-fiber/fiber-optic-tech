@@ -161,7 +161,7 @@ class InterRepositoryImp implements InterRepository {
         else Optional.of(result.get().toDto())
     }
 
-    List<LocalDateTime>findAllDates(){
+    List<LocalDateTime> findAllDates() {
         interDao.findAllDates()
     }
 }

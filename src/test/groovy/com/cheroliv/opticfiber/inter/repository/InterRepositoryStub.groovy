@@ -6,7 +6,7 @@ import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import java.time.LocalDateTime
 
 
-class InterRepositoryStub implements InterRepository{
+class InterRepositoryStub implements InterRepository {
     @Override
     Optional<InterDto> find(String nd, TypeInterEnum type) {
         return null

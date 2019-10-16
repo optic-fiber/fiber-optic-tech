@@ -1,8 +1,7 @@
 package com.cheroliv.opticfiber.inter.service
 
-import com.cheroliv.opticfiber.TestUtils
 import com.cheroliv.opticfiber.ApplicationUtils
-import com.cheroliv.opticfiber.config.ApplicationConstants
+import com.cheroliv.opticfiber.TestUtils
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
@@ -33,6 +32,8 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+import static com.cheroliv.opticfiber.ApplicationUtils.getSeparator
+import static com.cheroliv.opticfiber.ApplicationUtils.getUserHomePath
 import static com.cheroliv.opticfiber.config.ApplicationConstants.DATE_PATTERN_FORMAT
 import static com.cheroliv.opticfiber.config.InterConstants.*
 import static com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum.CABLE_ROUTING
@@ -112,16 +113,16 @@ class InterDataServiceImpIntegrationTest {
     }
 
     File getJsonFile() {
-        new File(System.getProperty('user.home') +
-                System.getProperty('file.separator') +
+        new File(getUserHomePath() +
+                getSeparator() +
                 this.homeDirectoryName +
-                System.getProperty('file.separator') +
+                getSeparator() +
                 this.jsonBackupFileName)
     }
 
     void deleteHomeDataDirectory() {
-        File file = new File(System.getProperty('user.home') +
-                System.getProperty('file.separator') +
+        File file = new File(getUserHomePath() +
+                getSeparator() +
                 homeDirectoryName)
         if (file.exists()) {
             if (file.isDirectory()) file.deleteDir()
@@ -130,8 +131,8 @@ class InterDataServiceImpIntegrationTest {
     }
 
     void createHomeDataDirectory() {
-        File file = new File(System.getProperty('user.home') +
-                System.getProperty('file.separator') +
+        File file = new File(getUserHomePath() +
+                getSeparator() +
                 homeDirectoryName)
         if (file.exists()) {
             if (file.isFile()) {
@@ -147,10 +148,10 @@ class InterDataServiceImpIntegrationTest {
 
     void createJsonFile() {
         createHomeDataDirectory()
-        File file = new File(System.getProperty('user.home') +
-                System.getProperty('file.separator') +
+        File file = new File(getUserHomePath() +
+                getSeparator() +
                 homeDirectoryName +
-                System.getProperty('file.separator') +
+                getSeparator() +
                 this.jsonBackupFileName
         )
         if (!(file.exists() && file.isFile()))
@@ -162,10 +163,10 @@ class InterDataServiceImpIntegrationTest {
 
     void createJsonFileAsDirectory() {
         createHomeDataDirectory()
-        new File(System.getProperty('user.home') +
-                System.getProperty('file.separator') +
+        new File(getUserHomePath() +
+                getSeparator() +
                 homeDirectoryName +
-                System.getProperty('file.separator') +
+                getSeparator() +
                 this.jsonBackupFileName).mkdir()
     }
 
@@ -232,10 +233,10 @@ class InterDataServiceImpIntegrationTest {
     }
 
     String getJsonBackupFilePath() {
-        System.getProperty('user.home') +
-                System.getProperty('file.separator') +
+        getUserHomePath() +
+                getSeparator() +
                 this.homeDirectoryName +
-                System.getProperty('file.separator') +
+                getSeparator() +
                 this.jsonBackupFileName
     }
 
@@ -347,10 +348,10 @@ class InterDataServiceImpIntegrationTest {
     @Order(9)
     @DisplayName('testGetFiberJsonFilePath_path')
     void testGetFiberJsonFilePath_path() {
-        String expectedPath = System.getProperty('user.home') +
-                System.getProperty('file.separator') +
+        String expectedPath = getUserHomePath() +
+                getSeparator() +
                 this.homeDirectoryName +
-                System.getProperty('file.separator') +
+                getSeparator() +
                 this.jsonBackupFileName
 
         assert expectedPath ==

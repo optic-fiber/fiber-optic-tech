@@ -26,8 +26,8 @@ class SettingServiceImpUnitTest {
 //    String jsonBackupFileName
 //
 //    private String getExpectedDataHomeDirectoryPath() {
-//        System.getProperty('user.home') +
-//                System.getProperty('file.separator') +
+//        getUserHomePath() +
+//                getSeparator() +
 //                homeDirectoryName
 //    }
 //
