@@ -3,6 +3,8 @@ package com.cheroliv.opticfiber.inter.repository
 import com.cheroliv.opticfiber.inter.domain.InterDto
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 
+import java.time.LocalDateTime
+
 
 class InterRepositoryStub implements InterRepository{
     @Override
@@ -118,5 +120,20 @@ class InterRepositoryStub implements InterRepository{
     @Override
     void deleteById(Long id) {
 
+    }
+
+    @Override
+    Optional<InterDto> findOldestInter() {
+        return null
+    }
+
+    @Override
+    Optional<InterDto> findLatestInter() {
+        return null
+    }
+
+    @Override
+    List<LocalDateTime> findAllDates() {
+        return null
     }
 }

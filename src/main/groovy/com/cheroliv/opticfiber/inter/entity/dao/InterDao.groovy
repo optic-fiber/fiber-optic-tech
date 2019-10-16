@@ -1,12 +1,14 @@
 package com.cheroliv.opticfiber.inter.entity.dao
 
-import com.cheroliv.opticfiber.inter.entity.InterEntity
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.inter.entity.InterEntity
 import com.cheroliv.opticfiber.repository.ExtendedRepository
 import groovy.transform.TypeChecked
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
+
+import java.time.LocalDateTime
 
 @TypeChecked
 interface InterDao extends JpaRepository<InterEntity, Long>, ExtendedRepository<InterEntity, Long> {
@@ -164,6 +166,22 @@ interface InterDao extends JpaRepository<InterEntity, Long>, ExtendedRepository<
 
     @Query("""
         select i from InterEntity i 
-        where i=(select max(j.id) from InterEntity j)""")
+        where i.id=(select max(j.id) from InterEntity j)""")
     Optional<InterEntity> findByIdMax()
+
+    @Query("""
+        select i from InterEntity i
+        where i.dateTimeInter=
+        (select min(j.dateTimeInter) from InterEntity j)""")
+    Optional<InterEntity> findOldestInter()
+
+    @Query("""
+        select i from InterEntity i
+        where i.dateTimeInter=
+        (select max(j.dateTimeInter) from InterEntity j)""")
+    Optional<InterEntity> findLatestInter()
+
+    @Query("""
+        select i.dateTimeInter from InterEntity i""")
+    List<LocalDateTime> findAllDates()
 }

@@ -3,6 +3,7 @@ package com.cheroliv.opticfiber.recap.service
 import com.cheroliv.opticfiber.inter.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.recap.model.Recap
+import com.cheroliv.opticfiber.recap.service.exceptions.RecapNoInterInRepositoryException
 import com.cheroliv.opticfiber.recap.spreadsheet.SpreadsheetRecap
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
@@ -13,43 +14,21 @@ import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
 import static com.cheroliv.opticfiber.ApplicationUtils.dateTimeFormattedForFileName
-import static com.cheroliv.opticfiber.config.ApplicationConstants.MOTIF_END_DATE_TIME
-import static com.cheroliv.opticfiber.config.ApplicationConstants.MOTIF_START_DATE_TIME
+import static com.cheroliv.opticfiber.config.ApplicationConstants.*
+
+//import static com.cheroliv.opticfiber.ApplicationUtils.convertNombreEnMois
+//import static com.cheroliv.opticfiber.recap.model.Recap.PRE_LABEL_TITRE_RECAP
+//import com.cheroliv.opticfiber.ApplicationUtils
+//import com.cheroliv.opticfiber.inter.domain.InterDto
 
 
-//
-//import javax.validation.constraints.NotEmpty
-//import javax.validation.constraints.NotNull
-//import java.nio.file.Paths
-//
 @Slf4j
 @Service
 @TypeChecked
 @Transactional(readOnly = true)
 class RecapServiceImp implements RecapService {
 
-
-//    @Autowired
-//    void setService(InterDataService service) {
-//        this.service = service
-//    }
-//    final InterDao repo
-
     SpreadsheetRecap classeur
-//    @NotNull
-//    @NotEmpty
-//    String path
-//
-//    @Override
-//    void setPath(String path) {
-//        this.path = path
-//    }
-//
-//
-//    /*
-//    @Value('${application.data.home-directory-name}')
-//    String homeDirectoryName
-//     */
     final String homeDirectoryName
     final String recapSpreadsheetDirectoryName
     final String recapSpreadsheetFileName
@@ -57,13 +36,10 @@ class RecapServiceImp implements RecapService {
     final InterRepository repo
 
     RecapServiceImp(
-            //.fiber-simple
             @Value('${application.data.home-directory-name}')
                     String homeDirectoryName,
-            //recap-spreadsheet
             @Value('${application.data.recap-spreadsheet-directory-name}')
                     recapSpreadsheetDirectoryName,
-            //recap_date-time1_date-time2.xlsx
             @Value('${application.data.recap-spreadsheet-file-name}')
                     String recapSpreadsheetFileName,
             InterDataService service,
@@ -92,52 +68,50 @@ class RecapServiceImp implements RecapService {
         finalList
     }
 
-    /**
-     *
-     * ------------------------------------
-     * | startDate | enDate        | case |
-     * |----------------------------------|
-     * |null       | null          | 1    |
-     * |----------------------------------|
-     * |startDate equals endDate   | 2    |
-     * |----------------------------------|
-     * |null       | not null      | 3    |
-     * |----------------------------------|
-     * |not null   | null          | 4    |
-     * |----------------------------------|
-     * |startDate is after endDate | 5    |
-     * |----------------------------------|
-     * |startDate is before endDate| 6    |
-     * ------------------------------------
-     * case (1): whole inters
-     * case (2): case (4) : inters since start date not null to the last
-     * case (3): inters from eldest to date not null
-     * case (5): inverse date
-     * case (6): inters since starDate to endDate
-     *
-     * @param startDate
-     * @param endDate
-     * @return
-     */
+    void checkInterRepositoryConsistent() {
+        List<LocalDateTime> result = this.repo.findAllDates()
+        if (!result || result?.empty)
+            throw new RecapNoInterInRepositoryException()
+    }
+
+    static Boolean isDateElementOfDatesData(
+            LocalDateTime dateTime,
+            List<LocalDateTime> datesInDb) {
+        if (!datesInDb || datesInDb?.empty)
+            return false
+        LocalDateTime dateMin = datesInDb.min()
+        LocalDateTime dateMax = datesInDb.max()
+        (dateTime.isBefore(dateMax) && dateTime.isAfter(dateMin)) ||
+                dateTime.isEqual(dateMax) ||
+                dateTime.isEqual(dateMin)
+    }
+
     @Override
     String generateRecapFileName(
             LocalDateTime startDate,
             LocalDateTime endDate) {
-        //case 1
-        if (!startDate && !endDate) return noDateInFileName()
-        //case 2
-        if (startDate.isEqual(endDate)) return startDateToLastInterDate(startDate)
-        //case 3
-        if(!startDate)return oldestInterDateToEndDate(endDate)
-        //case 4
-        if(!endDate)return startDateToLastInterDate(startDate)
-        //case 5
+        checkInterRepositoryConsistent()
+        List<LocalDateTime> dates = repo.findAllDates()
+        LocalDateTime oldestDate = dates.min()
+        LocalDateTime latestDate = dates.max()
+        if (!startDate && isDateElementOfDatesData(endDate, dates))
+            return buildRecapFileName(oldestDate, endDate)
+        if (!endDate && isDateElementOfDatesData(startDate, dates))
+            return buildRecapFileName(startDate, latestDate)
+        if (!isDateElementOfDatesData(startDate, dates) ||
+                !isDateElementOfDatesData(endDate, dates))
+            return buildRecapFileName(oldestDate, latestDate)
+        buildRecapFileName(startDate, endDate)
+    }
+
+    String buildRecapFileName(
+            LocalDateTime startDate,
+            LocalDateTime endDate) {
         if (startDate.isAfter(endDate)) {
             LocalDateTime tmp = startDate
             startDate = endDate
             endDate = tmp
         }
-        //case 6
         recapSpreadsheetFileName.replace(
                 MOTIF_START_DATE_TIME,
                 dateTimeFormattedForFileName(startDate))
@@ -146,63 +120,38 @@ class RecapServiceImp implements RecapService {
                         dateTimeFormattedForFileName(endDate))
     }
 
-    String oldestInterDateToEndDate(LocalDateTime localDateTime) {
-        null
-    }
-
-    String noDateInFileName() {
-        null
-    }
-
-    String startDateToLastInterDate(LocalDateTime localDateTime) {
-        ''
-    }
-
     @Override
     @Transactional(readOnly = true)
-    SpreadsheetRecap init() {
-//        String strRecapPath = path +//arg
-//                separator +
-//                fiberUserDataFolderName +//.fiber
-//                separator +
-//                classeurDirectoryName +//output
-//                separator +
-//                classeurPathName//recapClasseur.xlsx
-//
-//        File g = new File(path +
-//                separator +
-//                fiberUserDataFolderName)//.fiber
-//        g.exists() && g.directory ?: g.mkdir()
-//
-//        File i = new File(path +
-//                separator +
-//                fiberUserDataFolderName +
-//                separator +
-//                classeurDirectoryName)//output
-//        i.exists() && i.directory ?: i.mkdir()
-//
-//        File f = new File(strRecapPath)
-//        f.exists() ?: f.createNewFile()//recapClasseur.xlsx
-//
+    SpreadsheetRecap init(LocalDateTime startDate, LocalDateTime endDate) {
+        String strRecapPath =
+                System.getProperty(KEY_SYSTEM_PROPERTY_USER_HOME) +
+                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+                        homeDirectoryName +
+                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+                        recapSpreadsheetDirectoryName +
+                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+                        generateRecapFileName(startDate, endDate)
         this.classeur = new SpreadsheetRecap()
-//        this.classeur = new SpreadsheetRecap(
-//                classeurPathName: strRecapPath,
-//                nbFeuille: service.countMois(),
-//                nomFeuilles: this.nomFeuilles(),
-//                moisParAnnee: service.findAllMoisFormatFrParAnnee())
+        this.classeur = new SpreadsheetRecap(
+                classeurPathName: strRecapPath,
+                nbFeuille: service.countMois(),
+                nomFeuilles: this.nomFeuilles(),
+                moisParAnnee: service.findAllMoisFormatFrParAnnee())
         this.classeur
     }
 
     @Override
+//recoder et repenser avec startDate et enddate
     @Transactional(readOnly = true)
-    Recap processRecap(String nomFeuilles, Integer moisInt, Integer anneeIntValue) {
+    Recap processRecap(
+            String nomFeuilles,
+            Integer moisInt,
+            Integer anneeIntValue) {
+        new Recap()
 //        new Recap(
 //                sheetName: nomFeuilles,
 //                inters: repo.findAllDeMoisDansAnnee(
-//                        moisInt, anneeIntValue).collect {
-//                    InterEntity it ->
-//                        new InterDto(it)
-//                },
+//                        moisInt, anneeIntValue),
 //                annee: anneeIntValue,
 //                mois: moisInt,
 //                nbInterTotal: repo
@@ -236,14 +185,14 @@ class RecapServiceImp implements RecapService {
 //                        .countPdcBaocBaapParMoisDansAnnee(
 //                                moisInt, anneeIntValue),
 //                labelTitreRecap:
-//                        "${Recap.PRE_LABEL_TITRE_RECAP}" +
-//                                "${ApplicationUtils.convertNombreEnMois moisInt}" +
+//                        "${PRE_LABEL_TITRE_RECAP}" +
+//                                "${convertNombreEnMois moisInt}" +
 //                                " $anneeIntValue",
 //                labelCurrentMonthYearFormattedFr:
-//                        ApplicationUtils.convertNombreEnMois(moisInt))
-        new Recap()
+//                        convertNombreEnMois(moisInt))
     }
-//
+
+
     @Override
     @Transactional(readOnly = true)
     SpreadsheetRecap processFeuilles() {
@@ -283,4 +232,6 @@ class RecapServiceImp implements RecapService {
 //        classeur
         new SpreadsheetRecap()
     }
+
+
 }

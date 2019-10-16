@@ -1,11 +1,13 @@
 package com.cheroliv.opticfiber.inter.repository
 
-import com.cheroliv.opticfiber.inter.entity.InterEntity
-import com.cheroliv.opticfiber.inter.entity.dao.InterDao
 import com.cheroliv.opticfiber.inter.domain.InterDto
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.inter.entity.InterEntity
+import com.cheroliv.opticfiber.inter.entity.dao.InterDao
 import groovy.transform.TypeChecked
 import org.springframework.stereotype.Repository
+
+import java.time.LocalDateTime
 
 @Repository
 @TypeChecked
@@ -141,5 +143,25 @@ class InterRepositoryImp implements InterRepository {
         Optional<InterEntity> result = interDao.findById(id)
         if (result.empty) Optional.empty()
         else Optional.of(result.get().toDto())
+    }
+
+    @Override
+    Optional<InterDto> findOldestInter() {
+        Optional<InterEntity> result =
+                interDao.findOldestInter()
+        if (result.empty) Optional.empty()
+        else Optional.of(result.get().toDto())
+    }
+
+    @Override
+    Optional<InterDto> findLatestInter() {
+        Optional<InterEntity> result =
+                interDao.findLatestInter()
+        if (result.empty) Optional.empty()
+        else Optional.of(result.get().toDto())
+    }
+
+    List<LocalDateTime>findAllDates(){
+        interDao.findAllDates()
     }
 }

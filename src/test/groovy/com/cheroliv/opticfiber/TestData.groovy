@@ -1,9 +1,10 @@
 package com.cheroliv.opticfiber
 
-import com.cheroliv.opticfiber.inter.entity.InterEntity
+
 import com.cheroliv.opticfiber.inter.domain.InterDto
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.inter.entity.InterEntity
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 
@@ -11,6 +12,8 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
+
+import static com.cheroliv.opticfiber.config.ApplicationConstants.DATE_PATTERN_FORMAT
 
 @Slf4j
 @Singleton
@@ -163,12 +166,15 @@ class TestData {
             'décembre 2018',
             'janvier 2019']
 
+    static final List<LocalDateTime> dates = interDtos.collect {
+        it.dateTime
+    }
 
     static LocalDateTime stringToLocalDateTimeSystemDefault(
             String date, String time) {
         LocalDateTime.of(
                 LocalDate.parse(date, DateTimeFormatter
-                        .ofPattern("yyyy-MM-dd")),
+                        .ofPattern(DATE_PATTERN_FORMAT)),
                 LocalTime.parse(time, DateTimeFormatter
                         .ofPattern("HH:mm:ss")))
     }

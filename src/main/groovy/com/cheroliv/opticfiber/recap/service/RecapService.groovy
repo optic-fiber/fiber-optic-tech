@@ -10,7 +10,7 @@ import java.time.LocalDateTime
 
 interface RecapService {
 //    void setPath(String path)
-    SpreadsheetRecap init()
+    SpreadsheetRecap init(LocalDateTime startDate,LocalDateTime endDate)
 
     Recap processRecap(
             String nomFeuilles,

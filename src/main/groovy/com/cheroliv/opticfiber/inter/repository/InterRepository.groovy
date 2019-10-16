@@ -3,9 +3,12 @@ package com.cheroliv.opticfiber.inter.repository
 import com.cheroliv.opticfiber.inter.domain.InterDto
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 
+import java.time.LocalDateTime
+
 interface InterRepository {
     Optional<InterDto> find(String nd,
                             TypeInterEnum type)
+
     List<InterDto> findAll()
 
     List<List<Integer>> distinctMoisParAnnee()
@@ -80,4 +83,10 @@ interface InterRepository {
     InterDto save(InterDto interDto)
 
     void deleteById(Long id)
+
+    Optional<InterDto> findOldestInter()
+
+    Optional<InterDto> findLatestInter()
+
+    List<LocalDateTime> findAllDates()
 }
