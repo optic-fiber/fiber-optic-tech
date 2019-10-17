@@ -65,7 +65,6 @@ class CheckDataValues {
         File file = new File(
                 new File(".").canonicalPath +
                         separator +
-//                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
                         relativePath)
         assert file.exists() && file.file && !file.directory
         file.getText(StandardCharsets.UTF_8.name())

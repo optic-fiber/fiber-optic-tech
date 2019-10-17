@@ -1,23 +1,23 @@
 package com.cheroliv.opticfiber
 
-
 import groovy.transform.CompileStatic
 
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.Month
-import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 
 import static com.cheroliv.opticfiber.config.ApplicationConstants.*
+import static java.lang.Integer.parseInt
+import static java.time.format.DateTimeFormatter.ofPattern
 
 @CompileStatic
 class ApplicationUtils {
 
 
     static String dateTimeFormattedForFileName(LocalDateTime dateTime) {
-        dateTime.format(DateTimeFormatter.ofPattern(
+        dateTime.format(ofPattern(
                 "${DATE_PATTERN_FORMAT}_${TIME_PATTERN_FORMAT}"))
     }
 
@@ -31,7 +31,7 @@ class ApplicationUtils {
     }
 
     static LocalTime parseStringHeureToLocalTime(String strHeure) {
-        LocalTime.of(Integer.parseInt("${strHeure.charAt(0)}${strHeure.charAt(1)}"), 0)
+        LocalTime.of(parseInt("${strHeure.charAt(0)}${strHeure.charAt(1)}"), 0)
     }
 
 
@@ -57,11 +57,10 @@ class ApplicationUtils {
 
     static LocalDate parseStringDateToLocalDate(String strDate) {
         LocalDate.parse(strDate,
-                DateTimeFormatter
-                        .ofPattern(DATE_PATTERN_FORMAT))
+                ofPattern(DATE_PATTERN_FORMAT))
     }
 
     static Integer timeStringToInteger(String strHeure) {
-        Integer.parseInt "${strHeure.charAt(0)}${strHeure.charAt(1)}"
+        parseInt "${strHeure.charAt(0)}${strHeure.charAt(1)}"
     }
 }

@@ -125,18 +125,10 @@ class RecapServiceImp implements RecapService {
     @Override
     @Transactional(readOnly = true)
     SpreadsheetRecap init(LocalDateTime startDate, LocalDateTime endDate) {
-        String strRecapPath =
-                userHomePath +
-//                System.getProperty(KEY_SYSTEM_PROPERTY_USER_HOME) +
-//                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
-                        separator +
-                        homeDirectoryName +
-                        separator +
-//                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
-                        recapSpreadsheetDirectoryName +
-                        separator +
-//                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
-                        generateRecapFileName(startDate, endDate)
+        String strRecapPath = userHomePath + separator +
+                homeDirectoryName + separator +
+                recapSpreadsheetDirectoryName + separator +
+                generateRecapFileName(startDate, endDate)
         this.classeur = new SpreadsheetRecap()
         this.classeur = new SpreadsheetRecap(
                 classeurPathName: strRecapPath,
