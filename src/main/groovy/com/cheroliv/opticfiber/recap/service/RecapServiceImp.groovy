@@ -1,5 +1,6 @@
 package com.cheroliv.opticfiber.recap.service
 
+
 import com.cheroliv.opticfiber.inter.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.recap.model.Recap
@@ -13,8 +14,9 @@ import org.springframework.transaction.annotation.Transactional
 
 import java.time.LocalDateTime
 
-import static com.cheroliv.opticfiber.ApplicationUtils.dateTimeFormattedForFileName
-import static com.cheroliv.opticfiber.config.ApplicationConstants.*
+import static com.cheroliv.opticfiber.ApplicationUtils.*
+import static com.cheroliv.opticfiber.config.ApplicationConstants.MOTIF_END_DATE_TIME
+import static com.cheroliv.opticfiber.config.ApplicationConstants.MOTIF_START_DATE_TIME
 
 //import static com.cheroliv.opticfiber.ApplicationUtils.convertNombreEnMois
 //import static com.cheroliv.opticfiber.recap.model.Recap.PRE_LABEL_TITRE_RECAP
@@ -124,12 +126,16 @@ class RecapServiceImp implements RecapService {
     @Transactional(readOnly = true)
     SpreadsheetRecap init(LocalDateTime startDate, LocalDateTime endDate) {
         String strRecapPath =
-                System.getProperty(KEY_SYSTEM_PROPERTY_USER_HOME) +
-                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+                userHomePath +
+//                System.getProperty(KEY_SYSTEM_PROPERTY_USER_HOME) +
+//                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+                        separator +
                         homeDirectoryName +
-                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+                        separator +
+//                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
                         recapSpreadsheetDirectoryName +
-                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+                        separator +
+//                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
                         generateRecapFileName(startDate, endDate)
         this.classeur = new SpreadsheetRecap()
         this.classeur = new SpreadsheetRecap(

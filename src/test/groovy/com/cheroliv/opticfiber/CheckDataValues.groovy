@@ -1,6 +1,5 @@
 package com.cheroliv.opticfiber
 
-
 import groovy.json.JsonSlurper
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
@@ -10,7 +9,7 @@ import org.junit.jupiter.api.Test
 import java.nio.charset.StandardCharsets
 import java.time.LocalDateTime
 
-import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_FILE_SEPARATOR
+import static com.cheroliv.opticfiber.ApplicationUtils.*
 
 @Slf4j
 @CompileStatic
@@ -65,17 +64,18 @@ class CheckDataValues {
     static String getFileTextOnproject(String relativePath) {
         File file = new File(
                 new File(".").canonicalPath +
-                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+                        separator +
+//                        System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
                         relativePath)
-        assert file.exists() && file.isFile() && !file.isDirectory()
+        assert file.exists() && file.file && !file.directory
         file.getText(StandardCharsets.UTF_8.name())
     }
 
 
     static LocalDateTime buildDateTime(String strDate, String strHour) {
         LocalDateTime.of(
-                ApplicationUtils.parseStringDateToLocalDate(strDate),
-                ApplicationUtils.parseStringHeureToLocalTime(strHour))
+                parseStringDateToLocalDate(strDate),
+                parseStringHeureToLocalTime(strHour))
     }
 
     Boolean isTimeExistsInDataset(LocalDateTime dateTime) {
@@ -84,14 +84,14 @@ class CheckDataValues {
 
     Boolean isMinusMoreThen8ExistsInDataset(LocalDateTime dateTime) {
         def minus = dateTime.minusHours(1)
-        if (minus.getHour() > 8)
+        if (minus.hour > 8)
             dates.contains(dateTime.minusHours(1))
         false
     }
 
     Boolean isPlusLessThan19ExistsInDataset(LocalDateTime dateTime) {
         def plus = dateTime.plusHours(1)
-        if (plus.getHour() < 19)
+        if (plus.hour < 19)
             dates.contains(dateTime.plusHours(1))
         false
     }

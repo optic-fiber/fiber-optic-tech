@@ -1,13 +1,14 @@
 package com.cheroliv.opticfiber.service
 
+
 import com.cheroliv.opticfiber.recap.service.RecapSettingService
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
-import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_FILE_SEPARATOR
-import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_USER_HOME
+import static com.cheroliv.opticfiber.ApplicationUtils.separator
+import static com.cheroliv.opticfiber.ApplicationUtils.userHomePath
 
 @Slf4j
 @Service
@@ -24,48 +25,46 @@ class SettingServiceImp implements SettingService {
     }
 
     private String getDataHomeDirectoryPath() {
-        System.getProperty(KEY_SYSTEM_PROPERTY_USER_HOME) +
-                System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
-                homeDirectoryName
+        userHomePath + separator + homeDirectoryName
     }
 
     @Override
     boolean isAppDataHomeDirectoryExists() {
         log.info("${this.class.simpleName}.isAppDataHomeDirectoryExists()")
-        File file = new File(getDataHomeDirectoryPath())
-        file.exists() && file.isDirectory() && !file.isFile()
+        File file = new File(dataHomeDirectoryPath)
+        file.exists() && file.directory && !file.file
     }
 
 
     @Override
     void createAppDataHomeDirectory() {
         log.info("${this.class.simpleName}.createAppDataHomeDirectory()")
-        File dir = new File(getDataHomeDirectoryPath())
+        File dir = new File(dataHomeDirectoryPath)
         assert !dir.exists()
         dir.mkdir()
         dataHomeDirectoryAssertions()
     }
 
     private void deleteAppDataHomeDirectoryIfExistsAsFile() {
-        File file = new File(getDataHomeDirectoryPath())
+        File file = new File(dataHomeDirectoryPath)
         if (file.exists()) {
-            if (file.isFile()) assert file.delete()
-            else assert !file.isFile() && file.isDirectory()
+            if (file.file) assert file.delete()
+            else assert !file.file && file.directory
         }
     }
 
     private void dataHomeDirectoryAssertions() {
         File file = new File(getDataHomeDirectoryPath())
         assert file.exists()
-        assert file.isDirectory()
-        assert !file.isFile()
+        assert file.directory
+        assert !file.file
     }
 
     @Override
     void settingUpApp() {
         log.info "${this.class.simpleName}.settingUpApp()"
         deleteAppDataHomeDirectoryIfExistsAsFile()
-        isAppDataHomeDirectoryExists() ?
+        appDataHomeDirectoryExists ?
                 log.info("appDataHomeDirectoryExists : true") :
                 createAppDataHomeDirectory()
         recapSettingService.init()
