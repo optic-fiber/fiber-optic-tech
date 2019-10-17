@@ -1,13 +1,11 @@
 package com.cheroliv.opticfiber.recap.service
 
-
 import com.cheroliv.opticfiber.recap.service.exceptions.RecapSettingInitialisationException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
-import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_FILE_SEPARATOR
-import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_USER_HOME
-
+import static com.cheroliv.opticfiber.ApplicationUtils.separator
+import static com.cheroliv.opticfiber.ApplicationUtils.userHomePath
 
 @Service
 class RecapSettingServiceImp implements RecapSettingService {
@@ -24,53 +22,53 @@ class RecapSettingServiceImp implements RecapSettingService {
     }
 
     String getHomeDataDirectoryPath() {
-        new File(System.getProperty(KEY_SYSTEM_PROPERTY_USER_HOME) +
-                System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+        new File(userHomePath +
+                separator +
                 homeDirectoryName).path
     }
 
     void createHomeDataDirectory() {
-        File file = new File(getHomeDataDirectoryPath())
+        File file = new File(homeDataDirectoryPath)
         if (!file.exists()) file.mkdir()
-        else if (file.isFile()) {
+        else if (file.file) {
             file.delete()
             file.mkdir()
         }
     }
 
     String getRecapSpreadsheetDirectoryPath() {
-        new File(getHomeDataDirectoryPath() +
-                System.getProperty(KEY_SYSTEM_PROPERTY_FILE_SEPARATOR) +
+        new File(homeDataDirectoryPath +
+                separator +
                 recapSpreadsheetDirectoryName).path
     }
 
     @Override
     Boolean initDataHomeDirectory() {
-        File file = new File(getHomeDataDirectoryPath())
+        File file = new File(homeDataDirectoryPath)
         if (!file.exists() ||
-                (file.exists() && file.isFile()))
+                (file.exists() && file.file))
             createHomeDataDirectory()
-        file.exists() && file.isDirectory()
+        file.exists() && file.directory
     }
 
     @Override
     Boolean initRecapSpreadsheetDirectory() {
         assert initDataHomeDirectory()
-        File file = new File(getRecapSpreadsheetDirectoryPath())
+        File file = new File(recapSpreadsheetDirectoryPath)
         if (!file.exists() ||
-                (file.exists() && file.isFile()))
+                (file.exists() && file.file))
             createRecapSpreadsheetDirectory()
         assert file.exists()
-        assert file.isDirectory()
-        file.exists() && file.isDirectory()
+        assert file.directory
+        file.exists() && file.directory
     }
 
     void createRecapSpreadsheetDirectory() {
-        File file = new File(getRecapSpreadsheetDirectoryPath())
+        File file = new File(recapSpreadsheetDirectoryPath)
         if (!file.exists()) file.mkdir()
         else if (file.isFile()) {
             file.delete()
-            assert !file.exists
+            assert !file.exists()
             file.mkdir()
             assert file.exists()
         }
@@ -84,9 +82,9 @@ class RecapSettingServiceImp implements RecapSettingService {
         File recapitulatifSpreadsheetDirectory =
                 new File(getRecapSpreadsheetDirectoryPath())
         if ((!dataHomeDirectoryFile.exists() ||
-                !dataHomeDirectoryFile.isDirectory()) ||
+                !dataHomeDirectoryFile.directory) ||
                 (!recapitulatifSpreadsheetDirectory.exists() ||
-                        !recapitulatifSpreadsheetDirectory.isDirectory())) {
+                        !recapitulatifSpreadsheetDirectory.directory)) {
             throw new RecapSettingInitialisationException()
         }
         true
