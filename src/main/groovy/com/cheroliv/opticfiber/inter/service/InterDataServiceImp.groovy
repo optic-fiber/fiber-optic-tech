@@ -98,7 +98,10 @@ class InterDataServiceImp implements InterDataService {
         else throw new InterNotFoundException(nd, type)
     }
 
-
+    @Override
+    Integer countMois(LocalDateTime startDate , LocalDateTime endDate) {
+        interRepository.distinctMoisParAnnee()?.size() ?: 0
+    }
     @Override
     Integer countMois() {
         interRepository.distinctMoisParAnnee()?.size() ?: 0
@@ -120,6 +123,23 @@ class InterDataServiceImp implements InterDataService {
         finalResult
     }
 
+    @Override
+    List<Map<String, Integer>> findAllMoisFormatFrParAnnee(
+            LocalDateTime startDate, LocalDateTime endDate) {
+        List<List<Integer>> result =
+                interRepository.distinctMoisParAnnee(
+                        startDate,endDate)
+        List<Map<String, Integer>> finalResult =
+                new ArrayList<Map<String, Integer>>(result.size())
+        result.eachWithIndex { List<Integer> item, int idx ->
+            Integer intMois = item.get(0)
+            Integer annee = item.get(1)
+            Map<String, Integer> map = new HashMap<String, Integer>(1)
+            map[convertNombreEnMois(intMois)] = annee
+            finalResult.add(idx, map)
+        }
+        finalResult
+    }
 
     private static LocalDateTime buildDateTime(String strDate, String strHour) {
         LocalDateTime.of(

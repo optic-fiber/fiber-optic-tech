@@ -28,7 +28,7 @@ import static com.cheroliv.opticfiber.config.ApplicationConstants.MOTIF_START_DA
 @Transactional(readOnly = true)
 class RecapServiceImp implements RecapService {
 
-    SpreadsheetRecap classeur
+//    SpreadsheetRecap classeur
     final String homeDirectoryName
     final String recapSpreadsheetDirectoryName
     final String recapSpreadsheetFileName
@@ -49,6 +49,94 @@ class RecapServiceImp implements RecapService {
         this.homeDirectoryName = homeDirectoryName
         this.recapSpreadsheetDirectoryName = recapSpreadsheetDirectoryName
         this.recapSpreadsheetFileName = recapSpreadsheetFileName
+    }
+
+
+    @Override
+    SpreadsheetRecap processClasseurFeuilles(LocalDateTime startDate, LocalDateTime endDate) {
+        List<LocalDateTime> consistentDates =
+                evaluateRecapDates(startDate, endDate)
+        startDate = consistentDates.first()
+        endDate = consistentDates.last()
+        processFeuilles(startDate, endDate)
+    }
+
+    /*
+
+@Override
+void run(String... strings) throws Exception {
+    interService.setUp()
+    interService.importFromJsonFile interService.fiberJsonFilePath
+    interService.processClasseurFeuilles()
+    interService.saveToJsonFile interService.fiberJsonFilePath
+}
+ */
+
+    @Override
+    @Transactional(readOnly = true)
+    SpreadsheetRecap processFeuilles(LocalDateTime startDate, LocalDateTime endDate) {
+        SpreadsheetRecap classeur = init(startDate, endDate)
+        List<List<Integer>> listIntMoisAnnee =
+                repo.distinctMoisParAnnee(startDate, endDate)
+//        classeur.recaps = new ArrayList<Recap>(classeur.nbFeuille)
+//        assert classeur.nbFeuille == classeur.moisParAnnee.size()
+//        assert classeur.nbFeuille == listIntMoisAnnee.size()
+//
+//        if (classeur.nbFeuille == null || classeur.nbFeuille <= 0) {
+//            classeur.recaps = new ArrayList<Recap>()
+//            classeur.nbFeuille = 0
+//        } else {
+//            classeur.moisParAnnee.eachWithIndex {
+//                Map<String, Integer> map, int idx ->
+//                    String moisStrKey = map.keySet().first()
+//                    Integer anneeIntValue = map.get(moisStrKey)
+//                    Integer moisInt = listIntMoisAnnee.get(idx).first()
+//                    classeur.recaps.add idx,
+//                            processRecap(classeur
+//                                    .nomFeuilles
+//                                    .get(idx),
+//                                    moisInt,
+//                                    anneeIntValue)
+//            }
+//        }
+
+        classeur.createExcelWorkBook()
+        classeur
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    SpreadsheetRecap init(LocalDateTime startDate, LocalDateTime endDate) {
+        String strRecapPath = userHomePath + separator +
+                homeDirectoryName + separator +
+                recapSpreadsheetDirectoryName + separator +
+                generateRecapFileName(startDate, endDate)
+        SpreadsheetRecap classeur = new SpreadsheetRecap(
+                classeurPathName: strRecapPath,
+                nbFeuille: service.countMois(startDate, endDate),
+                nomFeuilles: nomFeuilles(startDate, endDate),
+                moisParAnnee: service.findAllMoisFormatFrParAnnee(startDate, endDate),
+                startDate: startDate,
+                endDate: endDate)
+        classeur
+    }
+
+
+    List<String> nomFeuilles(LocalDateTime startDate, LocalDateTime endDate) {
+        List<Map<String, Integer>> list =
+                service.findAllMoisFormatFrParAnnee(
+                        startDate, endDate)
+        List<String> finalList = new ArrayList()
+        if (list.empty) return []
+        list.eachWithIndex { item, idx ->
+            String key = (item as Map<String, Integer>)
+                    .keySet().first()
+            String value = (item as Map<String, Integer>)
+                    .get(key)
+            String monthYearLabel = "$key $value"
+            finalList.add idx, monthYearLabel
+        }
+        finalList
     }
 
     @Override
@@ -130,24 +218,6 @@ class RecapServiceImp implements RecapService {
                         dateTimeFormattedForFileName(endDate))
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    SpreadsheetRecap init(LocalDateTime startDate, LocalDateTime endDate) {
-        String strRecapPath = userHomePath + separator +
-                homeDirectoryName + separator +
-                recapSpreadsheetDirectoryName + separator +
-                generateRecapFileName(startDate, endDate)
-        this.classeur = new SpreadsheetRecap()
-        this.classeur = new SpreadsheetRecap(
-                classeurPathName: strRecapPath,
-                nbFeuille: service.countMois(),
-                nomFeuilles: this.nomFeuilles(),
-                moisParAnnee: service.findAllMoisFormatFrParAnnee(),
-                startDate: startDate,
-                endDate: endDate)
-        this.classeur
-    }
-
 
     @Override
 //recoder et repenser avec startDate et enddate
@@ -199,59 +269,6 @@ class RecapServiceImp implements RecapService {
 //                                " $anneeIntValue",
 //                labelCurrentMonthYearFormattedFr:
 //                        convertNombreEnMois(moisInt))
-    }
-
-    /*
-
-    @Override
-    void run(String... strings) throws Exception {
-        interService.setUp()
-        interService.importFromJsonFile interService.fiberJsonFilePath
-        interService.processClasseurFeuilles()
-        interService.saveToJsonFile interService.fiberJsonFilePath
-    }
-     */
-
-    @Override
-    @Transactional(readOnly = true)
-    SpreadsheetRecap processFeuilles(LocalDateTime startDate, LocalDateTime endDate) {
-        SpreadsheetRecap classeur = new SpreadsheetRecap()
-        init(startDate, endDate)
-        List<List<Integer>> listIntMoisAnnee =
-                repo.distinctMoisParAnnee(startDate,endDate)
-//        classeur.recaps = new ArrayList<Recap>(classeur.nbFeuille)
-//        assert classeur.nbFeuille == classeur.moisParAnnee.size()
-//        assert classeur.nbFeuille == listIntMoisAnnee.size()
-//
-//        if (classeur.nbFeuille == null || classeur.nbFeuille <= 0) {
-//            classeur.recaps = new ArrayList<Recap>()
-//            classeur.nbFeuille = 0
-//        } else {
-//            classeur.moisParAnnee.eachWithIndex {
-//                Map<String, Integer> map, int idx ->
-//                    String moisStrKey = map.keySet().first()
-//                    Integer anneeIntValue = map.get(moisStrKey)
-//                    Integer moisInt = listIntMoisAnnee.get(idx).first()
-//                    classeur.recaps.add idx,
-//                            processRecap(classeur
-//                                    .nomFeuilles
-//                                    .get(idx),
-//                                    moisInt,
-//                                    anneeIntValue)
-//            }
-//        }
-
-        classeur.createExcelWorkBook()
-        classeur
-    }
-//
-    @Override
-    SpreadsheetRecap processClasseurFeuilles(LocalDateTime startDate, LocalDateTime endDate) {
-        List<LocalDateTime> consistentDates =
-                evaluateRecapDates(startDate, endDate)
-        startDate = consistentDates.first()
-        endDate = consistentDates.last()
-        processFeuilles(startDate, endDate)
     }
 
 
