@@ -40,7 +40,7 @@ class InterDaoIntegrationTest {
     @Autowired
     ApplicationContext applicationContext
     @Autowired
-    InterDao interRepository
+    InterDao interDao
     @Autowired
     Validator validator
     @Value('${application.data.home-directory-name}')
@@ -122,7 +122,7 @@ class InterDaoIntegrationTest {
 
     @Transactional
     void populateDB() {
-        if (interRepository?.count() == 0)
+        if (interDao?.count() == 0)
             jsonData.each {
                 Map<String, String> it ->
                     InterEntity inter = jsonDataToInter(it)
@@ -132,13 +132,13 @@ class InterDaoIntegrationTest {
                                 log.info cv.message
                                 log.info inter.toString()
                         }
-                    else interRepository.save inter
+                    else interDao.save inter
             }
     }
 
     @Transactional
     void truncateDB() {
-        interRepository.deleteAll()
+        interDao.deleteAll()
     }
 
 
@@ -153,12 +153,12 @@ class InterDaoIntegrationTest {
         //because jsonData.first() then id must be 1 and
         // not expectedInter.id cant trust the id in json file
         // only can what the DB will generate
-        Optional<InterEntity> optionalResultInter = interRepository
+        Optional<InterEntity> optionalResultInter = interDao
                 .findById 1L//not expectedInter.id
         println optionalResultInter.get()
         if (optionalResultInter.present) {
             InterEntity resultInter = optionalResultInter.get()
-            Optional<InterEntity> optionalInterResult = interRepository.find(
+            Optional<InterEntity> optionalInterResult = interDao.find(
                     resultInter.nd, resultInter.typeInter)
             if (optionalInterResult.present) {
                 InterEntity result = optionalInterResult.get()
@@ -186,7 +186,7 @@ class InterDaoIntegrationTest {
                     date.monthValue == intMois)
                 expectedResult.add(jsonDataToInter(it))
         }
-        List<InterEntity> result = interRepository
+        List<InterEntity> result = interDao
                 .findAllDeMoisDansAnnee intMois, intAnnee
         assert expectedResult.size() == result.size()
         expectedResult.eachWithIndex {
@@ -201,7 +201,7 @@ class InterDaoIntegrationTest {
     @DisplayName('testDistinctMoisParAnnee')
     void testDistinctMoisParAnnee() {
         List<List<Integer>> expectedResult = this.getAnneesMoisDistinct()
-        interRepository.distinctMoisParAnnee().eachWithIndex {
+        interDao.distinctMoisParAnnee().eachWithIndex {
             List<Integer> list, int x ->
                 list.eachWithIndex {
                     int integer, int y ->
@@ -231,7 +231,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countPlpParMoisDansAnnee(
+                interDao.countPlpParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -258,7 +258,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countRacParMoisDansAnnee(
+                interDao.countRacParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -280,7 +280,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countInterParMoisDansAnnee(
+                interDao.countInterParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -304,7 +304,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countBafaParMoisDansAnnee(
+                interDao.countBafaParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -328,7 +328,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countBastParMoisDansAnnee(
+                interDao.countBastParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -352,7 +352,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countSavParMoisDansAnnee(
+                interDao.countSavParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -375,7 +375,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countPdcParMoisDansAnnee(
+                interDao.countPdcParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -399,7 +399,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countPdcBaapParMoisDansAnnee(
+                interDao.countPdcBaapParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -423,7 +423,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countPdcBaocParMoisDansAnnee(
+                interDao.countPdcBaocParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -447,7 +447,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countPdcBafaParMoisDansAnnee(
+                interDao.countPdcBafaParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -471,7 +471,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countPdcBastParMoisDansAnnee(
+                interDao.countPdcBastParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -495,7 +495,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countBaocParMoisDansAnnee(
+                interDao.countBaocParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -519,7 +519,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countBaapParMoisDansAnnee(
+                interDao.countBaapParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -545,7 +545,7 @@ class InterDaoIntegrationTest {
             }
         }
         assert expectedCount ==
-                interRepository.countPdcBaocBaapParMoisDansAnnee(
+                interDao.countPdcBaocBaapParMoisDansAnnee(
                         dateExpected.monthValue,
                         dateExpected.year)
     }
@@ -558,7 +558,7 @@ class InterDaoIntegrationTest {
     @Rollback
     @Transactional
     void testSave() {
-        Long countBefore = interRepository.count()
+        Long countBefore = interDao.count()
         def prePersistInstance = new InterEntity(
                 nd: "0101010101",
                 lastNameClient: "Doe",
@@ -568,8 +568,8 @@ class InterDaoIntegrationTest {
                 dateTimeInter: LocalDateTime.of(
                         LocalDate.now(),
                         LocalTime.now()))
-        interRepository.save(prePersistInstance)
-        Long countAfter = interRepository.count()
+        interDao.save(prePersistInstance)
+        Long countAfter = interDao.count()
         assert countAfter == countBefore + 1
         //preuve que EntityManager.persist() affecte l'id
         // sur l'instance passé en argument
@@ -579,76 +579,24 @@ class InterDaoIntegrationTest {
 
 
     @Test
+    @Order(19)
     void testDistinctMoisParAnnee_startDate_endDate() {
-        def startDate = TestData.prevInter.dateTimeInter
-        def endDate = TestData.nextInter.dateTimeInter
-        def expectedResult = [[12, 18], [1, 19]]
+        LocalDateTime startDate = TestData.prevInter.dateTimeInter
+        LocalDateTime endDate = TestData.nextInter.dateTimeInter
+        List<List<Integer>> expectedResult = [
+                [startDate.getMonthValue(), startDate.getYear()],
+                [endDate.getMonthValue(), endDate.getYear()]]
         println expectedResult.toListString()
-//        println
+        println interDao.distinctMoisParAnnee(
+                startDate, endDate)
+        interDao.distinctMoisParAnnee(
+                startDate, endDate).eachWithIndex {
+            List<Integer> entry, int i ->
+                entry.eachWithIndex {
+                    int nestedEntry, int j ->
+                        assert expectedResult.get(i).get(j) ==
+                                nestedEntry
+                }
+        }
     }
-    /*
-        @Query("""
-        select distinct month(i.dateTimeInter),
-        year(i.dateTimeInter) from InterEntity i
-        where i.dateTimeInter between :startDate and :endDate
-        order by year(i.dateTimeInter) asc,
-        month(i.dateTimeInter) asc""")
-    List<List<Integer>>distinctMoisParAnnee(
-            @Param('startDate')LocalDateTime startDate,
-            @Param('endDate')LocalDateTime endDate)
-
-
-
-        {
-    "id_inter": "1",
-    "ND": "0144639035",
-    "nom": "Lalande",
-    "prenom": "Julien",
-    "heure": "10:00:00",
-    "date": "2018-10-29",
-    "contrat": "IQ",
-    "type": "BAOC"
-  },{
-    "id_inter": "103",
-    "ND": "0142069836",
-    "nom": "Maugee",
-    "prenom": "Eric",
-    "heure": "12:00:00",
-    "date": "2018-12-31",
-    "contrat": "IQ",
-    "type": "BAAP"
-  },
-  {
-    "id_inter": "104",
-    "ND": "0144820811",
-    "nom": "Gustin",
-    "prenom": "Jean-Pierre",
-    "heure": "13:00:00",
-    "date": "2019-01-02",
-    "contrat": "IQ",
-    "type": "BAOC"
-  },
-  {
-    "id_inter": "105",
-    "ND": "0143486423",
-    "nom": "QUANTUM",
-    "prenom": "",
-    "heure": "10:00:00",
-    "date": "2019-01-02",
-    "contrat": "LM",
-    "type": "BAAP"
-  },
-
-  ,
-  {
-    "id_inter": "109",
-    "ND": "0143485957",
-    "nom": "Bouvier",
-    "prenom": "Steven",
-    "heure": "12:00:00",
-    "date": "2019-01-04",
-    "contrat": "IQ",
-    "type": "BAAP"
-  }
-     */
 }
