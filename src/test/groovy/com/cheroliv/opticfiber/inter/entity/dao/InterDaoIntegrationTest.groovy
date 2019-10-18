@@ -1,6 +1,7 @@
 package com.cheroliv.opticfiber.inter.entity.dao
 
 import com.cheroliv.opticfiber.ApplicationUtils
+import com.cheroliv.opticfiber.TestData
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
@@ -575,4 +576,79 @@ class InterDaoIntegrationTest {
         // pas besoin de recuperer le resultat en retour de fonction
         assert prePersistInstance.id != null
     }
+
+
+    @Test
+    void testDistinctMoisParAnnee_startDate_endDate() {
+        def startDate = TestData.prevInter.dateTimeInter
+        def endDate = TestData.nextInter.dateTimeInter
+        def expectedResult = [[12, 18], [1, 19]]
+        println expectedResult.toListString()
+//        println
+    }
+    /*
+        @Query("""
+        select distinct month(i.dateTimeInter),
+        year(i.dateTimeInter) from InterEntity i
+        where i.dateTimeInter between :startDate and :endDate
+        order by year(i.dateTimeInter) asc,
+        month(i.dateTimeInter) asc""")
+    List<List<Integer>>distinctMoisParAnnee(
+            @Param('startDate')LocalDateTime startDate,
+            @Param('endDate')LocalDateTime endDate)
+
+
+
+        {
+    "id_inter": "1",
+    "ND": "0144639035",
+    "nom": "Lalande",
+    "prenom": "Julien",
+    "heure": "10:00:00",
+    "date": "2018-10-29",
+    "contrat": "IQ",
+    "type": "BAOC"
+  },{
+    "id_inter": "103",
+    "ND": "0142069836",
+    "nom": "Maugee",
+    "prenom": "Eric",
+    "heure": "12:00:00",
+    "date": "2018-12-31",
+    "contrat": "IQ",
+    "type": "BAAP"
+  },
+  {
+    "id_inter": "104",
+    "ND": "0144820811",
+    "nom": "Gustin",
+    "prenom": "Jean-Pierre",
+    "heure": "13:00:00",
+    "date": "2019-01-02",
+    "contrat": "IQ",
+    "type": "BAOC"
+  },
+  {
+    "id_inter": "105",
+    "ND": "0143486423",
+    "nom": "QUANTUM",
+    "prenom": "",
+    "heure": "10:00:00",
+    "date": "2019-01-02",
+    "contrat": "LM",
+    "type": "BAAP"
+  },
+
+  ,
+  {
+    "id_inter": "109",
+    "ND": "0143485957",
+    "nom": "Bouvier",
+    "prenom": "Steven",
+    "heure": "12:00:00",
+    "date": "2019-01-04",
+    "contrat": "IQ",
+    "type": "BAAP"
+  }
+     */
 }
