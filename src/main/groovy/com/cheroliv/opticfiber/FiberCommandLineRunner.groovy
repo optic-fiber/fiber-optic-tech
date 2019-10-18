@@ -1,5 +1,6 @@
 package com.cheroliv.opticfiber
 
+import com.cheroliv.opticfiber.recap.service.RecapService
 import groovy.util.logging.Slf4j
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.ApplicationContext
@@ -19,5 +20,7 @@ class FiberCommandLineRunner implements CommandLineRunner {
     @Override
     void run(String... args) throws Exception {
 //        log.info "bean provided by spring container : ${applicationContext.getBeanDefinitionNames().toArrayString()}"
+        def recapService = applicationContext.getBean(RecapService)
+        recapService.processClasseurFeuilles()
     }
 }

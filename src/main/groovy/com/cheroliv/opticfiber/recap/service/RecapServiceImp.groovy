@@ -15,11 +15,10 @@ import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
 import static com.cheroliv.opticfiber.ApplicationUtils.*
-import static com.cheroliv.opticfiber.config.ApplicationConstants.MOTIF_END_DATE_TIME
-import static com.cheroliv.opticfiber.config.ApplicationConstants.MOTIF_START_DATE_TIME
+import static com.cheroliv.opticfiber.config.ApplicationConstants.*
+import static com.cheroliv.opticfiber.recap.model.Recap.PRE_LABEL_TITRE_RECAP
 
-//import static com.cheroliv.opticfiber.ApplicationUtils.convertNombreEnMois
-//import static com.cheroliv.opticfiber.recap.model.Recap.PRE_LABEL_TITRE_RECAP
+import static com.cheroliv.opticfiber.ApplicationUtils.convertNombreEnMois
 
 
 @Slf4j
@@ -60,6 +59,10 @@ class RecapServiceImp implements RecapService {
         endDate = consistentDates.last()
         processFeuilles(startDate, endDate)
     }
+    @Override
+    SpreadsheetRecap processClasseurFeuilles(){
+        this.processClasseurFeuilles(null,null)
+    }
 
     /*
 
@@ -72,34 +75,40 @@ void run(String... strings) throws Exception {
 }
  */
 
+
+    @Override
+    @Transactional(readOnly = true)
+    SpreadsheetRecap processFeuilles(){
+        this.processFeuilles(null,null)
+    }
+
     @Override
     @Transactional(readOnly = true)
     SpreadsheetRecap processFeuilles(LocalDateTime startDate, LocalDateTime endDate) {
         SpreadsheetRecap classeur = init(startDate, endDate)
         List<List<Integer>> listIntMoisAnnee =
                 repo.distinctMoisParAnnee(startDate, endDate)
-//        classeur.recaps = new ArrayList<Recap>(classeur.nbFeuille)
-//        assert classeur.nbFeuille == classeur.moisParAnnee.size()
-//        assert classeur.nbFeuille == listIntMoisAnnee.size()
-//
-//        if (classeur.nbFeuille == null || classeur.nbFeuille <= 0) {
-//            classeur.recaps = new ArrayList<Recap>()
-//            classeur.nbFeuille = 0
-//        } else {
-//            classeur.moisParAnnee.eachWithIndex {
-//                Map<String, Integer> map, int idx ->
-//                    String moisStrKey = map.keySet().first()
-//                    Integer anneeIntValue = map.get(moisStrKey)
-//                    Integer moisInt = listIntMoisAnnee.get(idx).first()
-//                    classeur.recaps.add idx,
-//                            processRecap(classeur
-//                                    .nomFeuilles
-//                                    .get(idx),
-//                                    moisInt,
-//                                    anneeIntValue)
-//            }
-//        }
+        classeur.recaps = new ArrayList<Recap>(classeur.nbFeuille)
+        assert classeur.nbFeuille == classeur.moisParAnnee.size()
+        assert classeur.nbFeuille == listIntMoisAnnee.size()
 
+        if (classeur.nbFeuille == null || classeur.nbFeuille <= 0) {
+            classeur.recaps = new ArrayList<Recap>()
+            classeur.nbFeuille = 0
+        } else {
+            classeur.moisParAnnee.eachWithIndex {
+                Map<String, Integer> map, int idx ->
+                    String moisStrKey = map.keySet().first()
+                    Integer anneeIntValue = map.get(moisStrKey)
+                    Integer moisInt = listIntMoisAnnee.get(idx).first()
+                    classeur.recaps.add idx,
+                            processRecap(classeur
+                                    .nomFeuilles
+                                    .get(idx),
+                                    moisInt,
+                                    anneeIntValue)
+            }
+        }
         classeur.createExcelWorkBook()
         classeur
     }
@@ -121,22 +130,24 @@ void run(String... strings) throws Exception {
         classeur
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    SpreadsheetRecap init() {
+        this.init(null,null)
+    }
+
 
     List<String> nomFeuilles(LocalDateTime startDate, LocalDateTime endDate) {
         List<Map<String, Integer>> list =
                 service.findAllMoisFormatFrParAnnee(
                         startDate, endDate)
-        List<String> finalList = new ArrayList()
         if (list.empty) return []
-        list.eachWithIndex { item, idx ->
-            String key = (item as Map<String, Integer>)
-                    .keySet().first()
-            String value = (item as Map<String, Integer>)
-                    .get(key)
-            String monthYearLabel = "$key $value"
-            finalList.add idx, monthYearLabel
+        list.collect {
+            Map<String, Integer> it ->
+                String key = it.keySet().first()
+                String value = it.get(key)
+                key + SPACE_CHAR + value
         }
-        finalList
     }
 
     @Override
@@ -220,55 +231,54 @@ void run(String... strings) throws Exception {
 
 
     @Override
-//recoder et repenser avec startDate et enddate
+//TODO:recoder et repenser avec startDate et enddate
     @Transactional(readOnly = true)
     Recap processRecap(
             String nomFeuilles,
             Integer moisInt,
             Integer anneeIntValue) {
-        new Recap()
-//        new Recap(
-//                sheetName: nomFeuilles,
-//                inters: repo.findAllDeMoisDansAnnee(
-//                        moisInt, anneeIntValue),
-//                annee: anneeIntValue,
-//                mois: moisInt,
-//                nbInterTotal: repo
-//                        .countInterParMoisDansAnnee(
-//                                moisInt, anneeIntValue),
-//                nbBaocBaap: repo
-//                        .countRacParMoisDansAnnee(
-//                                moisInt, anneeIntValue),
-//                nbBafa: repo
-//                        .countBafaParMoisDansAnnee(
-//                                moisInt, anneeIntValue),
-//                nbBast: repo
-//                        .countBastParMoisDansAnnee(
-//                                moisInt, anneeIntValue),
-//                nbPlp: repo
-//                        .countPlpParMoisDansAnnee(
-//                                moisInt, anneeIntValue),
-//                nbSav: repo
-//                        .countSavParMoisDansAnnee(
-//                                moisInt, anneeIntValue),
-//                nbPdcTotal: repo
-//                        .countPdcParMoisDansAnnee(
-//                                moisInt, anneeIntValue),
-//                nbPdcBafa: repo
-//                        .countPdcBafaParMoisDansAnnee(
-//                                moisInt, anneeIntValue),
-//                nbPdcBast: repo
-//                        .countPdcBastParMoisDansAnnee(
-//                                moisInt, anneeIntValue),
-//                nbPdcBaocBaap: repo
-//                        .countPdcBaocBaapParMoisDansAnnee(
-//                                moisInt, anneeIntValue),
-//                labelTitreRecap:
-//                        "${PRE_LABEL_TITRE_RECAP}" +
-//                                "${convertNombreEnMois moisInt}" +
-//                                " $anneeIntValue",
-//                labelCurrentMonthYearFormattedFr:
-//                        convertNombreEnMois(moisInt))
+        new Recap(
+                sheetName: nomFeuilles,
+                inters: repo.findAllDeMoisDansAnnee(
+                        moisInt, anneeIntValue),
+                annee: anneeIntValue,
+                mois: moisInt,
+                nbInterTotal: repo
+                        .countInterParMoisDansAnnee(
+                                moisInt, anneeIntValue),
+                nbBaocBaap: repo
+                        .countRacParMoisDansAnnee(
+                                moisInt, anneeIntValue),
+                nbBafa: repo
+                        .countBafaParMoisDansAnnee(
+                                moisInt, anneeIntValue),
+                nbBast: repo
+                        .countBastParMoisDansAnnee(
+                                moisInt, anneeIntValue),
+                nbPlp: repo
+                        .countPlpParMoisDansAnnee(
+                                moisInt, anneeIntValue),
+                nbSav: repo
+                        .countSavParMoisDansAnnee(
+                                moisInt, anneeIntValue),
+                nbPdcTotal: repo
+                        .countPdcParMoisDansAnnee(
+                                moisInt, anneeIntValue),
+                nbPdcBafa: repo
+                        .countPdcBafaParMoisDansAnnee(
+                                moisInt, anneeIntValue),
+                nbPdcBast: repo
+                        .countPdcBastParMoisDansAnnee(
+                                moisInt, anneeIntValue),
+                nbPdcBaocBaap: repo
+                        .countPdcBaocBaapParMoisDansAnnee(
+                                moisInt, anneeIntValue),
+                labelTitreRecap:
+                        "${PRE_LABEL_TITRE_RECAP}" +
+                                "${convertNombreEnMois moisInt}" +
+                                " $anneeIntValue",
+                labelCurrentMonthYearFormattedFr:
+                        convertNombreEnMois(moisInt))
     }
 
 

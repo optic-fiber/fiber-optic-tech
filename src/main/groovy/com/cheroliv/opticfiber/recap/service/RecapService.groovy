@@ -12,14 +12,20 @@ interface RecapService {
 //    void setPath(String path)
     SpreadsheetRecap init(LocalDateTime startDate, LocalDateTime endDate)
 
+    SpreadsheetRecap init()
+
     Recap processRecap(
             String nomFeuilles,
             Integer moisInt,
             Integer anneeInt)
 
+    SpreadsheetRecap processFeuilles()
+
     SpreadsheetRecap processFeuilles(LocalDateTime startDate, LocalDateTime endDate)
 
-    SpreadsheetRecap processClasseurFeuilles( LocalDateTime startDate ,LocalDateTime endDate)
+    SpreadsheetRecap processClasseurFeuilles(LocalDateTime startDate, LocalDateTime endDate)
+
+    SpreadsheetRecap processClasseurFeuilles()
 
     List<String> nomFeuilles()
 
