@@ -17,9 +17,9 @@ interface RecapService {
             Integer moisInt,
             Integer anneeInt)
 
-    SpreadsheetRecap processFeuilles()
+    SpreadsheetRecap processFeuilles(LocalDateTime startDate, LocalDateTime endDate)
 
-    SpreadsheetRecap processClasseurFeuilles(String classeurPath)
+    SpreadsheetRecap processClasseurFeuilles( LocalDateTime startDate ,LocalDateTime endDate)
 
     List<String> nomFeuilles()
 

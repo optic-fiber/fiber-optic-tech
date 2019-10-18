@@ -47,6 +47,14 @@ class InterRepositoryImp implements InterRepository {
     }
 
     @Override
+    List<List<Integer>> distinctMoisParAnnee(
+            LocalDateTime startDate,
+            LocalDateTime endDate) {
+        interDao.distinctMoisParAnnee(
+                startDate, endDate)
+    }
+
+    @Override
     List<InterDto> findAllDeMoisDansAnnee(Integer mois, Integer annee) {
         interDao.findAllDeMoisDansAnnee(mois, annee).collect {
             InterEntity it ->

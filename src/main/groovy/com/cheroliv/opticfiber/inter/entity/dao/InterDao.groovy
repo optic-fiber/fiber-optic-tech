@@ -26,6 +26,17 @@ interface InterDao extends JpaRepository<InterEntity, Long>, ExtendedRepository<
     List<List<Integer>> distinctMoisParAnnee()
 
     @Query("""
+        select distinct month(i.dateTimeInter),
+        year(i.dateTimeInter) from InterEntity i
+        where i.dateTimeInter between :startDate and :endDate
+        order by year(i.dateTimeInter) asc,
+        month(i.dateTimeInter) asc""")
+    List<List<Integer>>distinctMoisParAnnee(
+            @Param('startDate')LocalDateTime startDate,
+            @Param('endDate')LocalDateTime endDate)
+
+
+    @Query("""
         select i from InterEntity i 
         where month(i.dateTimeInter)=:mois and 
         year(i.dateTimeInter)=:annee""")

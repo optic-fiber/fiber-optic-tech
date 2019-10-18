@@ -13,6 +13,10 @@ interface InterRepository {
 
     List<List<Integer>> distinctMoisParAnnee()
 
+    List<List<Integer>> distinctMoisParAnnee(
+            LocalDateTime startDate,
+            LocalDateTime endDate)
+
     List<InterDto> findAllDeMoisDansAnnee(
             Integer mois,
             Integer annee)

@@ -20,8 +20,6 @@ import static com.cheroliv.opticfiber.config.ApplicationConstants.MOTIF_START_DA
 
 //import static com.cheroliv.opticfiber.ApplicationUtils.convertNombreEnMois
 //import static com.cheroliv.opticfiber.recap.model.Recap.PRE_LABEL_TITRE_RECAP
-//import com.cheroliv.opticfiber.ApplicationUtils
-//import com.cheroliv.opticfiber.inter.domain.InterDto
 
 
 @Slf4j
@@ -88,8 +86,7 @@ class RecapServiceImp implements RecapService {
                 dateTime.isEqual(dateMin)
     }
 
-    @Override
-    String generateRecapFileName(
+    List<LocalDateTime> evaluateRecapDates(
             LocalDateTime startDate,
             LocalDateTime endDate) {
         checkInterRepositoryConsistent()
@@ -97,13 +94,24 @@ class RecapServiceImp implements RecapService {
         LocalDateTime oldestDate = dates.min()
         LocalDateTime latestDate = dates.max()
         if (!startDate && isDateElementOfDatesData(endDate, dates))
-            return buildRecapFileName(oldestDate, endDate)
+            return [oldestDate, endDate]
         if (!endDate && isDateElementOfDatesData(startDate, dates))
-            return buildRecapFileName(startDate, latestDate)
+            return [startDate, latestDate]
         if (!isDateElementOfDatesData(startDate, dates) ||
                 !isDateElementOfDatesData(endDate, dates))
-            return buildRecapFileName(oldestDate, latestDate)
-        buildRecapFileName(startDate, endDate)
+            return [oldestDate, latestDate]
+        [startDate, endDate]
+    }
+
+    @Override
+    String generateRecapFileName(
+            LocalDateTime startDate,
+            LocalDateTime endDate) {
+        List<LocalDateTime> recapDateRange =
+                evaluateRecapDates(startDate, endDate)
+        buildRecapFileName(
+                recapDateRange.first(),
+                recapDateRange.last())
     }
 
     String buildRecapFileName(
@@ -139,6 +147,7 @@ class RecapServiceImp implements RecapService {
                 endDate: endDate)
         this.classeur
     }
+
 
     @Override
 //recoder et repenser avec startDate et enddate
@@ -192,13 +201,24 @@ class RecapServiceImp implements RecapService {
 //                        convertNombreEnMois(moisInt))
     }
 
+    /*
+
+    @Override
+    void run(String... strings) throws Exception {
+        interService.setUp()
+        interService.importFromJsonFile interService.fiberJsonFilePath
+        interService.processClasseurFeuilles()
+        interService.saveToJsonFile interService.fiberJsonFilePath
+    }
+     */
 
     @Override
     @Transactional(readOnly = true)
-    SpreadsheetRecap processFeuilles() {
-//        init()
-//        List<List<Integer>> listIntMoisAnnee =
-//                repo.distinctMoisParAnnee()
+    SpreadsheetRecap processFeuilles(LocalDateTime startDate, LocalDateTime endDate) {
+        SpreadsheetRecap classeur = new SpreadsheetRecap()
+        init(startDate, endDate)
+        List<List<Integer>> listIntMoisAnnee =
+                repo.distinctMoisParAnnee(startDate,endDate)
 //        classeur.recaps = new ArrayList<Recap>(classeur.nbFeuille)
 //        assert classeur.nbFeuille == classeur.moisParAnnee.size()
 //        assert classeur.nbFeuille == listIntMoisAnnee.size()
@@ -220,17 +240,18 @@ class RecapServiceImp implements RecapService {
 //                                    anneeIntValue)
 //            }
 //        }
-//        classeur
-        new SpreadsheetRecap()
+
+        classeur.createExcelWorkBook()
+        classeur
     }
 //
     @Override
-    SpreadsheetRecap processClasseurFeuilles(String classeurPath) {
-//        this.path = classeurPath
-//        this.processFeuilles()
-//        this.classeur.createExcelWorkBook()
-//        classeur
-        new SpreadsheetRecap()
+    SpreadsheetRecap processClasseurFeuilles(LocalDateTime startDate, LocalDateTime endDate) {
+        List<LocalDateTime> consistentDates =
+                evaluateRecapDates(startDate, endDate)
+        startDate = consistentDates.first()
+        endDate = consistentDates.last()
+        processFeuilles(startDate, endDate)
     }
 
 
