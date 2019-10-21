@@ -21,6 +21,6 @@ class FiberCommandLineRunner implements CommandLineRunner {
     void run(String... args) throws Exception {
 //        log.info "bean provided by spring container : ${applicationContext.getBeanDefinitionNames().toArrayString()}"
         def recapService = applicationContext.getBean(RecapService)
-        recapService.processClasseurFeuilles()
+//        recapService.processClasseurFeuilles()
     }
 }
