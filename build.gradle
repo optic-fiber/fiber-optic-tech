@@ -173,7 +173,7 @@ task printHerokuVersion(type: Exec) {
 }
 
 
-task unitTest(type: Test) {
+task unitTests(type: Test) {
     useJUnitPlatform()
     description = "Execute unit tests."
     group = "verification"
@@ -182,7 +182,7 @@ task unitTest(type: Test) {
     reports.html.enabled = true
 }
 
-task integrationTest(type: Test) {
+task integrationTests(type: Test) {
     useJUnitPlatform()
     description = "Execute integration tests."
     group = "verification"
@@ -191,16 +191,16 @@ task integrationTest(type: Test) {
     reports.html.enabled = true
 }
 
-task bddTest(type: Test) {
+task bddTests(type: Test) {
     description = "Execute cucumber BDD tests."
     group = "verification"
     include "**/*CucumberIT*"
     reports.html.enabled = true
 }
 
-check.dependsOn bddTest
+check.dependsOn bddTests
 
-check.dependsOn integrationTest
+check.dependsOn integrationTests
 
 task testReport(type: TestReport) {
     destinationDir = file("$buildDir/reports/tests")
@@ -209,12 +209,12 @@ task testReport(type: TestReport) {
 
 task integrationTestReport(type: TestReport) {
     destinationDir = file("$buildDir/reports/tests")
-    reportOn integrationTest
+    reportOn integrationTests
 }
 
 task bddTestReport(type: TestReport) {
     destinationDir = file("$buildDir/reports/tests")
-    reportOn bddTest
+    reportOn bddTests
 }
 
 task cleanResources(type: Delete) {
