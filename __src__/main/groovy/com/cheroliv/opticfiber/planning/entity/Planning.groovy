@@ -1,7 +1,6 @@
 package com.cheroliv.opticfiber.planning.entity
 
-
-import com.cheroliv.opticfiber.entity.UserEntity
+import com.cheroliv.opticfiber.entity.User
 import groovy.transform.CompileStatic
 import groovy.transform.ToString
 
@@ -46,7 +45,7 @@ class Planning implements Serializable {
     @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "`user_id`", nullable = false)
-    UserEntity user
+    User user
 
     boolean equals(o) {
         if (this.is(o)) return true

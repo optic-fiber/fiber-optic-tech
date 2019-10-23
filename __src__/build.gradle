@@ -93,6 +93,7 @@ dependencies {
     testImplementation "org.codehaus.groovy:groovy-all:$groovy_version"
     // SPRING STARTING POINT RESOURCES
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.zalando:problem-spring-web:0.25.0"
     // MAIL
 //    implementation 'org.springframework.boot:spring-boot-starter-mail'
     // VIEW TEMPLATE
@@ -128,13 +129,9 @@ dependencies {
     implementation "org.apache.poi:poi-ooxml:$poi_version"
     // XML/JSON PARSER
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
-
-
     // SECURITY
-//    implementation "org.springframework.boot:spring-boot-starter-security"
-//    testImplementation "org.springframework.security:spring-security-test"
-
-
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    testImplementation "org.springframework.security:spring-security-test"
 
     //TDD
     // TDD:JUNIT SPRING
