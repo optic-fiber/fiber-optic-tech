@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.repository
+package com.cheroliv.opticfiber.dao
 
 import groovy.transform.TypeChecked
 import org.springframework.beans.BeanWrapper

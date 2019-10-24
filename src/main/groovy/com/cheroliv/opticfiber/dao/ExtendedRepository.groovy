@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.repository
+package com.cheroliv.opticfiber.dao
 
 interface ExtendedRepository<T, ID extends Serializable> {
     List<T> findByAttributeContainsText(String attributeName, String text)
