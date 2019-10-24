@@ -15,13 +15,13 @@ package com.cheroliv.opticfiber.config
 //@Transactional
 class DatabaseInitializer {
 //    final UserService userService
-//    final AuthorityRepository authorityRepository
+//    final AuthorityDao authorityRepository
 //    final UserRepository userRepository
 //    final PlanningRepository planningRepository
 //
 //
 //    DatabaseInitializer(UserService userService,
-//                        AuthorityRepository authorityRepository,
+//                        AuthorityDao authorityRepository,
 //                        UserRepository userRepository,
 //                        PlanningRepository planningRepository) {
 //        this.userService = userService
@@ -37,7 +37,7 @@ class DatabaseInitializer {
 //    }
 //
 //    void createDefaultPlanning() {
-//        planningRepository.save new Planning(
+//        planningRepository.save new PlanningEntity(
 //                user: userRepository.findOneByLogin("user")?.get(),
 //                dateTimeCreation: LocalDateTime.now(),
 //                initialTech: "UU",

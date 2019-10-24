@@ -1,7 +1,8 @@
 package com.cheroliv.opticfiber.entity
 
-import groovy.transform.CompileStatic
+
 import groovy.transform.ToString
+import groovy.transform.TypeChecked
 
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -10,10 +11,10 @@ import javax.persistence.Table
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
-@CompileStatic
 @Entity
-@Table(name = "`authority`")
 @ToString
+@TypeChecked
+@Table(name = "`authority`")
 class AuthorityEntity implements Serializable {
     static final long serialVersionUID = 1L
     @NotNull

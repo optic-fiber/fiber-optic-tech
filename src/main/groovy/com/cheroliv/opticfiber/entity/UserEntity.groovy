@@ -1,9 +1,10 @@
 package com.cheroliv.opticfiber.entity
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import groovy.transform.CompileStatic
 import groovy.transform.ToString
+import groovy.transform.TypeChecked
 import org.hibernate.annotations.BatchSize
+import org.hibernate.annotations.Cache
 import org.hibernate.annotations.CacheConcurrencyStrategy
 
 import javax.persistence.*
@@ -13,11 +14,9 @@ import javax.validation.constraints.Pattern
 import javax.validation.constraints.Size
 import java.time.Instant
 
-import org.hibernate.annotations.Cache
-
-@CompileStatic
-@ToString
 @Entity
+@ToString
+@TypeChecked
 @Table(name = "`user`", indexes = [
         @Index(name = "`unique_idx_user_login`", columnList = "`login`", unique = true),
         @Index(name = "`unique_idx_user_email`", columnList = "`email`", unique = true),
@@ -149,7 +148,6 @@ class UserEntity implements Serializable {
         result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0)
         return result
     }
-
 
 
 }
