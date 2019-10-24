@@ -1,6 +1,7 @@
 package com.cheroliv.opticfiber.config
 
 
+import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.stereotype.Component
 
@@ -8,6 +9,18 @@ import org.springframework.stereotype.Component
 @ConfigurationProperties(
         prefix = 'application',
         ignoreUnknownFields = false)
+@EntityScan([
+        'com.cheroliv.core.entity',
+        'com.cheroliv.opticfiber.inter.entity',
+        'com.cheroliv.opticfiber.planning.entity'
+])
+//@EnableJpaRepositories(
+//        basePackages = [
+//                'com.cheroliv.core.entity.dao',
+//                'com.cheroliv.opticfiber.inter.entity.dao',
+//                'com.cheroliv.opticfiber.planning.entity.dao'
+//        ],
+//        repositoryBaseClass = ExtendedRepositoryImpl)
 class ApplicationProperties {
 
     final Data data = new Data()

@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.entity
+package com.cheroliv.core.entity
 
 
 import groovy.transform.ToString
@@ -17,9 +17,9 @@ import javax.validation.constraints.Size
 @Table(name = "`authority`")
 class AuthorityEntity implements Serializable {
     static final long serialVersionUID = 1L
+    @Id
     @NotNull
     @Size(max = 50)
-    @Id
     @Column(length = 50, name = "`name`")
     String name
 

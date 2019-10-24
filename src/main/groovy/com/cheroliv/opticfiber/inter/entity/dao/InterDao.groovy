@@ -6,12 +6,13 @@ import com.cheroliv.core.entity.dao.ExtendedRepository
 import groovy.transform.TypeChecked
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
+import org.springframework.data.repository.PagingAndSortingRepository
 import org.springframework.data.repository.query.Param
 
 import java.time.LocalDateTime
 
 @TypeChecked
-interface InterDao extends JpaRepository<InterEntity, Long>, ExtendedRepository<InterEntity, Long> {
+interface InterDao extends PagingAndSortingRepository<InterEntity, Long>, ExtendedRepository<InterEntity, Long> {
 
     @Query('from InterEntity i where i.nd=:nd and typeInter=:type')
     Optional<InterEntity> find(

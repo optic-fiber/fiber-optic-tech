@@ -1,17 +1,17 @@
 package com.cheroliv.opticfiber.planning.entity
 
-import com.cheroliv.opticfiber.entity.UserEntity
-import groovy.transform.CompileStatic
+
 import groovy.transform.ToString
+import groovy.transform.TypeChecked
 
 import javax.persistence.*
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 import java.time.ZonedDateTime
 
-@CompileStatic
-@ToString
 @Entity
+@ToString
+@TypeChecked
 @Table(name = "`planning`", indexes = [
         @Index(name = "`idx_planning_initial_tech`", columnList = "`initial_tech`"),
         @Index(name = "`idx_planning_open`", columnList = "`open`"),
@@ -42,10 +42,10 @@ class PlanningEntity implements Serializable {
     @Size(max = 100)
     @Column(name = "`first_name_tech`", length = 100)
     String firstNameTech
-    @NotNull
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "`user_id`", nullable = false)
-    UserEntity user
+//    @NotNull
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "`user_id`", nullable = false)
+//    UserEntity user
 //    List<InterEntity> interEntities
 
 
