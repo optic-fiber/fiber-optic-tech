@@ -9,11 +9,6 @@ import org.springframework.stereotype.Component
 @ConfigurationProperties(
         prefix = 'application',
         ignoreUnknownFields = false)
-@EntityScan([
-        'com.cheroliv.core.entity',
-        'com.cheroliv.opticfiber.inter.entity',
-        'com.cheroliv.opticfiber.planning.entity'
-])
 //@EnableJpaRepositories(
 //        basePackages = [
 //                'com.cheroliv.core.entity.dao',

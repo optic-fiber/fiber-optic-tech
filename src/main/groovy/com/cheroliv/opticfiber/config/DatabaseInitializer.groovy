@@ -1,5 +1,9 @@
 package com.cheroliv.opticfiber.config
 
+import com.cheroliv.core.config.CoreDatabaseInitializer
+import org.springframework.boot.autoconfigure.domain.EntityScan
+import org.springframework.context.annotation.Configuration
+
 //import com.cheroliv.opticfiber.core.entity.UserEntity
 //import groovy.transform.CompileStatic
 //import groovy.util.logging.Slf4j
@@ -13,7 +17,13 @@ package com.cheroliv.opticfiber.config
 //@Component
 //@CompileStatic
 //@Transactional
-class DatabaseInitializer {
+@Configuration
+@EntityScan([
+        'com.cheroliv.core.entity',
+        'com.cheroliv.opticfiber.inter.entity',
+        'com.cheroliv.opticfiber.planning.entity'
+])
+class DatabaseInitializer extends CoreDatabaseInitializer {
 //    final UserService userService
 //    final AuthorityDao authorityRepository
 //    final UserRepository userRepository
