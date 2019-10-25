@@ -24,7 +24,7 @@ import java.time.LocalDateTime
         @Index(name = "`idx_inter_date_time_inter`", columnList = "`date_time_inter`", unique = true),
         @Index(name = "`idx_inter_first_name_client`", columnList = "`first_name_client`"),
         @Index(name = "`idx_inter_last_name_client`", columnList = "`last_name_client`")])
-class InterEntity implements Serializable {
+class InterEntity implements Serializable, InterEntityGeneric<Long> {
 
     static final long serialVersionUID = 1L
     @Id

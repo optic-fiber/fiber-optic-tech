@@ -18,3 +18,5 @@ stock
 
 *.log
 __src__
+*.iml
+*.ipr

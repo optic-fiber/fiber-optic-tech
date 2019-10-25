@@ -1,10 +1,9 @@
 package com.cheroliv.opticfiber.inter.entity.dao
 
+import com.cheroliv.core.entity.dao.ExtendedRepository
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
-import com.cheroliv.core.entity.dao.ExtendedRepository
 import groovy.transform.TypeChecked
-import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.PagingAndSortingRepository
 import org.springframework.data.repository.query.Param
@@ -12,7 +11,10 @@ import org.springframework.data.repository.query.Param
 import java.time.LocalDateTime
 
 @TypeChecked
-interface InterDao extends PagingAndSortingRepository<InterEntity, Long>, ExtendedRepository<InterEntity, Long> {
+interface InterDao extends
+        InterDaoGeneric<InterEntity>,
+        PagingAndSortingRepository<InterEntity, Long>,
+        ExtendedRepository<InterEntity, Long> {
 
     @Query('from InterEntity i where i.nd=:nd and typeInter=:type')
     Optional<InterEntity> find(
@@ -32,9 +34,9 @@ interface InterDao extends PagingAndSortingRepository<InterEntity, Long>, Extend
         where i.dateTimeInter between :startDate and :endDate
         order by year(i.dateTimeInter) asc,
         month(i.dateTimeInter) asc""")
-    List<List<Integer>>distinctMoisParAnnee(
-            @Param('startDate')LocalDateTime startDate,
-            @Param('endDate')LocalDateTime endDate)
+    List<List<Integer>> distinctMoisParAnnee(
+            @Param('startDate') LocalDateTime startDate,
+            @Param('endDate') LocalDateTime endDate)
 
 
     @Query("""
