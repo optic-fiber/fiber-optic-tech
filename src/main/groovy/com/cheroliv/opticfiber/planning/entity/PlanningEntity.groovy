@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.planning.entity
 
-
+import com.cheroliv.core.entity.UserEntity
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
 
@@ -42,10 +42,10 @@ class PlanningEntity implements Serializable {
     @Size(max = 100)
     @Column(name = "`first_name_tech`", length = 100)
     String firstNameTech
-//    @NotNull
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "`user_id`", nullable = false)
-//    UserEntity user
+    @NotNull
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "`user_id`", nullable = false)
+    UserEntity user
 //    List<InterEntity> interEntities
 
 

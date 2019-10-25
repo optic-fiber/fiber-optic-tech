@@ -1,6 +1,9 @@
 package com.cheroliv.opticfiber
 
-
+import com.cheroliv.core.domain.UserDto
+import com.cheroliv.core.entity.AuthorityEntity
+import com.cheroliv.core.entity.UserEntity
+import com.cheroliv.core.config.AuthoritiesConstants
 import com.cheroliv.opticfiber.inter.domain.InterDto
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
@@ -178,4 +181,27 @@ class TestData {
                 LocalTime.parse(time, DateTimeFormatter
                         .ofPattern("HH:mm:ss")))
     }
+
+    static final AuthorityEntity userAuth = new AuthorityEntity(name: AuthoritiesConstants.USER)
+    static final AuthorityEntity adminAuth = new AuthorityEntity(name: AuthoritiesConstants.ADMIN)
+    static final AuthorityEntity anonymousAuth = new AuthorityEntity(name: AuthoritiesConstants.ANONYMOUS)
+
+
+    static final UserDto userDto = new UserEntity(
+            login: "user",
+            firstName: "user",
+            lastName: "user",
+            email: "user@localhost").toDto()
+
+    static final UserDto systemUserDto = new UserEntity(
+            login: "system",
+            firstName: "system",
+            lastName: "system",
+            email: "system@localhost").toDto()
+
+    static final UserDto anonymousUserDto = new UserEntity(
+            login: "anonymoususer",
+            firstName: "anonymoususer",
+            lastName: "anonymoususer",
+            email: "anonymoususer@localhost").toDto()
 }

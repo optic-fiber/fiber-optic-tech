@@ -1,9 +1,9 @@
-package com.cheroliv.opticfiber.config
-
-import groovy.transform.CompileStatic
+package com.cheroliv.core.config
 
 
-@CompileStatic
+import groovy.transform.TypeChecked
+
+@TypeChecked
 final class ErrorConstants {
 
     static final String ERR_CONCURRENCY_FAILURE = "error.concurrencyFailure"
@@ -16,7 +16,6 @@ final class ErrorConstants {
     static final URI EMAIL_ALREADY_USED_TYPE = URI.create(PROBLEM_BASE_URL + "/email-already-used")
     static final URI LOGIN_ALREADY_USED_TYPE = URI.create(PROBLEM_BASE_URL + "/login-already-used")
     static final URI EMAIL_NOT_FOUND_TYPE = URI.create(PROBLEM_BASE_URL + "/email-not-found")
-
     private ErrorConstants() {
     }
 }

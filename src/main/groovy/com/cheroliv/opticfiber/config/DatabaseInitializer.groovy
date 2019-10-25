@@ -1,22 +1,18 @@
 package com.cheroliv.opticfiber.config
 
 import com.cheroliv.core.config.CoreDatabaseInitializer
+import groovy.transform.TypeChecked
+import groovy.util.logging.Slf4j
 import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.context.annotation.Configuration
+import org.springframework.transaction.annotation.Transactional
 
-//import com.cheroliv.opticfiber.core.entity.UserEntity
-//import groovy.transform.CompileStatic
-//import groovy.util.logging.Slf4j
-//import org.springframework.stereotype.Component
-//
-//import javax.annotation.PostConstruct
-//import javax.transaction.Transactional
-//import java.time.LocalDateTime
-//
-//@Slf4j
-//@Component
-//@CompileStatic
-//@Transactional
+import javax.annotation.PostConstruct
+import java.time.LocalDateTime
+
+@Slf4j
+@TypeChecked
+@Transactional
 @Configuration
 @EntityScan([
         'com.cheroliv.core.entity',
@@ -40,11 +36,13 @@ class DatabaseInitializer extends CoreDatabaseInitializer {
 //        this.planningRepository = planningRepository
 //    }
 //
-//    @PostConstruct
-//    void InitializeDatabase() {
+    @PostConstruct
+    void initializeDatabase() {
+        super.initializeDatabase()
+        log.info(this.class.simpleName+'initializeDatabase()')
 //        createDefaultAuth()
 //        createDefaultUsers()
-//    }
+    }
 //
 //    void createDefaultPlanning() {
 //        planningRepository.save new PlanningEntity(

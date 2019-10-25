@@ -1,6 +1,6 @@
 package com.cheroliv.core.entity
 
-
+import com.cheroliv.core.domain.UserDto
 import com.fasterxml.jackson.annotation.JsonIgnore
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
@@ -110,6 +110,25 @@ class UserEntity implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @BatchSize(size = 20)
     Set<AuthorityEntity> authorities = new HashSet<>()
+
+
+    UserDto toDto() {
+        new UserDto(
+                id: id,
+                login: login,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                imageUrl: imageUrl,
+                activated: activated,
+                langKey: langKey,
+                createdDate: createdDate,
+                authorities: authorities.collect {
+                    AuthorityEntity it ->
+                        it.name
+                }.toSet())
+    }
+
 
     boolean equals(o) {
         if (this.is(o)) return true

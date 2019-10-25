@@ -4,6 +4,7 @@ buildscript {
     }
     dependencies {
         classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.1.3.RELEASE'
+        classpath 'com.android.tools.build:gradle:2.3.0'
     }
 }
 
