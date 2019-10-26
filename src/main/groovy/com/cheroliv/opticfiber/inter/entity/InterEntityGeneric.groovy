@@ -2,10 +2,13 @@ package com.cheroliv.opticfiber.inter.entity
 
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.planning.entity.PlanningEntityGeneric
 
 import java.time.LocalDateTime
 
-interface InterEntityGeneric<ID> {
+interface InterEntityGeneric<ID, PLANNING extends PlanningEntityGeneric> extends Serializable {
+    static final long serialVersionUID = 1L
+
     ID getId()
 
     void setId(ID id)
@@ -18,7 +21,6 @@ interface InterEntityGeneric<ID> {
 
     void setTypeInter(TypeInterEnum typeInterEnum)
 
-
     ContractEnum getContract()
 
     void setContract(ContractEnum contract)
@@ -27,13 +29,11 @@ interface InterEntityGeneric<ID> {
 
     void setDateTimeInter(LocalDateTime dateTime)
 
-
     String getFirstNameClient()
 
-    void setFirstNameClient(String fn)
+    void setFirstNameClient(String firstNameClient)
 
     String getLastNameClient()
 
-    void setLastNameClient(String ln)
-
+    void setLastNameClient(String lastNameClient)
 }

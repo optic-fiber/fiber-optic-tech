@@ -1,9 +1,10 @@
 package com.cheroliv.opticfiber.inter.entity
 
-import com.cheroliv.opticfiber.config.InterConstants
+
 import com.cheroliv.opticfiber.inter.domain.InterDto
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.planning.entity.PlanningEntity
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
 import org.hibernate.annotations.DynamicUpdate
@@ -12,6 +13,11 @@ import javax.persistence.*
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 import java.time.LocalDateTime
+
+import static com.cheroliv.opticfiber.config.InterConstants.ND_NOTNULL_CSTRT_TPL_MSG
+import static com.cheroliv.opticfiber.config.InterConstants.ND_SIZE_CSTRT_TPL_MSG
+import static javax.persistence.EnumType.STRING
+import static javax.persistence.GenerationType.SEQUENCE
 
 @Entity
 @ToString
@@ -24,29 +30,27 @@ import java.time.LocalDateTime
         @Index(name = "`idx_inter_date_time_inter`", columnList = "`date_time_inter`", unique = true),
         @Index(name = "`idx_inter_first_name_client`", columnList = "`first_name_client`"),
         @Index(name = "`idx_inter_last_name_client`", columnList = "`last_name_client`")])
-class InterEntity implements Serializable, InterEntityGeneric<Long> {
-
-    static final long serialVersionUID = 1L
+class InterEntity implements InterEntityGeneric<Long, PlanningEntity> {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+    @GeneratedValue(strategy = SEQUENCE,
             generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     @Column(name = "`id`")
     Long id
     @Column(name = "`nd`",
             length = 10)
-    @NotNull(message = InterConstants.ND_NOTNULL_CSTRT_TPL_MSG)
+    @NotNull(message = ND_NOTNULL_CSTRT_TPL_MSG)
     @Size(min = 10, max = 10,
-            message = InterConstants.ND_SIZE_CSTRT_TPL_MSG)
+            message = ND_SIZE_CSTRT_TPL_MSG)
     String nd
     @NotNull
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     @Column(name = "`type_inter`",
             nullable = false,
             length = 4)
     TypeInterEnum typeInter
     @NotNull
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     @Column(name = "`contract`",
             nullable = false,
             length = 16)

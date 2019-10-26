@@ -15,8 +15,8 @@ import javax.validation.constraints.Size
 @ToString
 @TypeChecked
 @Table(name = "`authority`")
-class AuthorityEntity implements Serializable {
-    static final long serialVersionUID = 1L
+class AuthorityEntity implements AuthorityEntityGeneric<String> {
+
     @Id
     @NotNull
     @Size(max = 50)

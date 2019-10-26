@@ -27,8 +27,8 @@ import java.time.Instant
         @Index(name = "`idx_user_activated`", columnList = "`activated`"),
         @Index(name = "`idx_user_lang_key`", columnList = "`lang_key`"),
         @Index(name = "`idx_user_image_url`", columnList = "`image_url`")])
-class UserEntity implements Serializable {
-    static final long serialVersionUID = 1L
+class UserEntity implements UserEntityGeneric<Long, AuthorityEntity> {
+
     static final String LOGIN_REGEX = '^[_.@A-Za-z0-9-]*$'
 
     static final String SYSTEM_ACCOUNT = "system"
@@ -168,6 +168,4 @@ class UserEntity implements Serializable {
         result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0)
         return result
     }
-
-
 }

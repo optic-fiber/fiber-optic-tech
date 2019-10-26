@@ -1,13 +1,16 @@
 package com.cheroliv.opticfiber.planning.entity
 
 import com.cheroliv.core.entity.UserEntity
+import com.cheroliv.opticfiber.inter.entity.InterEntity
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
 
 import javax.persistence.*
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
-import java.time.ZonedDateTime
+import java.time.LocalDateTime
+
+import static javax.persistence.GenerationType.SEQUENCE
 
 @Entity
 @ToString
@@ -18,10 +21,10 @@ import java.time.ZonedDateTime
         @Index(name = "`idx_planning_date_time_creation`", columnList = "`date_time_creation`"),
         @Index(name = "`idx_planning_last_name_tech`", columnList = "`last_name_tech`"),
         @Index(name = "`idx_planning_first_name_tech`", columnList = "`first_name_tech`")])
-class PlanningEntity implements Serializable {
-    static final long serialVersionUID = 1L
+class PlanningEntity implements PlanningEntityGeneric<Long, InterEntity> {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+    @GeneratedValue(strategy = SEQUENCE,
             generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     @Column(name = "`id`")
@@ -35,7 +38,7 @@ class PlanningEntity implements Serializable {
     Boolean open
     @NotNull
     @Column(name = "`date_time_creation`")
-    ZonedDateTime dateTimeCreation
+    LocalDateTime dateTimeCreation
     @Size(max = 100)
     @Column(name = "`last_name_tech`", length = 100)
     String lastNameTech
