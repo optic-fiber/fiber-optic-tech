@@ -2,8 +2,13 @@ package com.cheroliv.core.entity
 
 import java.time.Instant
 
-interface UserEntityGeneric<ID, AUTHORITIES extends AuthorityEntityGeneric> extends Serializable {
+interface UserEntityGeneric<ID, AUTHORITY extends AuthorityEntityGeneric> extends Serializable {
     static final long serialVersionUID = 1L
+    static final String LOGIN_REGEX = '^[_.@A-Za-z0-9-]*$'
+
+    static final String SYSTEM_ACCOUNT = "system"
+    static final String DEFAULT_LANGUAGE = "fr"
+    static final String ANONYMOUS_USER = "anonymoususer"
 
     ID getId()
 
@@ -46,8 +51,8 @@ interface UserEntityGeneric<ID, AUTHORITIES extends AuthorityEntityGeneric> exte
 
     void setCreatedDate(Instant createdDate)
 
-    Set<AUTHORITIES> getAuthorities()
+    Set<AUTHORITY> getAuthorities()
 
-    void setAuthorities(Set<AUTHORITIES> authorities)
+    void setAuthorities(Set<AUTHORITY> authorities)
 
 }

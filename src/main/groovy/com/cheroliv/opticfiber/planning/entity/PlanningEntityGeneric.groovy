@@ -23,7 +23,6 @@ interface PlanningEntityGeneric<ID, INTER extends InterEntityGeneric> extends Se
 
     void setDateTimeCreation(LocalDateTime dateTimeCreation)
 
-
     String getLastNameTech()
 
     void setLastNameTech(String lastNameTech)

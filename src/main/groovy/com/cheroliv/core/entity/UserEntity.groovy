@@ -6,7 +6,6 @@ import groovy.transform.ToString
 import groovy.transform.TypeChecked
 import org.hibernate.annotations.BatchSize
 import org.hibernate.annotations.Cache
-import org.hibernate.annotations.CacheConcurrencyStrategy
 
 import javax.persistence.*
 import javax.validation.constraints.Email
@@ -14,6 +13,9 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Pattern
 import javax.validation.constraints.Size
 import java.time.Instant
+
+import static javax.persistence.GenerationType.SEQUENCE
+import static org.hibernate.annotations.CacheConcurrencyStrategy.NONSTRICT_READ_WRITE
 
 @Entity
 @ToString
@@ -29,21 +31,16 @@ import java.time.Instant
         @Index(name = "`idx_user_image_url`", columnList = "`image_url`")])
 class UserEntity implements UserEntityGeneric<Long, AuthorityEntity> {
 
-    static final String LOGIN_REGEX = '^[_.@A-Za-z0-9-]*$'
-
-    static final String SYSTEM_ACCOUNT = "system"
-    static final String DEFAULT_LANGUAGE = "fr"
-    static final String ANONYMOUS_USER = "anonymoususer"
 
     @Id
     @Column(name = "`id`")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+    @GeneratedValue(strategy = SEQUENCE,
             generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     Long id
 
     @NotNull
-    @Pattern(regexp = LOGIN_REGEX)
+    @Pattern(regexp = UserEntityGeneric.LOGIN_REGEX)
     @Size(min = 1, max = 50)
     @Column(length = 50,
             nullable = false, name = "`login`")
@@ -107,7 +104,7 @@ class UserEntity implements UserEntityGeneric<Long, AuthorityEntity> {
             inverseJoinColumns = [@JoinColumn(
                     name = "`authority_name`",
                     referencedColumnName = "`name`")])
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @Cache(usage = NONSTRICT_READ_WRITE)
     @BatchSize(size = 20)
     Set<AuthorityEntity> authorities = new HashSet<>()
 
