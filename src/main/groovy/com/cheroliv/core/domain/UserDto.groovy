@@ -35,4 +35,8 @@ class UserDto implements Serializable {
     String lastModifiedBy
     Instant lastModifiedDate
     Set<String> authorities
+    String activationKey
+    Instant resetDate
+    String resetKey
+    String password
 }

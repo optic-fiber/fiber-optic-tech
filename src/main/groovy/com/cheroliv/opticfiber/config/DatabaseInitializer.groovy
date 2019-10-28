@@ -8,17 +8,14 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.transaction.annotation.Transactional
 
 import javax.annotation.PostConstruct
-import java.time.LocalDateTime
 
 @Slf4j
 @TypeChecked
 @Transactional
 @Configuration
-@EntityScan([
-        'com.cheroliv.core.entity',
+@EntityScan(['com.cheroliv.core.entity',
         'com.cheroliv.opticfiber.inter.entity',
-        'com.cheroliv.opticfiber.planning.entity'
-])
+        'com.cheroliv.opticfiber.planning.entity'])
 class DatabaseInitializer extends CoreDatabaseInitializer {
 //    final UserService userService
 //    final AuthorityDao authorityRepository
@@ -39,7 +36,7 @@ class DatabaseInitializer extends CoreDatabaseInitializer {
     @PostConstruct
     void initializeDatabase() {
         super.initializeDatabase()
-        log.info(this.class.simpleName+'initializeDatabase()')
+        log.info(this.class.simpleName + 'initializeDatabase()')
 //        createDefaultAuth()
 //        createDefaultUsers()
     }

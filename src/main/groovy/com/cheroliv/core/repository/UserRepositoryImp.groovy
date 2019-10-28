@@ -1,7 +1,9 @@
 package com.cheroliv.core.repository
 
 import com.cheroliv.core.domain.AuthorityDto
+import com.cheroliv.core.domain.UserDto
 import com.cheroliv.core.entity.AuthorityEntity
+import com.cheroliv.core.entity.UserEntity
 import com.cheroliv.core.entity.dao.AuthorityDao
 import com.cheroliv.core.entity.dao.UserDao
 import org.springframework.stereotype.Service
@@ -24,5 +26,13 @@ class UserRepositoryImp implements UserRepository {
                 authorityDao.findById(authorityName)
         if (result.empty) Optional.empty()
         else Optional.of(AuthorityEntity.fromEntity(result.get()))
+    }
+
+    @Override
+    Optional<UserDto> findOneByActivationKey(String key) {
+        Optional<UserEntity> result =
+                userDao.findOneByActivationKey(key)
+        if (result.empty) Optional.empty()
+        else Optional.of(UserEntity.fromEntity(result.get()))
     }
 }

@@ -108,6 +108,27 @@ class UserEntity implements UserEntityGeneric<Long, AuthorityEntity> {
     @BatchSize(size = 20)
     Set<AuthorityEntity> authorities = new HashSet<>()
 
+    static UserDto fromEntity(UserEntity userEntity) {
+        new UserDto(
+                id: userEntity.id,
+                login: userEntity.login,
+                password:userEntity.password,
+                firstName: userEntity.firstName,
+                lastName: userEntity.lastName,
+                email: userEntity.email,
+                imageUrl: userEntity.imageUrl,
+                langKey: userEntity.langKey,
+                activationKey: userEntity.activationKey,
+                activated: userEntity.activated,
+                createdDate:userEntity.createdDate,
+                resetKey:userEntity.resetKey,
+                resetDate:userEntity.resetDate,
+                authorities: userEntity.authorities.collect {
+                    AuthorityEntity authority ->
+                        authority.name
+                } as Set<String>
+        )
+    }
 
     UserDto toDto() {
         new UserDto(
@@ -121,8 +142,8 @@ class UserEntity implements UserEntityGeneric<Long, AuthorityEntity> {
                 langKey: langKey,
                 createdDate: createdDate,
                 authorities: authorities.collect {
-                    AuthorityEntity it ->
-                        it.name
+                    AuthorityEntity authority ->
+                        authority.name
                 }.toSet())
     }
 

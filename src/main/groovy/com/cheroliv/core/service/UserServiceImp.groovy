@@ -2,21 +2,44 @@ package com.cheroliv.core.service
 
 import com.cheroliv.core.domain.UserDto
 import com.cheroliv.core.repository.UserRepository
+import groovy.util.logging.Slf4j
+import org.springframework.cache.CacheManager
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
+import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.stereotype.Service
 
+@Slf4j
+@Service
 class UserServiceImp implements UserService {
 
     final UserRepository userRepository
+    final CacheManager cacheManager
+    final PasswordEncoder passwordEncoder
 
     UserServiceImp(
-            UserRepository userRepository) {
+            UserRepository userRepository,
+            CacheManager cacheManager,
+            PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository
+        this.cacheManager = cacheManager
+        this.passwordEncoder = passwordEncoder
     }
+
+    private void clearUserCaches(UserDto user) {}
 
     @Override
     Optional<UserDto> activateRegistration(String key) {
-        return null
+        log.debug("Activating user for activation key {}", key)
+        userRepository.findOneByActivationKey(key)
+                .map({ user ->
+                    // activate given user for the registration key.
+                    user.setActivated(true)
+                    user.setActivationKey(null)
+                    this.clearUserCaches(user)
+                    log.debug("Activated user: {}", user)
+                    user
+                })
     }
 
     @Override
@@ -91,23 +114,6 @@ class UserServiceImp implements UserService {
 }
 
 
-//final UserRepository userRepository
-//    final PasswordEncoder passwordEncoder
-//    final AuthorityRepository authorityRepository
-//    final CacheManager cacheManager
-//
-//    @Autowired
-//    UserServiceImpl(UserRepository userRepository,
-//                    PasswordEncoder passwordEncoder,
-//                    AuthorityRepository authorityRepository,
-//                    CacheManager cacheManager) {
-//        this.userRepository = userRepository
-//        this.passwordEncoder = passwordEncoder
-//        this.authorityRepository = authorityRepository
-//        this.cacheManager = cacheManager
-//    }
-//
-//
 //    Optional<User> activateRegistration(String key) {
 //        log.debug("Activating user for activation key {}", key)
 //        userRepository.findOneByActivationKey(key)
