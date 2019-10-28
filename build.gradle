@@ -95,7 +95,7 @@ dependencies {
     // SPRING STARTING POINT RESOURCES
     implementation 'org.springframework.boot:spring-boot-starter-web'
     // MAIL
-//    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
     // VIEW TEMPLATE
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     // GRAPH_QL
@@ -132,8 +132,8 @@ dependencies {
 
 
     // SECURITY
-//    implementation "org.springframework.boot:spring-boot-starter-security"
-//    testImplementation "org.springframework.security:spring-security-test"
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    testImplementation "org.springframework.security:spring-security-test"
 
 
 

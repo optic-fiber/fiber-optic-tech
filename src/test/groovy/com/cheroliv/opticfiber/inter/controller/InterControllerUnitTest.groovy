@@ -14,6 +14,7 @@ import org.junit.jupiter.api.TestMethodOrder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.MvcResult
 
@@ -24,12 +25,14 @@ import static org.mockito.BDDMockito.given
 import static org.mockito.Mockito.*
 import static org.springframework.http.MediaType.APPLICATION_JSON
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
 @Slf4j
 @TypeChecked
+@WithMockUser
 @TestMethodOrder(OrderAnnotation)
 @DisplayName("InterControllerUnitTest")
 @WebMvcTest(value = InterController)
@@ -48,7 +51,8 @@ class InterControllerUnitTest {
         given(interService.getFirst()).willReturn(
                 data.firstInterDto)
         mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/first"))
+                "${INTER_BASE_URL_REST_API}/first")
+                .with(csrf().asHeader()))
                 .andExpect(jsonPath("id")
                         .value(data.firstInterDto.id))
                 .andExpect(jsonPath("nd")
@@ -66,7 +70,8 @@ class InterControllerUnitTest {
         given(interService.getFirst())
                 .willThrow(FirstInterNotFoundException)
         mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/first"))
+                "${INTER_BASE_URL_REST_API}/first")
+                .with(csrf().asHeader()))
                 .andExpect(status().isNotFound())
     }
 
@@ -78,7 +83,8 @@ class InterControllerUnitTest {
         given(interService.getLast())
                 .willReturn(data.lastInterDto)
         mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/last"))
+                "${INTER_BASE_URL_REST_API}/last")
+                .with(csrf().asHeader()))
                 .andExpect(jsonPath("id")
                         .value(data.lastInterDto.id))
                 .andExpect(jsonPath("nd")
@@ -97,7 +103,8 @@ class InterControllerUnitTest {
         given(interService.getLast())
                 .willReturn(null)
         MvcResult result = mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/last"))
+                "${INTER_BASE_URL_REST_API}/last")
+                .with(csrf().asHeader()))
                 .andExpect(status().isNotFound())
                 .andReturn()
         assert result.resolvedException instanceof
@@ -113,7 +120,8 @@ class InterControllerUnitTest {
                 .willReturn(data.interDto)
         mockMvc.perform(get(
                 "$INTER_BASE_URL_REST_API/{id}",
-                data.interDto.id))
+                data.interDto.id)
+                .with(csrf().asHeader()))
                 .andExpect(jsonPath("id")
                         .value(data.interDto.id))
                 .andExpect(jsonPath("nd")
@@ -133,7 +141,8 @@ class InterControllerUnitTest {
                 .willReturn(null)
         MvcResult result = mockMvc.perform(get(
                 "${INTER_BASE_URL_REST_API}/{id}",
-                data.interDto.id))
+                data.interDto.id)
+                .with(csrf().asHeader()))
                 .andExpect(status().isNotFound())
                 .andReturn()
         assert result.resolvedException instanceof
@@ -148,7 +157,8 @@ class InterControllerUnitTest {
                 .willReturn(data.prevInterDto)
         mockMvc.perform(get(
                 "${INTER_BASE_URL_REST_API}/{id}/prev",
-                data.interDto.id))
+                data.interDto.id)
+                .with(csrf().asHeader()))
                 .andExpect(jsonPath("id")
                         .value(data.prevInterDto.id))
                 .andExpect(jsonPath("nd")
@@ -167,7 +177,8 @@ class InterControllerUnitTest {
                 .willReturn(null)
         MvcResult result = mockMvc.perform(get(
                 "${INTER_BASE_URL_REST_API}/{is}/prev",
-                data.interDto.id))
+                data.interDto.id)
+                .with(csrf().asHeader()))
                 .andExpect(status().isNotFound())
                 .andReturn()
         assert result.resolvedException instanceof
@@ -182,7 +193,8 @@ class InterControllerUnitTest {
                 .willReturn(data.nextInterDto)
         mockMvc.perform(get(
                 "${INTER_BASE_URL_REST_API}/{id}/next",
-                data.interDto.id))
+                data.interDto.id)
+                .with(csrf().asHeader()))
                 .andExpect(jsonPath("id")
                         .value(data.nextInterDto.id))
                 .andExpect(jsonPath("nd")
@@ -208,7 +220,8 @@ class InterControllerUnitTest {
                 .willReturn(null)
         MvcResult result = mockMvc.perform(get(
                 "${INTER_BASE_URL_REST_API}/{id}/next",
-                data.interDto.id))
+                data.interDto.id)
+                .with(csrf().asHeader()))
                 .andExpect(status().isNotFound())
                 .andReturn()
         result.resolvedException instanceof
@@ -225,6 +238,7 @@ class InterControllerUnitTest {
         given(this.interService.isUniqueIndexAvailable(
                 anyString(), anyString())).willReturn(true)
         mockMvc.perform(post(INTER_BASE_URL_REST_API)
+                .with(csrf().asHeader())
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON)
                 .content(data.jsonNewtInterDto))
@@ -253,6 +267,7 @@ class InterControllerUnitTest {
                 .willReturn(null)
         MvcResult result = mockMvc.perform(post(INTER_BASE_URL_REST_API)
                 .contentType(APPLICATION_JSON)
+                .with(csrf().asHeader())
                 .accept(APPLICATION_JSON)
                 .content(data.jsonFirstInterDto))
                 .andExpect(status().isUnprocessableEntity())
@@ -271,6 +286,7 @@ class InterControllerUnitTest {
                 .willReturn(false)
         MvcResult result = mockMvc.perform(post(
                 INTER_BASE_URL_REST_API)
+                .with(csrf().asHeader())
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON)
                 .content(data.jsonFirstInterDtoWithoutId))
@@ -290,7 +306,8 @@ class InterControllerUnitTest {
         doNothing().when(interService)
                 .delete(data.firstInterDto.id)
         mockMvc.perform(delete("$INTER_BASE_URL_REST_API/{id}",
-                data.firstInterDto.id))
+                data.firstInterDto.id)
+                .with(csrf().asHeader()))
                 .andExpect(status().isNoContent())
                 .andReturn()
         verify(interService, times(1))
@@ -310,7 +327,8 @@ class InterControllerUnitTest {
                 .willReturn(null)
         def result = mockMvc.perform(delete(
                 "${INTER_BASE_URL_REST_API}/{id}",
-                data.firstInterDto.id + 1))
+                data.firstInterDto.id + 1)
+                .with(csrf().asHeader()))
                 .andExpect(status().isUnprocessableEntity())
                 .andReturn()
         assert result.resolvedException instanceof
@@ -329,6 +347,7 @@ class InterControllerUnitTest {
         given(interService.save(data.firstInterDto))
                 .willReturn(data.firstInterDto)
         mockMvc.perform(put(INTER_BASE_URL_REST_API)
+                .with(csrf().asHeader())
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON)
                 .content(data.jsonFirstInterDto))
@@ -349,6 +368,7 @@ class InterControllerUnitTest {
                         '"2018-10-29 10:00:00"}'
         MvcResult mvcResult = mockMvc.perform(
                 put(INTER_BASE_URL_REST_API)
+                        .with(csrf().asHeader())
                         .contentType(APPLICATION_JSON)
                         .accept(APPLICATION_JSON)
                         .content(jsonFirstInterDto))
@@ -376,6 +396,7 @@ class InterControllerUnitTest {
                 .willReturn(false)
         MvcResult mvcResult = mockMvc.perform(
                 put(INTER_BASE_URL_REST_API)
+                        .with(csrf().asHeader())
                         .contentType(APPLICATION_JSON)
                         .accept(APPLICATION_JSON)
                         .content(jsonFirstInterDto))
@@ -415,6 +436,7 @@ class InterControllerUnitTest {
         given(interService.saveWithPatch(interDtoToPatch))
                 .willReturn(expectedResultInterDtoToPatch)
         mockMvc.perform(patch(INTER_BASE_URL_REST_API)
+                .with(csrf().asHeader())
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON)
                 .content(jsonPatchFirstInterDto))
@@ -437,7 +459,8 @@ class InterControllerUnitTest {
                 patch(INTER_BASE_URL_REST_API)
                         .contentType(APPLICATION_JSON)
                         .accept(APPLICATION_JSON)
-                        .content(jsonFirstInterDto))
+                        .content(jsonFirstInterDto)
+                        .with(csrf().asHeader()))
                 .andExpect(status().isUnprocessableEntity())
                 .andDo(print())
                 .andReturn()
@@ -464,7 +487,8 @@ class InterControllerUnitTest {
                 patch(INTER_BASE_URL_REST_API)
                         .contentType(APPLICATION_JSON)
                         .accept(APPLICATION_JSON)
-                        .content(jsonFirstInterDto))
+                        .content(jsonFirstInterDto)
+                        .with(csrf().asHeader()))
                 .andExpect(status().isConflict())
                 .andDo(print())
                 .andReturn()

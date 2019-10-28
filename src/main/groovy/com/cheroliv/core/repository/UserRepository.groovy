@@ -1,5 +1,7 @@
 package com.cheroliv.core.repository
 
-interface UserRepository {
+import com.cheroliv.core.domain.AuthorityDto
 
+interface UserRepository {
+    Optional<AuthorityDto> findById(String authorityName)
 }

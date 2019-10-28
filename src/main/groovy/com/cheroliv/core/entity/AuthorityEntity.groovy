@@ -1,6 +1,6 @@
 package com.cheroliv.core.entity
 
-
+import com.cheroliv.core.domain.AuthorityDto
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
 
@@ -22,6 +22,11 @@ class AuthorityEntity implements AuthorityEntityGeneric<String> {
     @Size(max = 50)
     @Column(length = 50, name = "`name`")
     String name
+
+    static AuthorityDto fromEntity(AuthorityEntity a) {
+        new AuthorityDto(name: a.name)
+    }
+
 
     @Override
     boolean equals(o) {
