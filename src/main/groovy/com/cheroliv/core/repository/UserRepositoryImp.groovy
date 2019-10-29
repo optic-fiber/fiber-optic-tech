@@ -138,4 +138,9 @@ class UserRepositoryImp implements UserRepository {
                     entity -> UserEntity.fromEntity(entity)
                 }
     }
+
+    @Override
+    AuthorityDto saveAuthority(AuthorityDto authorityDto) {
+        authorityDao.save(AuthorityEntity.fromDto(authorityDto)).toDto()
+    }
 }

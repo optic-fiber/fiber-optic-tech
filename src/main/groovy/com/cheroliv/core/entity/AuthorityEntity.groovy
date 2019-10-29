@@ -27,7 +27,14 @@ class AuthorityEntity implements AuthorityEntityGeneric<String> {
         new AuthorityDto(name: a.name)
     }
 
+    static AuthorityEntity fromDto(AuthorityDto dto) {
+        new AuthorityEntity(name: dto.name)
+    }
 
+
+    AuthorityDto toDto(){
+        fromEntity(this)
+    }
     @Override
     boolean equals(o) {
         if (this.is(o)) return true

@@ -40,4 +40,6 @@ interface UserRepository {
     List<AuthorityDto> findAllAuthorities()
 
     List<UserDto> findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(Instant instant)
+
+    AuthorityDto saveAuthority(AuthorityDto authorityDto)
 }
