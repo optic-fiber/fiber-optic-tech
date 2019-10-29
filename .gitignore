@@ -20,3 +20,4 @@ stock
 __src__
 *.iml
 *.ipr
+.vscode

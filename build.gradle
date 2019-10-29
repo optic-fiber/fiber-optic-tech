@@ -19,7 +19,7 @@ plugins {
     id 'org.springframework.boot' version '2.1.9.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
-
+//apply from: "$rootDir/gradle/jacoco.gradle"
 
 group = 'com.cheroliv'
 version = project_version
@@ -61,6 +61,9 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    compile.exclude module: "spring-boot-starter-tomcat"
+//    compile.exclude group: "com.vaadin.external.google"
+//    compile.exclude module: "android-json"
 }
 
 test {
@@ -94,6 +97,8 @@ dependencies {
     testImplementation "org.codehaus.groovy:groovy-all:$groovy_version"
     // SPRING STARTING POINT RESOURCES
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    //UNDERTOW APP SERV
+    implementation "org.springframework.boot:spring-boot-starter-undertow"
     // MAIL
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     // VIEW TEMPLATE
@@ -133,7 +138,20 @@ dependencies {
 
     // SECURITY
     implementation "org.springframework.boot:spring-boot-starter-security"
+
+//    implementation "org.springframework.security:spring-security-web"
+//    implementation "org.springframework.security:spring-security-config"
+//    implementation "org.springframework.security:spring-security-data"
+
     testImplementation "org.springframework.security:spring-security-test"
+
+    //SPRING MVC PROBLEM HELPER
+    implementation "org.zalando:problem-spring-web:$problem_spring_web_version"
+
+    //JSON HELPER
+    implementation "io.jsonwebtoken:jjwt-api:$json_web_token_version"
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:$json_web_token_version"
+    runtimeOnly "io.jsonwebtoken:jjwt-jackson:$json_web_token_version"
 
 
 
@@ -145,6 +163,7 @@ dependencies {
 //    }
 //    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
 //    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+
     // TDD:JUNIT5
     testImplementation("org.junit.jupiter:junit-jupiter:$junit_jupiter_version") {
         exclude module: 'junit-jupiter-params'

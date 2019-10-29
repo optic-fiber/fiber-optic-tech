@@ -108,11 +108,32 @@ class UserEntity implements UserEntityGeneric<Long, AuthorityEntity> {
     @BatchSize(size = 20)
     Set<AuthorityEntity> authorities = new HashSet<>()
 
+    static UserEntity fromDto(UserDto dto) {
+        new UserEntity(
+                id: dto.id,
+                login: dto.login,
+                password: dto.password,
+                firstName: dto.firstName,
+                lastName: dto.lastName,
+                email: dto.email,
+                activated: dto.activated,
+                langKey: dto.langKey,
+                imageUrl: dto.imageUrl,
+                activationKey: dto.activationKey,
+                resetKey: dto.resetKey,
+                resetDate: dto.resetDate,
+                createdDate: dto.createdDate,
+                authorities: dto.authorities.collect {
+                    authority ->
+                        new AuthorityEntity(name: authority)
+                } as Set<AuthorityEntity>)
+    }
+
     static UserDto fromEntity(UserEntity userEntity) {
         new UserDto(
                 id: userEntity.id,
                 login: userEntity.login,
-                password:userEntity.password,
+                password: userEntity.password,
                 firstName: userEntity.firstName,
                 lastName: userEntity.lastName,
                 email: userEntity.email,
@@ -120,9 +141,9 @@ class UserEntity implements UserEntityGeneric<Long, AuthorityEntity> {
                 langKey: userEntity.langKey,
                 activationKey: userEntity.activationKey,
                 activated: userEntity.activated,
-                createdDate:userEntity.createdDate,
-                resetKey:userEntity.resetKey,
-                resetDate:userEntity.resetDate,
+                createdDate: userEntity.createdDate,
+                resetKey: userEntity.resetKey,
+                resetDate: userEntity.resetDate,
                 authorities: userEntity.authorities.collect {
                     AuthorityEntity authority ->
                         authority.name

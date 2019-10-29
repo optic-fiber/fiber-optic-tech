@@ -9,6 +9,5 @@ class ApplicationConstants {
     public static final String MOTIF_END_DATE_TIME = 'date-time2'
     public static final String DATE_PATTERN_FORMAT = "yyyy-MM-dd"
     public static final String TIME_PATTERN_FORMAT = "HH:mm"
-
     public static final String SPACE_CHAR = ' '
 }

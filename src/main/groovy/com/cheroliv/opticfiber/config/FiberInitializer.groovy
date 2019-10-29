@@ -1,5 +1,6 @@
 package com.cheroliv.opticfiber.config
 
+import com.cheroliv.opticfiber.config.exceptions.FiberInitializerException
 import com.cheroliv.opticfiber.service.BackupService
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
