@@ -10,12 +10,14 @@ import javax.annotation.PostConstruct
 class CoreDatabaseInitializer {
     @PostConstruct
     void initializeDatabase() {
-        log.info(this.class.simpleName+'initializeDatabase()')
+        log.info(this.class.simpleName + 'initializeDatabase()')
+        this.createDefaultAuth()
+        this.createDefaultUsers()
     }
 
 
-
-        void createDefaultAuth() {
+    void createDefaultAuth() {
+        log.info(this.class.simpleName + 'createDefaultAuth()')
 //        if (!authorityRepository.findById(AuthoritiesConstants.USER).present)
 //            authorityRepository.save(new AuthorityEntity(name: AuthoritiesConstants.USER))
 //        if (!authorityRepository.findById(AuthoritiesConstants.ADMIN).present)
@@ -25,6 +27,7 @@ class CoreDatabaseInitializer {
     }
 //
     void createDefaultUsers() {
+        log.info(this.class.simpleName + 'createDefaultUsers()')
 //        Optional<UserEntity> optionalAdminUser = userService.getUserWithAuthoritiesByLogin "admin"
 //        if (!optionalAdminUser.present) {
 //            userService.registerUser(new UserDTO(new UserEntity(
@@ -85,7 +88,6 @@ class CoreDatabaseInitializer {
 //            userRepository.save(user)
 //        }
     }
-
 
 
 }
