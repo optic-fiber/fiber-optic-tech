@@ -1,7 +1,9 @@
 package com.cheroliv.opticfiber.planning.entity
 
+
 import com.cheroliv.core.entity.UserEntity
 import com.cheroliv.opticfiber.inter.entity.InterEntity
+import com.cheroliv.opticfiber.planning.domain.PlanningDto
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
 
@@ -51,6 +53,29 @@ class PlanningEntity implements PlanningEntityGeneric<Long, InterEntity> {
     UserEntity user
 //    List<InterEntity> interEntities
 
+    static PlanningDto fromEntity(PlanningEntity entity) {
+        new PlanningDto(
+                id: entity.id,
+                initialTech: entity.initialTech,
+                open: entity.open,
+                dateTimeCreation: entity.dateTimeCreation,
+                lastNameTech: entity.lastNameTech,
+                firstNameTech: entity.firstNameTech,
+                user: entity?.user?.toDto()
+        )
+    }
+
+    static PlanningEntity fromDto(PlanningDto dto) {
+        new PlanningEntity(
+                id: dto.id,
+                initialTech: dto.initialTech,
+                open: dto.open,
+                dateTimeCreation: dto.dateTimeCreation,
+                lastNameTech: dto.lastNameTech,
+                firstNameTech: dto.firstNameTech,
+                user: UserEntity.fromDto(dto?.user)
+        )
+    }
 
     boolean equals(o) {
         if (this.is(o)) return true
@@ -75,5 +100,9 @@ class PlanningEntity implements PlanningEntityGeneric<Long, InterEntity> {
         result = 31 * result + (lastNameTech != null ? lastNameTech.hashCode() : 0)
         result = 31 * result + (firstNameTech != null ? firstNameTech.hashCode() : 0)
         return result
+    }
+
+    PlanningDto toDto() {
+        fromEntity(this)
     }
 }

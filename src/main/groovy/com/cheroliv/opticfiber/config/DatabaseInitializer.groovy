@@ -1,43 +1,45 @@
 package com.cheroliv.opticfiber.config
 
-import com.cheroliv.core.config.CoreDatabaseInitializer
-import com.cheroliv.core.service.UserService
-import groovy.transform.TypeChecked
-import groovy.util.logging.Slf4j
-import org.springframework.boot.autoconfigure.domain.EntityScan
-import org.springframework.context.ApplicationContext
-import org.springframework.context.ApplicationContextAware
-import org.springframework.context.annotation.Configuration
-import org.springframework.transaction.annotation.Transactional
+//import com.cheroliv.core.repository.UserRepository
+//import com.cheroliv.opticfiber.planning.domain.PlanningDto
+//import com.cheroliv.opticfiber.planning.service.PlanningService
+//import groovy.transform.TypeChecked
+//import groovy.util.logging.Slf4j
+//import org.springframework.boot.autoconfigure.domain.EntityScan
+//import org.springframework.context.ApplicationContext
+//import org.springframework.context.ApplicationContextAware
+//import org.springframework.context.annotation.Configuration
+//import org.springframework.transaction.annotation.Transactional
+//
+//import javax.annotation.PostConstruct
+//import java.time.LocalDateTime
 
-import javax.annotation.PostConstruct
-
-@Slf4j
-@TypeChecked
-@Transactional
-@Configuration
-@EntityScan(['com.cheroliv.core.entity',
-        'com.cheroliv.opticfiber.inter.entity',
-        'com.cheroliv.opticfiber.planning.entity'])
-class DatabaseInitializer implements ApplicationContextAware {
+//@Slf4j
+//@TypeChecked
+//@Transactional
+//@Configuration
+//@EntityScan(['com.cheroliv.core.entity',
+//        'com.cheroliv.opticfiber.inter.entity',
+//        'com.cheroliv.opticfiber.planning.entity'])
+class DatabaseInitializer {}/*implements ApplicationContextAware {
 
     ApplicationContext applicationContext
 //    final UserService userService
 //    final AuthorityDao authorityRepository
-//    final UserRepository userRepository
-//    final PlanningRepository planningRepository
+    final UserRepository userRepository
+    final PlanningService planningService
 //
 //
     DatabaseInitializer(
 //            UserService userService,
 //                        AuthorityDao authorityRepository,
-//                        UserRepository userRepository,
-//                        PlanningRepository planningRepository
-                        ) {
+                        UserRepository userRepository,
+                        PlanningService planningService
+    ) {
 //        this.userService = userService
 //        this.authorityRepository = authorityRepository
-//        this.userRepository = userRepository
-//        this.planningRepository = planningRepository
+        this.userRepository = userRepository
+        this.planningService = planningService
     }
 //
     @PostConstruct
@@ -49,16 +51,18 @@ class DatabaseInitializer implements ApplicationContextAware {
 
     void createDefaultPlanning() {
         log.info(this.class.simpleName + 'createDefaultPlanning()')
-//        planningRepository.save new PlanningEntity(
-//                user: userRepository.findOneByLogin("user")?.get(),
-//                dateTimeCreation: LocalDateTime.now(),
-//                initialTech: "UU",
-//                open: Boolean.TRUE,
-//                firstNameTech: "user",
-//                lastNameTech: "user")
+        def planningService = applicationContext.getBean(PlanningService)
+        def userRepository = applicationContext.getBean(UserRepository)
+        planningService.save(new PlanningDto(
+                user: userRepository.findOneByLogin("user")?.get(),
+                dateTimeCreation: LocalDateTime.now(),
+                initialTech: "UU",
+                open: Boolean.TRUE,
+                firstNameTech: "user",
+                lastNameTech: "user"))
     }
 
-    void loadDefaultPlanning(){
+    void loadDefaultPlanning() {
         log.info(this.class.simpleName + 'loadDefaultPlanning()')
     }
-}
+}*/
