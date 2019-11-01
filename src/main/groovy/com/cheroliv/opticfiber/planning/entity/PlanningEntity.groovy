@@ -1,7 +1,9 @@
 package com.cheroliv.opticfiber.planning.entity
 
+import com.cheroliv.core.domain.UserDto
 import com.cheroliv.core.entity.UserEntity
 import com.cheroliv.opticfiber.inter.entity.InterEntity
+import com.cheroliv.opticfiber.planning.domain.PlanningDto
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
 
@@ -49,6 +51,32 @@ class PlanningEntity implements PlanningEntityGeneric<Long, InterEntity> {
     @ManyToOne(optional = false)
     @JoinColumn(name = "`user_id`", nullable = false)
     UserEntity user
+
+    static PlanningDto fromEntity(PlanningEntity planningEntity) {
+        planningEntity.toDto()
+    }
+static PlanningEntity fromDto(PlanningDto dto){
+    new PlanningEntity(
+        id: dto.id,
+        initialTech: dto.initialTech,
+        dateTimeCreation:dto.dateTimeCreation,
+        open: dto.open,
+        lastNameTech: dto.lastNameTech,
+        firstNameTech: dto.firstNameTech,
+        user: UserEntity.fromDto(dto.user)
+    )
+}
+    PlanningDto toDto() {
+        new PlanningDto(
+            id: this.id,
+            initialTech: this.initialTech,
+            dateTimeCreation:this.dateTimeCreation,
+            open: this.open,
+            lastNameTech: this.lastNameTech,
+            firstNameTech: this.firstNameTech,
+            user: this.user.toDto()
+        )
+    }
 //    List<InterEntity> interEntities
 
 

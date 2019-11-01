@@ -7,6 +7,8 @@ import java.time.LocalDateTime
 interface PlanningEntityGeneric<ID, INTER extends InterEntityGeneric> extends Serializable {
     static final long serialVersionUID = 1L
 
+
+
     ID getId()
 
     void setId(ID id)
