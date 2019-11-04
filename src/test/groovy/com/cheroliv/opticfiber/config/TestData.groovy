@@ -3,7 +3,6 @@ package com.cheroliv.opticfiber.config
 import com.cheroliv.opticfiber.domain.UserDto
 import com.cheroliv.opticfiber.entity.AuthorityEntity
 import com.cheroliv.opticfiber.entity.UserEntity
-import com.cheroliv.opticfiber.config.AuthoritiesConstants
 import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
@@ -16,7 +15,7 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-import static com.cheroliv.opticfiber.config.ApplicationConstants.DATE_PATTERN_FORMAT
+import static com.cheroliv.opticfiber.config.ApplicationConstants.*
 
 @Slf4j
 @Singleton
@@ -182,9 +181,9 @@ class TestData {
                         .ofPattern("HH:mm:ss")))
     }
 
-    static final AuthorityEntity userAuth = new AuthorityEntity(name: AuthoritiesConstants.USER)
-    static final AuthorityEntity adminAuth = new AuthorityEntity(name: AuthoritiesConstants.ADMIN)
-    static final AuthorityEntity anonymousAuth = new AuthorityEntity(name: AuthoritiesConstants.ANONYMOUS)
+    static final AuthorityEntity userAuth = new AuthorityEntity(name: USER)
+    static final AuthorityEntity adminAuth = new AuthorityEntity(name: ADMIN)
+    static final AuthorityEntity anonymousAuth = new AuthorityEntity(name: ANONYMOUS)
 
 
     static final UserDto userDto = new UserEntity(

@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.security
 
-import com.cheroliv.opticfiber.config.AuthoritiesConstants
+import com.cheroliv.opticfiber.config.ApplicationConstants
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContext
 import org.springframework.security.core.context.SecurityContextHolder
@@ -50,7 +50,7 @@ final class SecurityUtils {
     static boolean isAuthenticated() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication()
         return authentication != null &&
-                getAuthorities(authentication).noneMatch({ anObject -> AuthoritiesConstants.ANONYMOUS.equals(anObject) })
+                getAuthorities(authentication).noneMatch({ anObject -> ApplicationConstants.ANONYMOUS.equals(anObject) })
     }
 
 /**

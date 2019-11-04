@@ -13,8 +13,8 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 import java.time.LocalDateTime
 
-import static com.cheroliv.opticfiber.config.InterConstants.ND_NOTNULL_CSTRT_TPL_MSG
-import static com.cheroliv.opticfiber.config.InterConstants.ND_SIZE_CSTRT_TPL_MSG
+import static com.cheroliv.opticfiber.config.ApplicationConstants.ND_NOTNULL_CSTRT_TPL_MSG
+import static com.cheroliv.opticfiber.config.ApplicationConstants.ND_SIZE_CSTRT_TPL_MSG
 import static javax.persistence.EnumType.STRING
 import static javax.persistence.GenerationType.SEQUENCE
 

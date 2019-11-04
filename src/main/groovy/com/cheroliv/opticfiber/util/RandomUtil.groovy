@@ -16,19 +16,26 @@ final class RandomUtil {
     }
 
     private static String generateRandomAlphanumericString() {
-        return RandomStringUtils.random(DEF_COUNT, 0, 0, true, true, null, SECURE_RANDOM)
+        RandomStringUtils.random(
+                DEF_COUNT,
+                0,
+                0,
+                true,
+                true,
+                null,
+                SECURE_RANDOM)
     }
 
     static String generatePassword() {
-        return generateRandomAlphanumericString()
+        generateRandomAlphanumericString()
     }
 
 
     static String generateActivationKey() {
-        return generateRandomAlphanumericString()
+        generateRandomAlphanumericString()
     }
 
     static String generateResetKey() {
-        return generateRandomAlphanumericString()
+        generateRandomAlphanumericString()
     }
 }

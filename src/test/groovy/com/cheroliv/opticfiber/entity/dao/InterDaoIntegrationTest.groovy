@@ -28,7 +28,7 @@ import java.time.Month
 import java.time.format.DateTimeFormatter
 
 import static com.cheroliv.opticfiber.config.ApplicationConstants.DATE_PATTERN_FORMAT
-import static com.cheroliv.opticfiber.config.InterConstants.*
+import static com.cheroliv.opticfiber.config.ApplicationConstants.*
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE
 
 @Slf4j

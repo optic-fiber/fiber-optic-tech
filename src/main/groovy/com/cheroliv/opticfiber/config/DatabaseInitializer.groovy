@@ -1,12 +1,13 @@
 package com.cheroliv.opticfiber.config
 
-
+import com.cheroliv.opticfiber.entity.dao.ExtendedDaoImpl
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.context.ApplicationContext
 import org.springframework.context.ApplicationContextAware
 import org.springframework.context.annotation.Configuration
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.transaction.annotation.Transactional
 
 import javax.annotation.PostConstruct
@@ -16,6 +17,10 @@ import javax.annotation.PostConstruct
 @Transactional
 @Configuration
 @EntityScan(['com.cheroliv.opticfiber.entity'])
+@EnableJpaRepositories(
+        repositoryBaseClass = ExtendedDaoImpl,
+        basePackages = [
+                'com.cheroliv.opticfiber.entity.dao'])
 class DatabaseInitializer implements ApplicationContextAware {
 
     ApplicationContext applicationContext

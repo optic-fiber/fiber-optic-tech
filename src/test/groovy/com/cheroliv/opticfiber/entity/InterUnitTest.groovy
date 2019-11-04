@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.entity
 
-import com.cheroliv.opticfiber.config.InterConstants
+import com.cheroliv.opticfiber.config.ApplicationConstants
 import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import groovy.json.JsonSlurper
@@ -16,7 +16,7 @@ import javax.validation.Validator
 import javax.validation.ValidatorFactory
 import java.nio.charset.StandardCharsets
 
-import static com.cheroliv.opticfiber.config.InterConstants.ND_NOTNULL_CSTRT_TPL_MSG
+import static com.cheroliv.opticfiber.config.ApplicationConstants.ND_NOTNULL_CSTRT_TPL_MSG
 import static com.xlson.groovycsv.CsvParser.parseCsv
 
 //import com.cheroliv.fiber.inter.domain.enumeration.TypeInterEnum
@@ -96,7 +96,7 @@ class InterUnitTest {
                 .iterator()
                 .next()
                 .messageTemplate ==
-                InterConstants.ND_SIZE_CSTRT_TPL_MSG
+                ApplicationConstants.ND_SIZE_CSTRT_TPL_MSG
 
         inter.nd = "0101010101"
         assert inter.nd.size() == 10
@@ -116,7 +116,7 @@ class InterUnitTest {
                 .iterator()
                 .next()
                 .messageTemplate ==
-                InterConstants.NOT_NULL_CSTRT_TEMPLATE_MSG
+                ApplicationConstants.NOT_NULL_CSTRT_TEMPLATE_MSG
 
         inter.typeInter = TypeInterEnum.valueOfName("BAAP")
         constraintViolations =
@@ -135,7 +135,7 @@ class InterUnitTest {
                 .iterator()
                 .next()
                 .messageTemplate,
-                InterConstants.NOT_NULL_CSTRT_TEMPLATE_MSG
+                ApplicationConstants.NOT_NULL_CSTRT_TEMPLATE_MSG
 
         inter.contract = ContractEnum.LM
         constraintViolations = validator.validateProperty inter, "contract"
@@ -163,10 +163,10 @@ class InterUnitTest {
     @Order(6)
     void testPrenomSizeConstraint() {
         String prenom = ""
-        for (int i = 0; prenom.size() <= InterConstants.PRENOM_SIZE_VALUE; i++) {
+        for (int i = 0; prenom.size() <= ApplicationConstants.PRENOM_SIZE_VALUE; i++) {
             prenom = prenom + i.toString()
         }
-        assert !(prenom.size() <= InterConstants.PRENOM_SIZE_VALUE)
+        assert !(prenom.size() <= ApplicationConstants.PRENOM_SIZE_VALUE)
         InterEntity inter = new InterEntity(firstNameClient: prenom)
         Set<ConstraintViolation<InterEntity>> constraintViolations =
                 validator.validateProperty inter, "firstNameClient"
@@ -174,7 +174,7 @@ class InterUnitTest {
                 .iterator()
                 .next()
                 .messageTemplate ==
-                InterConstants.SIZE_CSTRT_TEMPLATE_MSG
+                ApplicationConstants.SIZE_CSTRT_TEMPLATE_MSG
 
         inter.firstNameClient = "John"
         constraintViolations =
@@ -187,11 +187,11 @@ class InterUnitTest {
     void testNomSizeConstraint() {
         String firstNameClient = ""
         for (int i = 0; firstNameClient.size() <=
-                InterConstants.NOM_SIZE_VALUE; i++) {
+                ApplicationConstants.NOM_SIZE_VALUE; i++) {
             firstNameClient = firstNameClient + i.toString()
         }
         assert !(firstNameClient.size() <=
-                InterConstants.NOM_SIZE_VALUE)
+                ApplicationConstants.NOM_SIZE_VALUE)
         InterEntity inter = new InterEntity(firstNameClient: firstNameClient)
         Set<ConstraintViolation<InterEntity>> constraintViolations =
                 validator.validateProperty inter,
@@ -200,7 +200,7 @@ class InterUnitTest {
                 .iterator()
                 .next()
                 .messageTemplate ==
-                InterConstants.SIZE_CSTRT_TEMPLATE_MSG
+                ApplicationConstants.SIZE_CSTRT_TEMPLATE_MSG
 
         inter.firstNameClient = "Doe"
         constraintViolations =

@@ -9,8 +9,8 @@ import javax.validation.constraints.Pattern
 import javax.validation.constraints.Size
 import java.time.LocalDateTime
 
-import static com.cheroliv.opticfiber.config.InterConstants.ND_NOTNULL_CSTRT_TPL_MSG
-import static com.cheroliv.opticfiber.config.InterConstants.ND_SIZE_CSTRT_TPL_MSG
+import static com.cheroliv.opticfiber.config.ApplicationConstants.ND_NOTNULL_CSTRT_TPL_MSG
+import static com.cheroliv.opticfiber.config.ApplicationConstants.ND_SIZE_CSTRT_TPL_MSG
 
 @ToString
 class InterDto implements Serializable {

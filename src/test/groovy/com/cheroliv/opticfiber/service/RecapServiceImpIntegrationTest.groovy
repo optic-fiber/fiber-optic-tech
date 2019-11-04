@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.service
 
 import com.cheroliv.opticfiber.util.ApplicationUtils
-import com.cheroliv.opticfiber.config.InterConstants
+import com.cheroliv.opticfiber.config.ApplicationConstants
 import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
@@ -78,19 +78,19 @@ class RecapServiceImpIntegrationTest {
 
     static InterEntity jsonDataToInter(Map<String, String> strJsonData) {
         LocalDateTime localDateTime = LocalDateTime.of(
-                ApplicationUtils.parseStringDateToLocalDate(strJsonData[InterConstants.DATE_INTER_JSON_FIELD_NAME]),
-                ApplicationUtils.parseStringHeureToLocalTime(strJsonData[InterConstants.HOUR_INTER_JSON_FIELD_NAME]))
+                ApplicationUtils.parseStringDateToLocalDate(strJsonData[ApplicationConstants.DATE_INTER_JSON_FIELD_NAME]),
+                ApplicationUtils.parseStringHeureToLocalTime(strJsonData[ApplicationConstants.HOUR_INTER_JSON_FIELD_NAME]))
 
         new InterEntity(
-                id: Long.parseLong(strJsonData[InterConstants.ID_INTER_JSON_FIELD_NAME]),
-                nd: strJsonData[InterConstants.ND_INTER_JSON_FIELD_NAME],
-                lastNameClient: strJsonData[InterConstants.LASTNAME_INTER_JSON_FIELD_NAME],
-                firstNameClient: strJsonData[InterConstants.FIRSTNAME_INTER_JSON_FIELD_NAME],
+                id: Long.parseLong(strJsonData[ApplicationConstants.ID_INTER_JSON_FIELD_NAME]),
+                nd: strJsonData[ApplicationConstants.ND_INTER_JSON_FIELD_NAME],
+                lastNameClient: strJsonData[ApplicationConstants.LASTNAME_INTER_JSON_FIELD_NAME],
+                firstNameClient: strJsonData[ApplicationConstants.FIRSTNAME_INTER_JSON_FIELD_NAME],
                 dateTimeInter: localDateTime,
                 contract: ContractEnum.valueOfName(
-                        strJsonData[InterConstants.CONTRACT_INTER_JSON_FIELD_NAME] == InterConstants.PASSAGE_DE_CABLE ?
-                                ContractEnum.CABLE_ROUTING.name() : strJsonData[InterConstants.CONTRACT_INTER_JSON_FIELD_NAME]),
-                typeInter: TypeInterEnum.valueOfName(strJsonData[InterConstants.TYPE_INTER_JSON_FIELD_NAME]))
+                        strJsonData[ApplicationConstants.CONTRACT_INTER_JSON_FIELD_NAME] == ApplicationConstants.PASSAGE_DE_CABLE ?
+                                ContractEnum.CABLE_ROUTING.name() : strJsonData[ApplicationConstants.CONTRACT_INTER_JSON_FIELD_NAME]),
+                typeInter: TypeInterEnum.valueOfName(strJsonData[ApplicationConstants.TYPE_INTER_JSON_FIELD_NAME]))
     }
 
     List<Map<String, String>> getJsonData() {

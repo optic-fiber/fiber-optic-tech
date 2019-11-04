@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.config
+package com.cheroliv.opticfiber.entity.dao
 
 
 import org.hibernate.dialect.H2Dialect

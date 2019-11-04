@@ -35,7 +35,7 @@ import java.time.format.DateTimeFormatter
 import static com.cheroliv.opticfiber.util.ApplicationUtils.getSeparator
 import static com.cheroliv.opticfiber.util.ApplicationUtils.getUserHomePath
 import static com.cheroliv.opticfiber.config.ApplicationConstants.DATE_PATTERN_FORMAT
-import static com.cheroliv.opticfiber.config.InterConstants.*
+import static com.cheroliv.opticfiber.config.ApplicationConstants.*
 import static com.cheroliv.opticfiber.domain.enumerations.ContractEnum.CABLE_ROUTING
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE

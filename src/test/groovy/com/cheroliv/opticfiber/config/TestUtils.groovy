@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 import static com.cheroliv.opticfiber.util.ApplicationUtils.parseStringDateToLocalDate
 import static com.cheroliv.opticfiber.util.ApplicationUtils.parseStringHeureToLocalTime
 import static com.cheroliv.opticfiber.util.ApplicationUtils.getSeparator
-import static com.cheroliv.opticfiber.config.InterConstants.*
+import static com.cheroliv.opticfiber.config.ApplicationConstants.*
 
 class TestUtils {
 

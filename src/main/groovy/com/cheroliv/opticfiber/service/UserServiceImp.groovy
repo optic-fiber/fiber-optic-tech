@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.service
 
-
+import com.cheroliv.opticfiber.config.ApplicationConstants
 import com.cheroliv.opticfiber.domain.AuthorityDto
 import com.cheroliv.opticfiber.domain.UserDto
 import com.cheroliv.opticfiber.entity.UserEntityGeneric
@@ -24,7 +24,8 @@ import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.stream.Collectors
 
-import static com.cheroliv.opticfiber.config.AuthoritiesConstants.USER
+
+import static com.cheroliv.opticfiber.config.ApplicationConstants.USER
 import static com.cheroliv.opticfiber.util.RandomUtil.*
 
 @Slf4j
@@ -121,7 +122,7 @@ class UserServiceImp implements UserService {
                     if (!removeNonActivatedUser(existingUser))
                         throw new EmailAlreadyUsedException()
                 })
-        userDto.setAuthorities([USER] as Set<String>)
+        userDto.setAuthorities([ApplicationConstants.USER] as Set<String>)
         userDto.setPassword(passwordEncoder.encode(password))
         userDto.setLogin(userDto.getLogin().toLowerCase())
         userDto.setEmail(userDto.getEmail().toLowerCase())

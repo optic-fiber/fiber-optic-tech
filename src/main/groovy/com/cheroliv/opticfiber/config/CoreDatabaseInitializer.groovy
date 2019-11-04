@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContextAware
 import org.springframework.stereotype.Component
 
 import javax.annotation.PostConstruct
+import static com.cheroliv.opticfiber.config.ApplicationConstants.*
 
 @Slf4j
 @Component
@@ -27,12 +28,12 @@ class CoreDatabaseInitializer implements ApplicationContextAware {
     void createDefaultAuth() {
         log.info(this.class.simpleName + 'createDefaultAuth()')
         UserRepository userRepository = applicationContext.getBean(UserRepository)
-        if (!userRepository.findAuthorityById(AuthoritiesConstants.USER).present)
-            userRepository.saveAuthority(new AuthorityDto(name: AuthoritiesConstants.USER))
-        if (!userRepository.findAuthorityById(AuthoritiesConstants.ADMIN).present)
-            userRepository.saveAuthority(new AuthorityDto(name: AuthoritiesConstants.ADMIN))
-        if (!userRepository.findAuthorityById(AuthoritiesConstants.ANONYMOUS).present)
-            userRepository.saveAuthority(new AuthorityDto(name: AuthoritiesConstants.ANONYMOUS))
+        if (!userRepository.findAuthorityById(USER).present)
+            userRepository.saveAuthority(new AuthorityDto(name:USER))
+        if (!userRepository.findAuthorityById(ADMIN).present)
+            userRepository.saveAuthority(new AuthorityDto(name:ADMIN))
+        if (!userRepository.findAuthorityById(ANONYMOUS).present)
+            userRepository.saveAuthority(new AuthorityDto(name: ANONYMOUS))
     }
 
     void createDefaultUsers() {
