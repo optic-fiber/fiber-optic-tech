@@ -1,12 +1,12 @@
 package com.cheroliv.opticfiber.config
 
-import com.cheroliv.core.entity.dao.ExtendedRepositoryImpl
+import com.cheroliv.core.entity.dao.ExtendedDaoImpl
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @Configuration
 @EnableJpaRepositories(
-        repositoryBaseClass = ExtendedRepositoryImpl,
+        repositoryBaseClass = ExtendedDaoImpl,
         basePackages = [
                 'com.cheroliv.core.entity.dao',
                 'com.cheroliv.core.config',

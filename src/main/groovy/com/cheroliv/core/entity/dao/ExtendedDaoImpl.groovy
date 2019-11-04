@@ -17,13 +17,13 @@ import java.beans.PropertyDescriptor
 
 @TypeChecked
 @NoRepositoryBean
-class ExtendedRepositoryImpl<T, ID extends Serializable>
-        extends SimpleJpaRepository<T, ID> implements ExtendedRepository<T, ID> {
+class ExtendedDaoImpl<T, ID extends Serializable>
+        extends SimpleJpaRepository<T, ID> implements ExtendedDao<T, ID> {
 
     EntityManager entityManager
 
-    ExtendedRepositoryImpl(JpaEntityInformation<T, ?> entityInformation,
-                           EntityManager entityManager) {
+    ExtendedDaoImpl(JpaEntityInformation<T, ?> entityInformation,
+                    EntityManager entityManager) {
         super(entityInformation, entityManager)
         this.entityManager = entityManager
     }

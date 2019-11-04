@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.inter.entity.dao
 
-import com.cheroliv.core.entity.dao.ExtendedRepository
+import com.cheroliv.core.entity.dao.ExtendedDao
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
 import groovy.transform.TypeChecked
@@ -14,7 +14,7 @@ import java.time.LocalDateTime
 interface InterDao extends
         InterDaoGeneric<InterEntity>,
         PagingAndSortingRepository<InterEntity, Long>,
-        ExtendedRepository<InterEntity, Long> {
+        ExtendedDao<InterEntity, Long> {
 
     @Query('from InterEntity i where i.nd=:nd and typeInter=:type')
     Optional<InterEntity> find(
