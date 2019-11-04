@@ -18,6 +18,7 @@ plugins {
     id 'maven'
     id 'org.springframework.boot' version '2.1.9.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'net.ltgt.apt' version '0.8'
 }
 //apply from: "$rootDir/gradle/jacoco.gradle"
 
@@ -119,7 +120,12 @@ dependencies {
     implementation "org.ehcache:ehcache:3.7.1"
     implementation "org.hibernate:hibernate-jcache"
     // BEAN MAPPING
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"
     implementation "org.mapstruct:mapstruct:${mapstruct_version}"
+    apt "org.mapstruct:mapstruct-processor:${mapstruct_version}"
+
+
+
     // DATABASE ACCESS DRIVER
     implementation 'com.h2database:h2'
     // COLLECTION HELPERS
@@ -224,14 +230,14 @@ task integrationTests(type: Test) {
     reports.html.enabled = true
 }
 
-task bddTests(type: Test) {
+task bddTest(type: Test) {
     description = "Execute cucumber BDD tests."
     group = "verification"
     include "**/*CucumberIT*"
     reports.html.enabled = true
 }
 
-check.dependsOn bddTests
+check.dependsOn bddTest
 
 check.dependsOn integrationTests
 
@@ -247,7 +253,7 @@ task integrationTestReport(type: TestReport) {
 
 task bddTestReport(type: TestReport) {
     destinationDir = file("$buildDir/reports/tests")
-    reportOn bddTests
+    reportOn bddTest
 }
 
 task cleanResources(type: Delete) {
