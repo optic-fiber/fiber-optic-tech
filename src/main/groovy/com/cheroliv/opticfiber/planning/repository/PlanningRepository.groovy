@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.planning.repository
 
-import com.cheroliv.opticfiber.planning.domain.PlanningDto
+import com.cheroliv.opticfiber.domain.PlanningDto
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Slice
 

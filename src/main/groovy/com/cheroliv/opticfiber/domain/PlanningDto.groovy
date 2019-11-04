@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.planning.domain
+package com.cheroliv.opticfiber.domain
 
 import com.cheroliv.opticfiber.domain.UserDto
 
