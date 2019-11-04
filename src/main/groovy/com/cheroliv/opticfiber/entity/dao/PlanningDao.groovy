@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.planning.entity.dao
+package com.cheroliv.opticfiber.entity.dao
 
 import com.cheroliv.opticfiber.planning.entity.PlanningEntity
 import groovy.transform.TypeChecked

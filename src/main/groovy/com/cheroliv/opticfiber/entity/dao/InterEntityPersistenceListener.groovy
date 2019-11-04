@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.inter.entity.dao
+package com.cheroliv.opticfiber.entity.dao
 
 import groovy.util.logging.Slf4j
 

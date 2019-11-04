@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.inter.entity.dao
+package com.cheroliv.opticfiber.entity.dao
 
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntityGeneric
