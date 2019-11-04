@@ -1,8 +1,8 @@
 package com.cheroliv.opticfiber.inter.service
 
 import com.cheroliv.opticfiber.domain.InterDto
-import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
-import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
+import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import com.cheroliv.opticfiber.inter.repository.InterRepository
 import com.cheroliv.opticfiber.service.exceptions.InterNotFoundException
 import com.cheroliv.opticfiber.service.exceptions.InterTypeEnumException

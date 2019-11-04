@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.repository
 
 import com.cheroliv.opticfiber.domain.InterDto
-import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import com.cheroliv.opticfiber.inter.repository.InterRepository
 
 import java.time.LocalDateTime

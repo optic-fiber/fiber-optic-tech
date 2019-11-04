@@ -2,8 +2,8 @@ package com.cheroliv.opticfiber.inter.entity
 
 
 import com.cheroliv.opticfiber.domain.InterDto
-import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
-import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
+import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import com.cheroliv.opticfiber.planning.entity.PlanningEntity
 import groovy.transform.ToString
 import groovy.transform.TypeChecked

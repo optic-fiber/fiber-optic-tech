@@ -2,8 +2,8 @@ package com.cheroliv.opticfiber.entity.dao
 
 import com.cheroliv.opticfiber.util.ApplicationUtils
 import com.cheroliv.opticfiber.TestData
-import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
-import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
+import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
 import com.cheroliv.opticfiber.inter.entity.dao.InterDao
 import groovy.json.JsonSlurper

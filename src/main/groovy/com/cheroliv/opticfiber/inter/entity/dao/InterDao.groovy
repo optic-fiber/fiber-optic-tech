@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.inter.entity.dao
 
 import com.cheroliv.core.entity.dao.ExtendedRepository
-import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
 import groovy.transform.TypeChecked
 import org.springframework.data.jpa.repository.Query

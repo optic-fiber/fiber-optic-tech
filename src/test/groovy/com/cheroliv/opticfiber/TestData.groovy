@@ -5,8 +5,8 @@ import com.cheroliv.core.entity.AuthorityEntity
 import com.cheroliv.core.entity.UserEntity
 import com.cheroliv.core.config.AuthoritiesConstants
 import com.cheroliv.opticfiber.domain.InterDto
-import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
-import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
+import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j

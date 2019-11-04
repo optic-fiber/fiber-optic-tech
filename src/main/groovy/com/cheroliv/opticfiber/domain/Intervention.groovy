@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.domain
 
-import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
-import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
+import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import groovy.transform.CompileStatic
 import groovy.transform.Immutable
 
