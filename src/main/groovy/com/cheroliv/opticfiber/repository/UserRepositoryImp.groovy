@@ -1,4 +1,4 @@
-package com.cheroliv.core.repository
+package com.cheroliv.opticfiber.repository
 
 
 import com.cheroliv.opticfiber.domain.AuthorityDto

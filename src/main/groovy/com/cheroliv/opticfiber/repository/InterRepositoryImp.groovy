@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.inter.repository
+package com.cheroliv.opticfiber.repository
 
 import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum

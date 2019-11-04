@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.planning.repository
+package com.cheroliv.opticfiber.repository
 
 
 import com.cheroliv.opticfiber.domain.PlanningDto

@@ -2,7 +2,7 @@ package com.cheroliv.core.config
 
 import com.cheroliv.opticfiber.config.AuthoritiesConstants
 import com.cheroliv.opticfiber.domain.AuthorityDto
-import com.cheroliv.core.repository.UserRepository
+import com.cheroliv.opticfiber.repository.UserRepository
 import com.cheroliv.core.service.UserService
 import groovy.util.logging.Slf4j
 import org.springframework.context.ApplicationContext

@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.recap.service
 
 
-import com.cheroliv.opticfiber.inter.repository.InterRepository
+import com.cheroliv.opticfiber.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.domain.Recap
 import com.cheroliv.opticfiber.service.exceptions.RecapNoInterInRepositoryException
