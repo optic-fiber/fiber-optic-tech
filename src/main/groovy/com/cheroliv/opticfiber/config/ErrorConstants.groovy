@@ -1,4 +1,4 @@
-package com.cheroliv.core.config
+package com.cheroliv.opticfiber.config
 
 
 import groovy.transform.TypeChecked

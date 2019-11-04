@@ -1,6 +1,6 @@
 package com.cheroliv.core.security
 
-import com.cheroliv.core.config.AuthoritiesConstants
+import com.cheroliv.opticfiber.config.AuthoritiesConstants
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContext
 import org.springframework.security.core.context.SecurityContextHolder

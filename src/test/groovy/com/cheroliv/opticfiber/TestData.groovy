@@ -3,7 +3,7 @@ package com.cheroliv.opticfiber
 import com.cheroliv.opticfiber.domain.UserDto
 import com.cheroliv.core.entity.AuthorityEntity
 import com.cheroliv.core.entity.UserEntity
-import com.cheroliv.core.config.AuthoritiesConstants
+import com.cheroliv.opticfiber.config.AuthoritiesConstants
 import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
