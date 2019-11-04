@@ -3,7 +3,7 @@ package com.cheroliv.opticfiber.recap.service
 
 import com.cheroliv.opticfiber.inter.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterDataService
-import com.cheroliv.opticfiber.recap.model.Recap
+import com.cheroliv.opticfiber.domain.Recap
 import com.cheroliv.opticfiber.service.exceptions.RecapNoInterInRepositoryException
 import com.cheroliv.opticfiber.view.SpreadsheetRecap
 import groovy.transform.TypeChecked
@@ -16,7 +16,7 @@ import java.time.LocalDateTime
 
 import static com.cheroliv.opticfiber.util.ApplicationUtils.*
 import static com.cheroliv.opticfiber.config.ApplicationConstants.*
-import static com.cheroliv.opticfiber.recap.model.Recap.PRE_LABEL_TITRE_RECAP
+import static com.cheroliv.opticfiber.domain.Recap.PRE_LABEL_TITRE_RECAP
 
 @Slf4j
 @Service

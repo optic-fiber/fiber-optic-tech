@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.recap.model
+package com.cheroliv.opticfiber.domain
 
 import com.cheroliv.opticfiber.inter.domain.InterDto
 import groovy.transform.ToString
