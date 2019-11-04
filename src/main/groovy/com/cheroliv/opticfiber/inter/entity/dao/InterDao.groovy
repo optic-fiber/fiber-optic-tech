@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.inter.entity.dao
 
-import com.cheroliv.core.entity.dao.ExtendedDao
+import com.cheroliv.opticfiber.entity.dao.ExtendedDao
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
 import groovy.transform.TypeChecked

@@ -5,13 +5,13 @@ import com.cheroliv.opticfiber.domain.AuthorityDto
 import com.cheroliv.opticfiber.domain.UserDto
 import com.cheroliv.core.entity.AuthorityEntity
 import com.cheroliv.core.entity.UserEntity
-import com.cheroliv.core.entity.dao.AuthorityDao
+import com.cheroliv.opticfiber.entity.dao.AuthorityDao
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
-import com.cheroliv.core.entity.dao.UserDao
+import com.cheroliv.opticfiber.entity.dao.UserDao
 
 import java.time.Instant
 

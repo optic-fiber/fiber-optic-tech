@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber
 
-import com.cheroliv.core.entity.dao.UserDao
+import com.cheroliv.opticfiber.entity.dao.UserDao
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.junit.jupiter.api.*
