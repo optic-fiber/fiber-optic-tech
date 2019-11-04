@@ -3,8 +3,8 @@ package com.cheroliv.opticfiber.inter.service
 import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.repository.InterRepository
-import com.cheroliv.opticfiber.inter.service.exception.InterNotFoundException
-import com.cheroliv.opticfiber.inter.service.exception.InterTypeEnumException
+import com.cheroliv.opticfiber.service.exceptions.InterNotFoundException
+import com.cheroliv.opticfiber.service.exceptions.InterTypeEnumException
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.springframework.stereotype.Service

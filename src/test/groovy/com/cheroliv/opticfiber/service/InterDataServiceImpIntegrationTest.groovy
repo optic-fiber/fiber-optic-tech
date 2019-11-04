@@ -7,8 +7,8 @@ import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
 import com.cheroliv.opticfiber.inter.entity.dao.InterDao
 import com.cheroliv.opticfiber.inter.service.InterDataService
-import com.cheroliv.opticfiber.inter.service.exception.InterNotFoundException
-import com.cheroliv.opticfiber.inter.service.exception.InterTypeEnumException
+import com.cheroliv.opticfiber.service.exceptions.InterNotFoundException
+import com.cheroliv.opticfiber.service.exceptions.InterTypeEnumException
 import com.google.common.collect.Maps
 import groovy.json.JsonSlurper
 import groovy.transform.TypeChecked

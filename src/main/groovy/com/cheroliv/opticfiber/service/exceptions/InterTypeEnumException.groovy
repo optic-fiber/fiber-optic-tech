@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.inter.service.exception
+package com.cheroliv.opticfiber.service.exceptions
 
 class InterTypeEnumException extends RuntimeException {
     InterTypeEnumException(String type) {
