@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.controller
 
-import com.cheroliv.opticfiber.inter.controller.InterFormBean
+
 import com.cheroliv.opticfiber.inter.domain.InterDto
 import com.cheroliv.opticfiber.inter.service.InterService
 import org.springframework.stereotype.Controller

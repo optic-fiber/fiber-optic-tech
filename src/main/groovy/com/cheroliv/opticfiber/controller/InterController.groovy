@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.inter.controller
+package com.cheroliv.opticfiber.controller
 
 import com.cheroliv.opticfiber.inter.controller.exception.*
 import com.cheroliv.opticfiber.inter.domain.InterDto

@@ -1,7 +1,6 @@
 package com.cheroliv.opticfiber.controller
 
 import com.cheroliv.opticfiber.TestData
-import com.cheroliv.opticfiber.inter.controller.InterController
 import com.cheroliv.opticfiber.inter.controller.exception.*
 import com.cheroliv.opticfiber.inter.domain.InterDto
 import com.cheroliv.opticfiber.inter.service.InterService
@@ -20,7 +19,6 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.MvcResult
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 
-import static InterController.INTER_BASE_URL_REST_API
 import static org.mockito.ArgumentMatchers.anyLong
 import static org.mockito.ArgumentMatchers.anyString
 import static org.mockito.BDDMockito.given
