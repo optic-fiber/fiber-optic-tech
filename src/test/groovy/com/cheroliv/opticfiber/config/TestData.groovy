@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber
+package com.cheroliv.opticfiber.config
 
 import com.cheroliv.opticfiber.domain.UserDto
 import com.cheroliv.opticfiber.entity.AuthorityEntity

@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.service
 
-import com.cheroliv.opticfiber.TestData
+import com.cheroliv.opticfiber.config.TestData
 import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterServiceImp

@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.controller
 
-import com.cheroliv.opticfiber.TestData
+import com.cheroliv.opticfiber.config.TestData
 import com.cheroliv.opticfiber.controller.exceptions.FirstInterNotFoundException
 import com.cheroliv.opticfiber.controller.exceptions.InterAlreadyExistsException
 import com.cheroliv.opticfiber.controller.exceptions.InterIdAlreadyExistsBeforeSaveException

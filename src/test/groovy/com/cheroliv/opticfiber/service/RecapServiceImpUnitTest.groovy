@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.service
 
 
-import com.cheroliv.opticfiber.TestData
+import com.cheroliv.opticfiber.config.TestData
 import com.cheroliv.opticfiber.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.recap.service.RecapServiceImp
@@ -18,7 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 import java.time.LocalDateTime
 
 import static com.cheroliv.opticfiber.util.ApplicationUtils.dateTimeFormattedForFileName
-import static com.cheroliv.opticfiber.TestUtils.applicationProperties
+import static com.cheroliv.opticfiber.config.TestUtils.applicationProperties
 import static org.apache.commons.io.FilenameUtils.getExtension
 import static org.mockito.BDDMockito.given
 import static org.mockito.MockitoAnnotations.initMocks
