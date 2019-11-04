@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber
+package com.cheroliv.opticfiber.entity
 
 
 import com.cheroliv.core.entity.AuthorityEntityGeneric
