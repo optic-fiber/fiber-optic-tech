@@ -5,6 +5,7 @@ import com.cheroliv.opticfiber.domain.UserDto
 import com.cheroliv.opticfiber.entity.UserEntityGeneric
 import com.cheroliv.opticfiber.repository.UserRepository
 import com.cheroliv.opticfiber.security.SecurityUtils
+import com.cheroliv.opticfiber.service.UserService
 import com.cheroliv.opticfiber.service.exceptions.EmailAlreadyUsedException
 import com.cheroliv.opticfiber.service.exceptions.InvalidPasswordException
 import com.cheroliv.opticfiber.service.exceptions.UsernameAlreadyUsedException

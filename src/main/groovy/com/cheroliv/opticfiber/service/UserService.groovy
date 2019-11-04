@@ -1,4 +1,4 @@
-package com.cheroliv.core.service
+package com.cheroliv.opticfiber.service
 
 import com.cheroliv.opticfiber.domain.UserDto
 import org.springframework.data.domain.Page
