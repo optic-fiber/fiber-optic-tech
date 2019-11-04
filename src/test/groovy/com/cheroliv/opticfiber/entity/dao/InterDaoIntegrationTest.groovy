@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.entity.dao
 
-import com.cheroliv.opticfiber.ApplicationUtils
+import com.cheroliv.opticfiber.util.ApplicationUtils
 import com.cheroliv.opticfiber.TestData
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum

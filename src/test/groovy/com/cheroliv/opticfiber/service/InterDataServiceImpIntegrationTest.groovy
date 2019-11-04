@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.service
 
-import com.cheroliv.opticfiber.ApplicationUtils
+import com.cheroliv.opticfiber.util.ApplicationUtils
 import com.cheroliv.opticfiber.TestUtils
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
@@ -33,8 +33,8 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-import static com.cheroliv.opticfiber.ApplicationUtils.getSeparator
-import static com.cheroliv.opticfiber.ApplicationUtils.getUserHomePath
+import static com.cheroliv.opticfiber.util.ApplicationUtils.getSeparator
+import static com.cheroliv.opticfiber.util.ApplicationUtils.getUserHomePath
 import static com.cheroliv.opticfiber.config.ApplicationConstants.DATE_PATTERN_FORMAT
 import static com.cheroliv.opticfiber.config.InterConstants.*
 import static com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum.CABLE_ROUTING

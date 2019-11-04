@@ -9,9 +9,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
 import javax.persistence.EntityManager
 import java.time.LocalDateTime
 
-import static ApplicationUtils.parseStringDateToLocalDate
-import static ApplicationUtils.parseStringHeureToLocalTime
-import static com.cheroliv.opticfiber.ApplicationUtils.getSeparator
+import static com.cheroliv.opticfiber.util.ApplicationUtils.parseStringDateToLocalDate
+import static com.cheroliv.opticfiber.util.ApplicationUtils.parseStringHeureToLocalTime
+import static com.cheroliv.opticfiber.util.ApplicationUtils.getSeparator
 import static com.cheroliv.opticfiber.config.InterConstants.*
 
 class TestUtils {

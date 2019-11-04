@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 import java.nio.charset.StandardCharsets
 import java.time.LocalDateTime
 
-import static com.cheroliv.opticfiber.ApplicationUtils.*
+import static com.cheroliv.opticfiber.util.ApplicationUtils.*
 
 @Slf4j
 @CompileStatic

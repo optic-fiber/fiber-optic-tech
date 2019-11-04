@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.service
 
-import com.cheroliv.opticfiber.ApplicationUtils
+import com.cheroliv.opticfiber.util.ApplicationUtils
 import com.cheroliv.opticfiber.config.InterConstants
 import com.cheroliv.opticfiber.inter.domain.InterDto
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
@@ -26,7 +26,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.ApplicationContext
 import org.springframework.core.io.Resource
-import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
 
 import javax.validation.Validator

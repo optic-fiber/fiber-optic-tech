@@ -14,12 +14,9 @@ import org.springframework.transaction.annotation.Transactional
 
 import java.time.LocalDateTime
 
-import static com.cheroliv.opticfiber.ApplicationUtils.*
+import static com.cheroliv.opticfiber.util.ApplicationUtils.*
 import static com.cheroliv.opticfiber.config.ApplicationConstants.*
 import static com.cheroliv.opticfiber.recap.model.Recap.PRE_LABEL_TITRE_RECAP
-
-import static com.cheroliv.opticfiber.ApplicationUtils.convertNombreEnMois
-
 
 @Slf4j
 @Service

@@ -17,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 
 import java.time.LocalDateTime
 
-import static com.cheroliv.opticfiber.ApplicationUtils.dateTimeFormattedForFileName
+import static com.cheroliv.opticfiber.util.ApplicationUtils.dateTimeFormattedForFileName
 import static com.cheroliv.opticfiber.TestUtils.applicationProperties
 import static org.apache.commons.io.FilenameUtils.getExtension
 import static org.mockito.BDDMockito.given

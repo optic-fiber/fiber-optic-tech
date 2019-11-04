@@ -4,8 +4,8 @@ import com.cheroliv.opticfiber.recap.service.exceptions.RecapSettingInitialisati
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
-import static com.cheroliv.opticfiber.ApplicationUtils.separator
-import static com.cheroliv.opticfiber.ApplicationUtils.userHomePath
+import static com.cheroliv.opticfiber.util.ApplicationUtils.separator
+import static com.cheroliv.opticfiber.util.ApplicationUtils.userHomePath
 
 @Service
 class RecapSettingServiceImp implements RecapSettingService {

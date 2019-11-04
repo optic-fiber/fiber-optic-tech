@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.jdbc.core.JdbcTemplate
 
-import static com.cheroliv.opticfiber.ApplicationUtils.getSeparator
-import static com.cheroliv.opticfiber.ApplicationUtils.getUserHomePath
+import static com.cheroliv.opticfiber.util.ApplicationUtils.getSeparator
+import static com.cheroliv.opticfiber.util.ApplicationUtils.getUserHomePath
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE
 
 //import org.springframework.test.jdbc.JdbcTestUtils

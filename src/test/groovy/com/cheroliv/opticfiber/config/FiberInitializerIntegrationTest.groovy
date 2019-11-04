@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 
-import static com.cheroliv.opticfiber.ApplicationUtils.separator
-import static com.cheroliv.opticfiber.ApplicationUtils.userHomePath
+import static com.cheroliv.opticfiber.util.ApplicationUtils.separator
+import static com.cheroliv.opticfiber.util.ApplicationUtils.userHomePath
 
 @Slf4j
 @TypeChecked

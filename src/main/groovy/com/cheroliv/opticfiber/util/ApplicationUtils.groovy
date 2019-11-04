@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber
+package com.cheroliv.opticfiber.util
 
 import groovy.transform.CompileStatic
 

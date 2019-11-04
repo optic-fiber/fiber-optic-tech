@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 
-import static com.cheroliv.opticfiber.ApplicationUtils.separator
+import static com.cheroliv.opticfiber.util.ApplicationUtils.separator
 import static com.cheroliv.opticfiber.config.ApplicationConstants.KEY_SYSTEM_PROPERTY_USER_HOME
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE
 
