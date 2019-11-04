@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.domain
 
-import com.cheroliv.opticfiber.inter.domain.InterDto
+
 import groovy.transform.ToString
 
 import java.time.LocalDateTime

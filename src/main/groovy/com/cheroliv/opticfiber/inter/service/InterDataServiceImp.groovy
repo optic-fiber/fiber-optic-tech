@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.inter.service
 
-import com.cheroliv.opticfiber.inter.domain.InterDto
+import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.repository.InterRepository

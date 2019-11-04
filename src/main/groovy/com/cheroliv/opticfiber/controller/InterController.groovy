@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.controller
 
 import com.cheroliv.opticfiber.inter.controller.exception.*
-import com.cheroliv.opticfiber.inter.domain.InterDto
+import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.inter.service.InterService
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j

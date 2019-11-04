@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.view
 
-import com.cheroliv.opticfiber.inter.domain.InterDto
+import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.domain.Recap
 import com.jameskleeh.excel.ExcelBuilder
 import groovy.transform.ToString

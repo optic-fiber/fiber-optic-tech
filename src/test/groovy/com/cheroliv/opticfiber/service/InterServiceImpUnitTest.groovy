@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.service
 
 import com.cheroliv.opticfiber.TestData
-import com.cheroliv.opticfiber.inter.domain.InterDto
+import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.inter.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterServiceImp
 import groovy.transform.TypeChecked

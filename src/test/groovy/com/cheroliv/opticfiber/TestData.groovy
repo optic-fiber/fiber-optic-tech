@@ -4,7 +4,7 @@ import com.cheroliv.opticfiber.domain.UserDto
 import com.cheroliv.core.entity.AuthorityEntity
 import com.cheroliv.core.entity.UserEntity
 import com.cheroliv.core.config.AuthoritiesConstants
-import com.cheroliv.opticfiber.inter.domain.InterDto
+import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity

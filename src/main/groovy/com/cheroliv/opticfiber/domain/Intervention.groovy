@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.inter.domain
+package com.cheroliv.opticfiber.domain
 
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum

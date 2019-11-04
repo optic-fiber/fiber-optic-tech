@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.inter.service
 
 
-import com.cheroliv.opticfiber.inter.domain.InterDto
+import com.cheroliv.opticfiber.domain.InterDto
 
 interface InterService {
     InterDto find(String nd, String type)
