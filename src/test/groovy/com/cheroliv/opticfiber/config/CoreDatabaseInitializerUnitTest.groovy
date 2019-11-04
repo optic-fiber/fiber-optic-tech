@@ -1,5 +1,6 @@
-package com.cheroliv.core.config
+package com.cheroliv.opticfiber.config
 
+import com.cheroliv.core.config.CoreDatabaseInitializer
 import com.cheroliv.opticfiber.TestData
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j

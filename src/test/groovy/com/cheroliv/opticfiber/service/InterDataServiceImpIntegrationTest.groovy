@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.inter.service
+package com.cheroliv.opticfiber.service
 
 import com.cheroliv.opticfiber.ApplicationUtils
 import com.cheroliv.opticfiber.TestUtils
@@ -6,6 +6,7 @@ import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
 import com.cheroliv.opticfiber.inter.entity.dao.InterDao
+import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.inter.service.exception.InterNotFoundException
 import com.cheroliv.opticfiber.inter.service.exception.InterTypeEnumException
 import com.google.common.collect.Maps

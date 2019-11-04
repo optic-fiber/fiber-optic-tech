@@ -1,6 +1,6 @@
-package com.cheroliv.opticfiber.recap.service
+package com.cheroliv.opticfiber.service
 
-
+import com.cheroliv.opticfiber.recap.service.RecapSettingService
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.junit.jupiter.api.DisplayName

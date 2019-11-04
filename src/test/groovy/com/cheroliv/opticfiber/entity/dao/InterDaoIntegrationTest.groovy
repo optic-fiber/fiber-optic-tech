@@ -1,10 +1,11 @@
-package com.cheroliv.opticfiber.inter.entity.dao
+package com.cheroliv.opticfiber.entity.dao
 
 import com.cheroliv.opticfiber.ApplicationUtils
 import com.cheroliv.opticfiber.TestData
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
 import com.cheroliv.opticfiber.inter.entity.InterEntity
+import com.cheroliv.opticfiber.inter.entity.dao.InterDao
 import groovy.json.JsonSlurper
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j

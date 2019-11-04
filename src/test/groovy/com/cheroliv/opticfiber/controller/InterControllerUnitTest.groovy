@@ -1,6 +1,7 @@
-package com.cheroliv.opticfiber.inter.controller
+package com.cheroliv.opticfiber.controller
 
 import com.cheroliv.opticfiber.TestData
+import com.cheroliv.opticfiber.inter.controller.InterController
 import com.cheroliv.opticfiber.inter.controller.exception.*
 import com.cheroliv.opticfiber.inter.domain.InterDto
 import com.cheroliv.opticfiber.inter.service.InterService
@@ -17,6 +18,7 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.MvcResult
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 
 import static InterController.INTER_BASE_URL_REST_API
 import static org.mockito.ArgumentMatchers.anyLong
@@ -51,7 +53,7 @@ class InterControllerUnitTest {
         given(interService.getFirst()).willReturn(
                 data.firstInterDto)
         mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/first")
+                "${InterController.INTER_BASE_URL_REST_API}/first")
                 .with(csrf().asHeader()))
                 .andExpect(jsonPath("id")
                         .value(data.firstInterDto.id))
@@ -70,7 +72,7 @@ class InterControllerUnitTest {
         given(interService.getFirst())
                 .willThrow(FirstInterNotFoundException)
         mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/first")
+                "${InterController.INTER_BASE_URL_REST_API}/first")
                 .with(csrf().asHeader()))
                 .andExpect(status().isNotFound())
     }
@@ -83,7 +85,7 @@ class InterControllerUnitTest {
         given(interService.getLast())
                 .willReturn(data.lastInterDto)
         mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/last")
+                "${InterController.INTER_BASE_URL_REST_API}/last")
                 .with(csrf().asHeader()))
                 .andExpect(jsonPath("id")
                         .value(data.lastInterDto.id))
@@ -103,7 +105,7 @@ class InterControllerUnitTest {
         given(interService.getLast())
                 .willReturn(null)
         MvcResult result = mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/last")
+                "${InterController.INTER_BASE_URL_REST_API}/last")
                 .with(csrf().asHeader()))
                 .andExpect(status().isNotFound())
                 .andReturn()
@@ -119,7 +121,7 @@ class InterControllerUnitTest {
         given(interService.get(data.interDto.id))
                 .willReturn(data.interDto)
         mockMvc.perform(get(
-                "$INTER_BASE_URL_REST_API/{id}",
+                "$InterController.INTER_BASE_URL_REST_API/{id}",
                 data.interDto.id)
                 .with(csrf().asHeader()))
                 .andExpect(jsonPath("id")
@@ -140,7 +142,7 @@ class InterControllerUnitTest {
         given(interService.get(data.interDto.id))
                 .willReturn(null)
         MvcResult result = mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/{id}",
+                "${InterController.INTER_BASE_URL_REST_API}/{id}",
                 data.interDto.id)
                 .with(csrf().asHeader()))
                 .andExpect(status().isNotFound())
@@ -156,7 +158,7 @@ class InterControllerUnitTest {
         given(interService.getPrevious(data.interDto.id))
                 .willReturn(data.prevInterDto)
         mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/{id}/prev",
+                "${InterController.INTER_BASE_URL_REST_API}/{id}/prev",
                 data.interDto.id)
                 .with(csrf().asHeader()))
                 .andExpect(jsonPath("id")
@@ -176,7 +178,7 @@ class InterControllerUnitTest {
         given(interService.getPrevious(data.interDto.id))
                 .willReturn(null)
         MvcResult result = mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/{is}/prev",
+                "${InterController.INTER_BASE_URL_REST_API}/{is}/prev",
                 data.interDto.id)
                 .with(csrf().asHeader()))
                 .andExpect(status().isNotFound())
@@ -192,7 +194,7 @@ class InterControllerUnitTest {
         given(interService.getNext(data.interDto.id))
                 .willReturn(data.nextInterDto)
         mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/{id}/next",
+                "${InterController.INTER_BASE_URL_REST_API}/{id}/next",
                 data.interDto.id)
                 .with(csrf().asHeader()))
                 .andExpect(jsonPath("id")
@@ -219,7 +221,7 @@ class InterControllerUnitTest {
         given(interService.getNext(data.interDto.id))
                 .willReturn(null)
         MvcResult result = mockMvc.perform(get(
-                "${INTER_BASE_URL_REST_API}/{id}/next",
+                "${InterController.INTER_BASE_URL_REST_API}/{id}/next",
                 data.interDto.id)
                 .with(csrf().asHeader()))
                 .andExpect(status().isNotFound())
@@ -237,7 +239,7 @@ class InterControllerUnitTest {
                 .willReturn(data.expectedPersistedInterDto)
         given(this.interService.isUniqueIndexAvailable(
                 anyString(), anyString())).willReturn(true)
-        mockMvc.perform(post(INTER_BASE_URL_REST_API)
+        mockMvc.perform(MockMvcRequestBuilders.post(InterController.INTER_BASE_URL_REST_API)
                 .with(csrf().asHeader())
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON)
@@ -265,7 +267,7 @@ class InterControllerUnitTest {
             throws InterIdAlreadyExistsBeforeSaveException {
         given(interService.save(data.firstInterDto))
                 .willReturn(null)
-        MvcResult result = mockMvc.perform(post(INTER_BASE_URL_REST_API)
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post(InterController.INTER_BASE_URL_REST_API)
                 .contentType(APPLICATION_JSON)
                 .with(csrf().asHeader())
                 .accept(APPLICATION_JSON)
@@ -284,8 +286,8 @@ class InterControllerUnitTest {
         given(interService.isUniqueIndexAvailable(
                 anyString(), anyString()))
                 .willReturn(false)
-        MvcResult result = mockMvc.perform(post(
-                INTER_BASE_URL_REST_API)
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post(
+                InterController.INTER_BASE_URL_REST_API)
                 .with(csrf().asHeader())
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON)
@@ -305,7 +307,7 @@ class InterControllerUnitTest {
                 .thenReturn(data.firstInterDto)
         doNothing().when(interService)
                 .delete(data.firstInterDto.id)
-        mockMvc.perform(delete("$INTER_BASE_URL_REST_API/{id}",
+        mockMvc.perform(delete("$InterController.INTER_BASE_URL_REST_API/{id}",
                 data.firstInterDto.id)
                 .with(csrf().asHeader()))
                 .andExpect(status().isNoContent())
@@ -326,7 +328,7 @@ class InterControllerUnitTest {
         given(interService.findById(data.firstInterDto.id + 1))
                 .willReturn(null)
         def result = mockMvc.perform(delete(
-                "${INTER_BASE_URL_REST_API}/{id}",
+                "${InterController.INTER_BASE_URL_REST_API}/{id}",
                 data.firstInterDto.id + 1)
                 .with(csrf().asHeader()))
                 .andExpect(status().isUnprocessableEntity())
@@ -346,7 +348,7 @@ class InterControllerUnitTest {
                 anyString())).willReturn(true)
         given(interService.save(data.firstInterDto))
                 .willReturn(data.firstInterDto)
-        mockMvc.perform(put(INTER_BASE_URL_REST_API)
+        mockMvc.perform(MockMvcRequestBuilders.put(InterController.INTER_BASE_URL_REST_API)
                 .with(csrf().asHeader())
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON)
@@ -367,7 +369,7 @@ class InterControllerUnitTest {
                         '"typeInter":"BAOC","dateTime":' +
                         '"2018-10-29 10:00:00"}'
         MvcResult mvcResult = mockMvc.perform(
-                put(INTER_BASE_URL_REST_API)
+                MockMvcRequestBuilders.put(InterController.INTER_BASE_URL_REST_API)
                         .with(csrf().asHeader())
                         .contentType(APPLICATION_JSON)
                         .accept(APPLICATION_JSON)
@@ -395,7 +397,7 @@ class InterControllerUnitTest {
                 anyString()))
                 .willReturn(false)
         MvcResult mvcResult = mockMvc.perform(
-                put(INTER_BASE_URL_REST_API)
+                MockMvcRequestBuilders.put(InterController.INTER_BASE_URL_REST_API)
                         .with(csrf().asHeader())
                         .contentType(APPLICATION_JSON)
                         .accept(APPLICATION_JSON)
@@ -435,7 +437,7 @@ class InterControllerUnitTest {
                 anyString())).willReturn(true)
         given(interService.saveWithPatch(interDtoToPatch))
                 .willReturn(expectedResultInterDtoToPatch)
-        mockMvc.perform(patch(INTER_BASE_URL_REST_API)
+        mockMvc.perform(MockMvcRequestBuilders.patch(InterController.INTER_BASE_URL_REST_API)
                 .with(csrf().asHeader())
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON)
@@ -456,7 +458,7 @@ class InterControllerUnitTest {
                         '"typeInter":"BAOC","dateTime":' +
                         '"2018-10-29 10:00:00"}'
         MvcResult mvcResult = mockMvc.perform(
-                patch(INTER_BASE_URL_REST_API)
+                MockMvcRequestBuilders.patch(InterController.INTER_BASE_URL_REST_API)
                         .contentType(APPLICATION_JSON)
                         .accept(APPLICATION_JSON)
                         .content(jsonFirstInterDto)
@@ -484,7 +486,7 @@ class InterControllerUnitTest {
                 anyString()))
                 .willReturn(false)
         MvcResult mvcResult = mockMvc.perform(
-                patch(INTER_BASE_URL_REST_API)
+                MockMvcRequestBuilders.patch(InterController.INTER_BASE_URL_REST_API)
                         .contentType(APPLICATION_JSON)
                         .accept(APPLICATION_JSON)
                         .content(jsonFirstInterDto)

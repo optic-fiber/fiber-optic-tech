@@ -1,8 +1,9 @@
-package com.cheroliv.opticfiber.inter.entity
+package com.cheroliv.opticfiber.entity
 
 import com.cheroliv.opticfiber.config.InterConstants
 import com.cheroliv.opticfiber.inter.domain.enumeration.ContractEnum
 import com.cheroliv.opticfiber.inter.domain.enumeration.TypeInterEnum
+import com.cheroliv.opticfiber.inter.entity.InterEntity
 import groovy.json.JsonSlurper
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
