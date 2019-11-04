@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.recap.service
 
-import com.cheroliv.opticfiber.recap.service.exceptions.RecapSettingInitialisationException
+import com.cheroliv.opticfiber.service.exceptions.RecapSettingInitialisationException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 

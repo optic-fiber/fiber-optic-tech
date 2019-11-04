@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.recap.controller
 
 import com.cheroliv.opticfiber.recap.service.RecapService
-import com.cheroliv.opticfiber.recap.spreadsheet.SpreadsheetRecap
+import com.cheroliv.opticfiber.view.SpreadsheetRecap
 import org.springframework.web.bind.annotation.RestController
 
 import java.time.LocalDateTime

@@ -10,7 +10,7 @@ import com.cheroliv.opticfiber.inter.entity.dao.InterDao
 import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.recap.model.Recap
 import com.cheroliv.opticfiber.recap.service.RecapService
-import com.cheroliv.opticfiber.recap.spreadsheet.SpreadsheetRecap
+import com.cheroliv.opticfiber.view.SpreadsheetRecap
 import com.google.common.collect.Maps
 import groovy.json.JsonSlurper
 import groovy.transform.CompileStatic

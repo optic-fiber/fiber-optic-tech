@@ -5,7 +5,7 @@ import com.cheroliv.opticfiber.TestData
 import com.cheroliv.opticfiber.inter.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.recap.service.RecapServiceImp
-import com.cheroliv.opticfiber.recap.service.exceptions.RecapNoInterInRepositoryException
+import com.cheroliv.opticfiber.service.exceptions.RecapNoInterInRepositoryException
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.junit.jupiter.api.*

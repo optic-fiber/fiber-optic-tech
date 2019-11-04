@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.recap.spreadsheet
+package com.cheroliv.opticfiber.view
 
 import com.cheroliv.opticfiber.inter.domain.InterDto
 import com.cheroliv.opticfiber.recap.model.Recap

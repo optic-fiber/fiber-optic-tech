@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.recap.service
 
 import com.cheroliv.opticfiber.recap.model.Recap
-import com.cheroliv.opticfiber.recap.spreadsheet.SpreadsheetRecap
+import com.cheroliv.opticfiber.view.SpreadsheetRecap
 
 import java.time.LocalDateTime
 

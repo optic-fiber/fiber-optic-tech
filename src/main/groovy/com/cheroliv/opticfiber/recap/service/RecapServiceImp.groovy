@@ -4,8 +4,8 @@ package com.cheroliv.opticfiber.recap.service
 import com.cheroliv.opticfiber.inter.repository.InterRepository
 import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.recap.model.Recap
-import com.cheroliv.opticfiber.recap.service.exceptions.RecapNoInterInRepositoryException
-import com.cheroliv.opticfiber.recap.spreadsheet.SpreadsheetRecap
+import com.cheroliv.opticfiber.service.exceptions.RecapNoInterInRepositoryException
+import com.cheroliv.opticfiber.view.SpreadsheetRecap
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Value

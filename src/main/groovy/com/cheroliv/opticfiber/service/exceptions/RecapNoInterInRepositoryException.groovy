@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.recap.service.exceptions
+package com.cheroliv.opticfiber.service.exceptions
 
 class RecapNoInterInRepositoryException extends RuntimeException {
 }
