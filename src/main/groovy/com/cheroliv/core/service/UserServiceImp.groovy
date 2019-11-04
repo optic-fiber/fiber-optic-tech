@@ -5,9 +5,9 @@ import com.cheroliv.opticfiber.domain.UserDto
 import com.cheroliv.core.entity.UserEntityGeneric
 import com.cheroliv.core.repository.UserRepository
 import com.cheroliv.core.security.SecurityUtils
-import com.cheroliv.core.service.exceptions.EmailAlreadyUsedException
-import com.cheroliv.core.service.exceptions.InvalidPasswordException
-import com.cheroliv.core.service.exceptions.UsernameAlreadyUsedException
+import com.cheroliv.opticfiber.service.exceptions.EmailAlreadyUsedException
+import com.cheroliv.opticfiber.service.exceptions.InvalidPasswordException
+import com.cheroliv.opticfiber.service.exceptions.UsernameAlreadyUsedException
 import groovy.util.logging.Slf4j
 import org.springframework.cache.CacheManager
 import org.springframework.data.domain.Page

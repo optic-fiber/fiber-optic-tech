@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.inter.controller.exception
+package com.cheroliv.opticfiber.controller.exceptions
 
 
 import org.springframework.web.bind.annotation.ResponseStatus

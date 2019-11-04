@@ -1,7 +1,16 @@
 package com.cheroliv.opticfiber.controller
 
 import com.cheroliv.opticfiber.TestData
-import com.cheroliv.opticfiber.inter.controller.exception.*
+import com.cheroliv.opticfiber.controller.exceptions.FirstInterNotFoundException
+import com.cheroliv.opticfiber.controller.exceptions.InterAlreadyExistsException
+import com.cheroliv.opticfiber.controller.exceptions.InterIdAlreadyExistsBeforeSaveException
+import com.cheroliv.opticfiber.controller.exceptions.InterIdNotExistsBeforeDeleteException
+import com.cheroliv.opticfiber.controller.exceptions.InterIdNullBeforePatchException
+import com.cheroliv.opticfiber.controller.exceptions.InterIdNullBeforeUpdateException
+import com.cheroliv.opticfiber.controller.exceptions.InterResourceNotFoundException
+import com.cheroliv.opticfiber.controller.exceptions.LastInterNotFoundException
+import com.cheroliv.opticfiber.controller.exceptions.NextInterNotFoundException
+import com.cheroliv.opticfiber.controller.exceptions.PreviousInterNotFoundException
 import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.inter.service.InterService
 import groovy.transform.TypeChecked

@@ -1,4 +1,4 @@
-package com.cheroliv.core.service.exceptions
+package com.cheroliv.opticfiber.service.exceptions
 
 class InvalidPasswordException extends RuntimeException {
 
