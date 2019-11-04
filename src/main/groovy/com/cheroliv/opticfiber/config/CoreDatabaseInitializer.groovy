@@ -1,9 +1,7 @@
-package com.cheroliv.core.config
+package com.cheroliv.opticfiber.config
 
-import com.cheroliv.opticfiber.config.AuthoritiesConstants
 import com.cheroliv.opticfiber.domain.AuthorityDto
 import com.cheroliv.opticfiber.repository.UserRepository
-import com.cheroliv.core.service.UserService
 import groovy.util.logging.Slf4j
 import org.springframework.context.ApplicationContext
 import org.springframework.context.ApplicationContextAware
@@ -39,8 +37,8 @@ class CoreDatabaseInitializer implements ApplicationContextAware {
 
     void createDefaultUsers() {
         log.info(this.class.simpleName + 'createDefaultUsers()')
-        UserService userService = applicationContext
-                .getBean(UserService)
+//        UserService userService = applicationContext
+//                .getBean(UserService)
 ////        Optional<UserEntity> optionalAdminUser = userService.getUserWithAuthoritiesByLogin "admin"
 ////        if (!optionalAdminUser.present) {
 ////            userService.registerUser(new UserDTO(new UserEntity(
