@@ -22,7 +22,7 @@ import java.time.temporal.ChronoUnit
 import java.util.stream.Collectors
 
 import static com.cheroliv.core.config.AuthoritiesConstants.USER
-import static com.cheroliv.core.util.RandomUtil.*
+import static com.cheroliv.opticfiber.util.RandomUtil.*
 
 @Slf4j
 @Service

@@ -1,4 +1,4 @@
-package com.cheroliv.core.util
+package com.cheroliv.opticfiber.util
 
 import org.apache.commons.lang3.RandomStringUtils
 
