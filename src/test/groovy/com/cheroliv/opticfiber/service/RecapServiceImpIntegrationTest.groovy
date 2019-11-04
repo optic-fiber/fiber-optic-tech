@@ -5,7 +5,7 @@ import com.cheroliv.opticfiber.config.InterConstants
 import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
-import com.cheroliv.opticfiber.inter.entity.InterEntity
+import com.cheroliv.opticfiber.entity.InterEntity
 import com.cheroliv.opticfiber.entity.dao.InterDao
 import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.domain.Recap

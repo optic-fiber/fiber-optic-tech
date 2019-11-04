@@ -1,7 +1,6 @@
 package com.cheroliv.opticfiber.config
 
-import com.cheroliv.core.config.CoreDatabaseInitializer
-import com.cheroliv.core.service.UserService
+
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.springframework.boot.autoconfigure.domain.EntityScan
@@ -16,9 +15,7 @@ import javax.annotation.PostConstruct
 @TypeChecked
 @Transactional
 @Configuration
-@EntityScan(['com.cheroliv.core.entity',
-        'com.cheroliv.opticfiber.inter.entity',
-        'com.cheroliv.opticfiber.planning.entity'])
+@EntityScan(['com.cheroliv.opticfiber.entity'])
 class DatabaseInitializer implements ApplicationContextAware {
 
     ApplicationContext applicationContext
@@ -33,7 +30,7 @@ class DatabaseInitializer implements ApplicationContextAware {
 //                        AuthorityDao authorityRepository,
 //                        UserRepository userRepository,
 //                        PlanningRepository planningRepository
-                        ) {
+    ) {
 //        this.userService = userService
 //        this.authorityRepository = authorityRepository
 //        this.userRepository = userRepository
@@ -58,7 +55,7 @@ class DatabaseInitializer implements ApplicationContextAware {
 //                lastNameTech: "user")
     }
 
-    void loadDefaultPlanning(){
+    void loadDefaultPlanning() {
         log.info(this.class.simpleName + 'loadDefaultPlanning()')
     }
 }

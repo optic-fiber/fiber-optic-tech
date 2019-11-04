@@ -4,7 +4,7 @@ import com.cheroliv.opticfiber.util.ApplicationUtils
 import com.cheroliv.opticfiber.TestData
 import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
-import com.cheroliv.opticfiber.inter.entity.InterEntity
+import com.cheroliv.opticfiber.entity.InterEntity
 import groovy.json.JsonSlurper
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j

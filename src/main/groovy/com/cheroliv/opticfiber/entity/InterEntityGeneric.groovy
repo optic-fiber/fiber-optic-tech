@@ -1,8 +1,7 @@
-package com.cheroliv.opticfiber.inter.entity
+package com.cheroliv.opticfiber.entity
 
 import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
-import com.cheroliv.opticfiber.planning.entity.PlanningEntityGeneric
 
 import java.time.LocalDateTime
 

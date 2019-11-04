@@ -1,7 +1,7 @@
 package com.cheroliv.opticfiber.entity.dao
 
 
-import com.cheroliv.core.entity.UserEntity
+import com.cheroliv.opticfiber.entity.UserEntity
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable

@@ -1,4 +1,4 @@
-package com.cheroliv.core.entity
+package com.cheroliv.opticfiber.entity
 
 import com.cheroliv.opticfiber.domain.AuthorityDto
 import groovy.transform.ToString

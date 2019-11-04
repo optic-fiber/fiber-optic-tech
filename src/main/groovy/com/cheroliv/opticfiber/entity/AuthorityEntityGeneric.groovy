@@ -1,4 +1,4 @@
-package com.cheroliv.core.entity
+package com.cheroliv.opticfiber.entity
 
 interface AuthorityEntityGeneric <ID> extends Serializable {
     static final long serialVersionUID = 1L

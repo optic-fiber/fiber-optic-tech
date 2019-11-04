@@ -2,7 +2,7 @@ package com.cheroliv.opticfiber
 
 import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
-import com.cheroliv.opticfiber.inter.entity.InterEntity
+import com.cheroliv.opticfiber.entity.InterEntity
 import org.springframework.context.ApplicationContext
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
 

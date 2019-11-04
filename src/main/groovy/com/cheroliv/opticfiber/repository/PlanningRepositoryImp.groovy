@@ -2,7 +2,7 @@ package com.cheroliv.opticfiber.repository
 
 
 import com.cheroliv.opticfiber.domain.PlanningDto
-import com.cheroliv.opticfiber.planning.entity.PlanningEntity
+import com.cheroliv.opticfiber.entity.PlanningEntity
 import com.cheroliv.opticfiber.entity.dao.PlanningDao
 import groovy.transform.TypeChecked
 import org.springframework.data.domain.Pageable

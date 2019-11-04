@@ -1,8 +1,6 @@
-package com.cheroliv.opticfiber.planning.entity
+package com.cheroliv.opticfiber.entity
 
 
-import com.cheroliv.core.entity.UserEntity
-import com.cheroliv.opticfiber.inter.entity.InterEntity
 import com.cheroliv.opticfiber.domain.PlanningDto
 import groovy.transform.ToString
 import groovy.transform.TypeChecked

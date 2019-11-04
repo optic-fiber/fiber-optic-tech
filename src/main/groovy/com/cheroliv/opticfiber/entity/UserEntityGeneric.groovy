@@ -1,4 +1,4 @@
-package com.cheroliv.core.entity
+package com.cheroliv.opticfiber.entity
 
 import java.time.Instant
 

@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.domain
 
-import com.cheroliv.core.entity.UserEntity
+import com.cheroliv.opticfiber.entity.UserEntity
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
 

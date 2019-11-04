@@ -2,7 +2,7 @@ package com.cheroliv.opticfiber.entity.dao
 
 
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
-import com.cheroliv.opticfiber.inter.entity.InterEntity
+import com.cheroliv.opticfiber.entity.InterEntity
 import groovy.transform.TypeChecked
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.PagingAndSortingRepository

@@ -3,8 +3,8 @@ package com.cheroliv.opticfiber.repository
 
 import com.cheroliv.opticfiber.domain.AuthorityDto
 import com.cheroliv.opticfiber.domain.UserDto
-import com.cheroliv.core.entity.AuthorityEntity
-import com.cheroliv.core.entity.UserEntity
+import com.cheroliv.opticfiber.entity.AuthorityEntity
+import com.cheroliv.opticfiber.entity.UserEntity
 import com.cheroliv.opticfiber.entity.dao.AuthorityDao
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j

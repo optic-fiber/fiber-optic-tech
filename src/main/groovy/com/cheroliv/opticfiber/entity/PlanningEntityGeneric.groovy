@@ -1,6 +1,5 @@
-package com.cheroliv.opticfiber.planning.entity
+package com.cheroliv.opticfiber.entity
 
-import com.cheroliv.opticfiber.inter.entity.InterEntityGeneric
 
 import java.time.LocalDateTime
 

@@ -1,13 +1,13 @@
 package com.cheroliv.opticfiber
 
 import com.cheroliv.opticfiber.domain.UserDto
-import com.cheroliv.core.entity.AuthorityEntity
-import com.cheroliv.core.entity.UserEntity
+import com.cheroliv.opticfiber.entity.AuthorityEntity
+import com.cheroliv.opticfiber.entity.UserEntity
 import com.cheroliv.opticfiber.config.AuthoritiesConstants
 import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
-import com.cheroliv.opticfiber.inter.entity.InterEntity
+import com.cheroliv.opticfiber.entity.InterEntity
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 

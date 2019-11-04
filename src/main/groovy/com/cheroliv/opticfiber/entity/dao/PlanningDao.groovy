@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.entity.dao
 
-import com.cheroliv.opticfiber.planning.entity.PlanningEntity
+import com.cheroliv.opticfiber.entity.PlanningEntity
 import groovy.transform.TypeChecked
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Slice

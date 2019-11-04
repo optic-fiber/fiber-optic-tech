@@ -1,4 +1,4 @@
-package com.cheroliv.core.entity
+package com.cheroliv.opticfiber.entity
 
 import com.cheroliv.opticfiber.domain.UserDto
 import com.fasterxml.jackson.annotation.JsonIgnore
