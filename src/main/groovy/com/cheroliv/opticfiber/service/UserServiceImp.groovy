@@ -1,4 +1,5 @@
-package com.cheroliv.core.service
+package com.cheroliv.opticfiber.service
+
 
 import com.cheroliv.opticfiber.domain.AuthorityDto
 import com.cheroliv.opticfiber.domain.UserDto
@@ -10,6 +11,7 @@ import com.cheroliv.opticfiber.service.exceptions.EmailAlreadyUsedException
 import com.cheroliv.opticfiber.service.exceptions.InvalidPasswordException
 import com.cheroliv.opticfiber.service.exceptions.UsernameAlreadyUsedException
 import groovy.util.logging.Slf4j
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.cache.CacheManager
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -33,6 +35,7 @@ class UserServiceImp implements UserService {
     final CacheManager cacheManager
     final PasswordEncoder passwordEncoder
 
+    @Autowired
     UserServiceImp(
             UserRepository userRepository,
             CacheManager cacheManager,
