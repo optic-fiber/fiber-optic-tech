@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.recap.service
+package com.cheroliv.opticfiber.service
 
 import com.cheroliv.opticfiber.domain.Recap
 import com.cheroliv.opticfiber.view.SpreadsheetRecap

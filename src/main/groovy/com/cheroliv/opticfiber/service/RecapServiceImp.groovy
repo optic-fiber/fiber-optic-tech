@@ -1,8 +1,7 @@
-package com.cheroliv.opticfiber.recap.service
+package com.cheroliv.opticfiber.service
 
 
 import com.cheroliv.opticfiber.repository.InterRepository
-import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.domain.Recap
 import com.cheroliv.opticfiber.service.exceptions.RecapNoInterInRepositoryException
 import com.cheroliv.opticfiber.view.SpreadsheetRecap
@@ -16,7 +15,6 @@ import java.time.LocalDateTime
 
 import static com.cheroliv.opticfiber.util.ApplicationUtils.*
 import static com.cheroliv.opticfiber.config.ApplicationConstants.*
-import static com.cheroliv.opticfiber.domain.Recap.PRE_LABEL_TITRE_RECAP
 
 @Slf4j
 @Service
@@ -271,7 +269,7 @@ void run(String... strings) throws Exception {
                         .countPdcBaocBaapParMoisDansAnnee(
                                 moisInt, anneeIntValue),
                 labelTitreRecap:
-                        "${PRE_LABEL_TITRE_RECAP}" +
+                        "${Recap.PRE_LABEL_TITRE_RECAP}" +
                                 "${convertNombreEnMois moisInt}" +
                                 " $anneeIntValue",
                 labelCurrentMonthYearFormattedFr:

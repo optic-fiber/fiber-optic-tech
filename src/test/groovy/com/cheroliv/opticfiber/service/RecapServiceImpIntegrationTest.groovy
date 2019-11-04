@@ -7,9 +7,7 @@ import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import com.cheroliv.opticfiber.entity.InterEntity
 import com.cheroliv.opticfiber.entity.dao.InterDao
-import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.domain.Recap
-import com.cheroliv.opticfiber.recap.service.RecapService
 import com.cheroliv.opticfiber.view.SpreadsheetRecap
 import com.google.common.collect.Maps
 import groovy.json.JsonSlurper

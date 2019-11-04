@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.inter.service
+package com.cheroliv.opticfiber.service
 
 import com.cheroliv.opticfiber.domain.InterDto
 

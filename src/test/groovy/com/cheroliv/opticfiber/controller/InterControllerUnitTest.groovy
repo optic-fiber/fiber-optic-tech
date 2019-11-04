@@ -12,7 +12,7 @@ import com.cheroliv.opticfiber.controller.exceptions.LastInterNotFoundException
 import com.cheroliv.opticfiber.controller.exceptions.NextInterNotFoundException
 import com.cheroliv.opticfiber.controller.exceptions.PreviousInterNotFoundException
 import com.cheroliv.opticfiber.domain.InterDto
-import com.cheroliv.opticfiber.inter.service.InterService
+import com.cheroliv.opticfiber.service.InterService
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.junit.jupiter.api.DisplayName

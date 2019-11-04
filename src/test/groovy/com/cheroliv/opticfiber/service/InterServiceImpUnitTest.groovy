@@ -3,7 +3,6 @@ package com.cheroliv.opticfiber.service
 import com.cheroliv.opticfiber.config.TestData
 import com.cheroliv.opticfiber.domain.InterDto
 import com.cheroliv.opticfiber.repository.InterRepository
-import com.cheroliv.opticfiber.inter.service.InterServiceImp
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.junit.jupiter.api.*

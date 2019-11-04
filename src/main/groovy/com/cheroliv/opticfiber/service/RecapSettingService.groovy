@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.recap.service
+package com.cheroliv.opticfiber.service
 
 interface RecapSettingService {
     Boolean init()

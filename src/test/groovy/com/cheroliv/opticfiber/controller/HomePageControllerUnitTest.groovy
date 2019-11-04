@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.controller
 
-import com.cheroliv.opticfiber.inter.service.InterService
+import com.cheroliv.opticfiber.service.InterService
 import groovy.transform.TypeChecked
 import groovy.util.logging.Slf4j
 import org.junit.jupiter.api.BeforeAll

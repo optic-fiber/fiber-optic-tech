@@ -1,4 +1,4 @@
-package com.cheroliv.opticfiber.planning.service
+package com.cheroliv.opticfiber.service
 
 class PlanningServiceImp implements PlanningService {
 }

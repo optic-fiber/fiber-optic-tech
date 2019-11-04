@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.controller
 
-import com.cheroliv.opticfiber.recap.service.RecapService
+import com.cheroliv.opticfiber.service.RecapService
 import com.cheroliv.opticfiber.view.SpreadsheetRecap
 import org.springframework.web.bind.annotation.RestController
 

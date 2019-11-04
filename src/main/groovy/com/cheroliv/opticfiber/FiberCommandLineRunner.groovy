@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber
 
-import com.cheroliv.opticfiber.recap.service.RecapService
+import com.cheroliv.opticfiber.service.RecapService
 import groovy.util.logging.Slf4j
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.ApplicationContext

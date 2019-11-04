@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @EnableJpaRepositories(
         repositoryBaseClass = ExtendedDaoImpl,
         basePackages = [
-                'com.cheroliv.core.config',
-                'com.cheroliv.opticfiber.repository',
+//                'com.cheroliv.core.config',
+//                'com.cheroliv.opticfiber.repository',
                 'com.cheroliv.opticfiber.entity.dao'])
 class ExtendedDaoConfig {
 }

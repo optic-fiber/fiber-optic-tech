@@ -6,7 +6,6 @@ import com.cheroliv.opticfiber.domain.enumerations.ContractEnum
 import com.cheroliv.opticfiber.domain.enumerations.TypeInterEnum
 import com.cheroliv.opticfiber.entity.InterEntity
 import com.cheroliv.opticfiber.entity.dao.InterDao
-import com.cheroliv.opticfiber.inter.service.InterDataService
 import com.cheroliv.opticfiber.service.exceptions.InterNotFoundException
 import com.cheroliv.opticfiber.service.exceptions.InterTypeEnumException
 import com.google.common.collect.Maps
