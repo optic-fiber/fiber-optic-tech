@@ -1,4 +1,4 @@
-package com.cheroliv.core.security
+package com.cheroliv.opticfiber.security
 
 import com.cheroliv.opticfiber.config.AuthoritiesConstants
 import org.springframework.security.core.Authentication
