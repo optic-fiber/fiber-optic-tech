@@ -1,6 +1,6 @@
 package com.cheroliv.core.config
 
-import com.cheroliv.core.domain.AuthorityDto
+import com.cheroliv.opticfiber.domain.AuthorityDto
 import com.cheroliv.core.repository.UserRepository
 import com.cheroliv.core.service.UserService
 import groovy.util.logging.Slf4j

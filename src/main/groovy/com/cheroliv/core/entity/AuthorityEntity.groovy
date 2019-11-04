@@ -1,6 +1,6 @@
 package com.cheroliv.core.entity
 
-import com.cheroliv.core.domain.AuthorityDto
+import com.cheroliv.opticfiber.domain.AuthorityDto
 import groovy.transform.ToString
 import groovy.transform.TypeChecked
 

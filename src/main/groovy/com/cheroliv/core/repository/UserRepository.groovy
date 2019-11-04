@@ -1,7 +1,7 @@
 package com.cheroliv.core.repository
 
-import com.cheroliv.core.domain.AuthorityDto
-import com.cheroliv.core.domain.UserDto
+import com.cheroliv.opticfiber.domain.AuthorityDto
+import com.cheroliv.opticfiber.domain.UserDto
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 

@@ -1,4 +1,4 @@
-package com.cheroliv.core.domain
+package com.cheroliv.opticfiber.domain
 
 import com.cheroliv.core.entity.UserEntity
 import groovy.transform.ToString

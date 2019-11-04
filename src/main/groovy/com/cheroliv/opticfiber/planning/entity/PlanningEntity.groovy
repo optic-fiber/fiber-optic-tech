@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.planning.entity
 
-import com.cheroliv.core.domain.UserDto
+
 import com.cheroliv.core.entity.UserEntity
 import com.cheroliv.opticfiber.inter.entity.InterEntity
 import com.cheroliv.opticfiber.planning.domain.PlanningDto

@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber.planning.domain
 
-import com.cheroliv.core.domain.UserDto
+import com.cheroliv.opticfiber.domain.UserDto
 
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size

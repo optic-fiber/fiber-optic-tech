@@ -1,6 +1,6 @@
 package com.cheroliv.core.entity
 
-import com.cheroliv.core.domain.UserDto
+import com.cheroliv.opticfiber.domain.UserDto
 import com.fasterxml.jackson.annotation.JsonIgnore
 import groovy.transform.ToString
 import groovy.transform.TypeChecked

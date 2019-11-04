@@ -1,7 +1,7 @@
 package com.cheroliv.core.service
 
-import com.cheroliv.core.domain.AuthorityDto
-import com.cheroliv.core.domain.UserDto
+import com.cheroliv.opticfiber.domain.AuthorityDto
+import com.cheroliv.opticfiber.domain.UserDto
 import com.cheroliv.core.entity.UserEntityGeneric
 import com.cheroliv.core.repository.UserRepository
 import com.cheroliv.core.security.SecurityUtils

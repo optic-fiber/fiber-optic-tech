@@ -1,6 +1,6 @@
 package com.cheroliv.opticfiber
 
-import com.cheroliv.core.domain.UserDto
+import com.cheroliv.opticfiber.domain.UserDto
 import com.cheroliv.core.entity.AuthorityEntity
 import com.cheroliv.core.entity.UserEntity
 import com.cheroliv.core.config.AuthoritiesConstants

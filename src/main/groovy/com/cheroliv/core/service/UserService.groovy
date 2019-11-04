@@ -1,6 +1,6 @@
 package com.cheroliv.core.service
 
-import com.cheroliv.core.domain.UserDto
+import com.cheroliv.opticfiber.domain.UserDto
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 

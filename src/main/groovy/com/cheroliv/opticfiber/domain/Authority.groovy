@@ -1,4 +1,4 @@
-package com.cheroliv.core.domain
+package com.cheroliv.opticfiber.domain
 
 import groovy.transform.Immutable
 

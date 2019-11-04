@@ -1,8 +1,8 @@
 package com.cheroliv.core.repository
 
 
-import com.cheroliv.core.domain.AuthorityDto
-import com.cheroliv.core.domain.UserDto
+import com.cheroliv.opticfiber.domain.AuthorityDto
+import com.cheroliv.opticfiber.domain.UserDto
 import com.cheroliv.core.entity.AuthorityEntity
 import com.cheroliv.core.entity.UserEntity
 import com.cheroliv.core.entity.dao.AuthorityDao
